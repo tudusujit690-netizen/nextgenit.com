@@ -28,16 +28,15 @@ nav{
   transform:translateX(-50%);
   width:90%;
   max-width:1200px;
-  background: transparent; /* fully transparent */
-  border: 2px solid rgba(29,161,242,0.5); /* logo color gradient first color with 50% opacity */
+  background: rgba(255, 255, 255, 0.7); /* semi-transparent */
+  backdrop-filter: blur(10px); /* blur effect */
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:12px 30px;
   z-index:100;
-  box-shadow:0 10px 30px rgba(29,161,242,0.3); /* subtle shadow with logo color */
+  box-shadow:0 10px 30px rgba(0,0,0,0.1); /* subtle shadow */
   border-radius:25px;
-  backdrop-filter: blur(10px);
 }
 nav .logo{
   font-size:1.4rem;
@@ -77,9 +76,8 @@ nav{
   top:10px;
   width:92%;
   flex-direction:column;
-  background: transparent;
-  border: 2px solid rgba(29,161,242,0.5);
-  box-shadow:0 8px 20px rgba(29,161,242,0.3);
+  background: rgba(255, 255, 255, 0.7); /* semi-transparent on mobile */
+  backdrop-filter: blur(10px);
 }
 nav .nav-links{flex-direction:column;align-items:center;width:100%;}
 header{padding-top:180px;}
