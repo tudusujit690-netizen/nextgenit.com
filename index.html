@@ -13,7 +13,7 @@
     a { text-decoration:none; color:inherit; }
     img { max-width:100%; display:block; }
     ul { list-style:none; }
-    
+
     header { background:#fff; color:#4e5df8; padding:20px 50px; position:sticky; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.05);}
     header .logo { font-size:1.8rem; font-weight:700; color:#4e5df8; }
     nav { display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; }
@@ -23,7 +23,7 @@
     .cta-btn { background:#00c897; color:#fff; padding:10px 20px; border-radius:5px; transition:0.3s; display:inline-block; }
     .cta-btn:hover { background:#039f76; }
 
-    /* HERO SECTION FULL SCREEN */
+    /* HERO SECTION WITH MULTI-IMAGE SLIDESHOW */
     .hero {
       height: 100vh;
       display: flex;
@@ -31,10 +31,21 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: url('homepage.png') no-repeat center center/cover;
       position: relative;
-      color: #fff;
+      overflow: hidden;
+      color: #000;
     }
+    .hero-slideshow img {
+      position: absolute;
+      top:0; left:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:0;
+      transition: opacity 1.5s ease-in-out;
+      z-index:0;
+    }
+    .hero-slideshow img.active { opacity:1; }
     .hero::before {
       content: '';
       position: absolute;
@@ -42,7 +53,7 @@
       left:0;
       width:100%;
       height:100%;
-      background: rgba(0,0,0,0.5); /* overlay for readability */
+      background: rgba(255,255,255,0.4); /* light overlay for readability */
       z-index:0;
     }
     .hero-text {
@@ -50,19 +61,9 @@
       z-index:1;
       max-width:700px;
     }
-    .hero-text h1 {
-      font-size:3rem;
-      margin-bottom:20px;
-      color:#fff;
-    }
-    .hero-text p {
-      font-size:1.2rem;
-      margin-bottom:30px;
-      color:#f0f0f0;
-    }
-    .hero-text .hero-btn {
-      margin:0 10px 10px 0;
-    }
+    .hero-text h1 { font-size:3rem; margin-bottom:20px; color:#000; }
+    .hero-text p { font-size:1.2rem; margin-bottom:30px; color:#333; }
+    .hero-text .hero-btn { margin:0 10px 10px 0; }
 
     section { padding:80px 50px; text-align:center; }
     section h2 { font-size:2.5rem; margin-bottom:20px; color:#4e5df8; }
@@ -82,7 +83,7 @@
     .testimonial-card i { color:#ffbf00; }
 
     .team-member img { border-radius:50%; width:180px; height:180px; object-fit:cover; margin-bottom:15px; }
-    
+
     .contact-form { max-width:600px; margin:0 auto; text-align:left; }
     .contact-form input, .contact-form textarea { width:100%; padding:15px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc; }
     .contact-form button { width:100%; background:#4e5df8; color:#fff; padding:15px 25px; border:none; border-radius:5px; cursor:pointer; transition:0.3s; }
@@ -122,6 +123,12 @@
 
 <!-- HERO SECTION -->
 <section class="hero" id="home">
+  <div class="hero-slideshow">
+    <img src="homepage.png" class="active" alt="">
+    <img src="homepage2.png" alt="">
+    <img src="homepage3.png" alt="">
+    <img src="homepage4.png" alt="">
+  </div>
   <div class="hero-text">
     <h1>Empowering Businesses with Next-Gen IT Solutions</h1>
     <p>We provide Cloud, Cybersecurity, Managed IT, Web Development, and Digital Marketing services to help your business grow efficiently and securely.</p>
@@ -130,10 +137,10 @@
   </div>
 </section>
 
+<!-- ABOUT SECTION -->
 <section id="about">
   <h2>About Us</h2>
   <p>NextGen IT is a leading IT company specializing in delivering innovative and secure digital solutions. Our mission is to empower businesses with cutting-edge technology while maintaining the highest standards of trust and service. Our team is composed of experienced IT professionals, developers, and digital marketers dedicated to your success.</p>
-
   <div class="team-container">
     <div class="team-member">
       <img src="https://via.placeholder.com/180" alt="Team Member">
@@ -153,6 +160,7 @@
   </div>
 </section>
 
+<!-- SERVICES SECTION -->
 <section id="services">
   <h2>Our Services</h2>
   <p>We offer a wide range of IT solutions to meet your business needs.</p>
@@ -165,6 +173,7 @@
   </div>
 </section>
 
+<!-- PORTFOLIO SECTION -->
 <section id="portfolio">
   <h2>Portfolio / Case Studies</h2>
   <p>Our recent projects demonstrate our commitment to quality and innovation.</p>
@@ -175,6 +184,7 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS SECTION -->
 <section id="testimonials">
   <h2>Client Testimonials</h2>
   <div class="testimonials">
@@ -183,6 +193,7 @@
   </div>
 </section>
 
+<!-- BLOG SECTION -->
 <section id="blog">
   <h2>Insights & Blog</h2>
   <p>Stay up-to-date with the latest IT trends, tips, and case studies.</p>
@@ -193,6 +204,7 @@
   </div>
 </section>
 
+<!-- CAREERS SECTION -->
 <section id="careers">
   <h2>Careers</h2>
   <p>Join our team of talented IT professionals and grow your career with NextGen IT.</p>
@@ -203,6 +215,7 @@
   </div>
 </section>
 
+<!-- CONTACT SECTION -->
 <section id="contact">
   <h2>Contact Us</h2>
   <p>Get in touch with us for IT solutions tailored to your business.</p>
@@ -218,6 +231,7 @@
   <p style="margin-top:20px;">📍 123 IT Street, Kathmandu, Nepal | ✉ info@nextgenit.com | ☎ +977 9800000000</p>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <p>NextGen IT &copy; 2026. All Rights Reserved.</p>
   <p><a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a> | <a href="#cookies">Cookie Policy</a></p>
@@ -234,6 +248,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
   });
 });
+
+// Hero slideshow JS
+const slides = document.querySelectorAll('.hero-slideshow img');
+let current = 0;
+setInterval(() => {
+  slides[current].classList.remove('active');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('active');
+}, 5000); // change every 5 seconds
 </script>
 
 </body>
