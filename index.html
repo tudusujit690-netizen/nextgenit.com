@@ -17,6 +17,7 @@
       --text-gray: #666;
     }
 
+    /* --- Reset & Base --- */
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif; }
     body { line-height:1.6; color:#333; background: var(--white); scroll-behavior: smooth; overflow-x: hidden;}
     a { text-decoration: none; transition: 0.3s; color: inherit; }
@@ -26,67 +27,74 @@
     header { 
       background: var(--white); padding: 15px 5%; position: sticky; top: 0; z-index: 1000; 
       display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      height: 70px;
     }
-    .logo { font-size: 1.5rem; font-weight: 800; color: var(--dark); cursor: pointer; display: inline-block; }
+    .logo { font-size: 1.4rem; font-weight: 800; color: var(--dark); cursor: pointer; }
     .logo span { color: var(--primary); }
-    .logo:hover { opacity: 0.8; }
     
-    nav ul { display: flex; gap: 30px; }
+    nav ul { display: flex; gap: 25px; }
     nav ul li a { color: var(--dark); font-weight: 600; font-size: 0.9rem; }
     nav ul li a:hover { color: var(--primary); }
 
     .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--dark); }
-    .btn-quote { background: var(--primary); color: var(--white); padding: 12px 25px; border-radius: 5px; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; display: inline-block; text-align: center;}
+    .btn-quote { background: var(--primary); color: var(--white); padding: 12px 25px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; display: inline-block; text-align: center; transition: 0.3s;}
     .btn-quote:hover { background: var(--dark); transform: translateY(-3px); }
 
     /* --- Hero Section --- */
     .hero {
-      min-height: 85vh; background: var(--dark); border-bottom-left-radius: 50px;
+      min-height: 85vh; background: var(--dark); border-bottom-left-radius: 40px;
       position: relative; display: flex; align-items: center; color: var(--white); overflow: hidden;
       padding: 60px 5%;
     }
     .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600') center/cover; opacity: 0.2; }
     .hero-content { position: relative; z-index: 10; max-width: 800px; text-align: left; }
-    .hero-content span { color: var(--secondary); font-weight: 700; letter-spacing: 2px; font-size: 0.9rem; }
-    .hero-content h1 { font-size: clamp(2.2rem, 8vw, 4rem); line-height: 1.1; margin: 20px 0; font-weight: 800; }
-    .hero-content p { font-size: clamp(1rem, 3vw, 1.2rem); margin-bottom: 30px; opacity: 0.9; max-width: 600px; }
-    .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; }
+    .hero-content span { color: var(--secondary); font-weight: 700; letter-spacing: 2px; font-size: 0.8rem; }
+    .hero-content h1 { font-size: clamp(2rem, 8vw, 3.8rem); line-height: 1.1; margin: 20px 0; font-weight: 800; }
+    .hero-content p { font-size: clamp(0.95rem, 3vw, 1.2rem); margin-bottom: 30px; opacity: 0.9; max-width: 600px; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    /* --- Sections General --- */
-    .section-padding { padding: 80px 5%; text-align: center; }
+    /* --- Section Styling --- */
+    .section-padding { padding: 60px 5%; text-align: center; }
+    @media (min-width: 768px) { .section-padding { padding: 100px 8%; } }
+    
     .section-header { margin-bottom: 40px; }
     .section-header span { color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; display: block; margin-bottom: 10px;}
     .section-header h2 { font-size: clamp(1.8rem, 5vw, 2.8rem); color: var(--dark); line-height: 1.2; }
 
-    /* --- Dynamic Content Page (Overlay) --- */
+    /* --- Overlays (Dynamic Pages) --- */
     #content-page {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--white);
-      z-index: 2000; display: none; overflow-y: auto; padding: 100px 10%; animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: fixed; inset: 0; background: var(--white);
+      z-index: 2000; display: none; overflow-y: auto; padding: 80px 8% 40px;
+      animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-    .close-btn { position: fixed; top: 30px; right: 5%; font-size: 2.5rem; cursor: pointer; color: var(--primary); transition: 0.3s; z-index: 2100;}
-    .close-btn:hover { transform: rotate(90deg); color: var(--dark); }
-    .page-inner h2 { font-size: 3.5rem; margin-bottom: 20px; color: var(--dark); }
-    .page-inner .accent-line { width: 80px; height: 5px; background: var(--secondary); margin-bottom: 40px; }
-    .page-inner p { font-size: 1.2rem; line-height: 1.8; color: #444; max-width: 900px; margin-bottom: 20px; }
+    .close-btn { position: fixed; top: 20px; right: 20px; font-size: 2.2rem; cursor: pointer; color: var(--primary); z-index: 2100; transition: 0.3s;}
+    .close-btn:hover { transform: rotate(90deg); }
+    .page-inner h2 { font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 20px; color: var(--dark); }
+    .page-inner .accent-line { width: 80px; height: 5px; background: var(--secondary); margin-bottom: 30px; }
+    .page-inner p { font-size: 1.1rem; line-height: 1.8; color: #444; max-width: 900px; margin-bottom: 20px; }
 
-    /* --- Services Grid --- */
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .card { background: var(--light); padding: 40px 30px; border-radius: 20px; text-align: left; transition: 0.4s; cursor: pointer; border: 1px solid transparent;}
+    /* --- Responsive Grids --- */
+    .services-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: 20px; 
+    }
+    .card { background: var(--light); padding: 35px 25px; border-radius: 20px; text-align: left; transition: 0.4s; cursor: pointer; border: 1px solid transparent;}
     .card:hover { background: var(--white); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--primary);}
-    .card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
-    .card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--dark); }
+    .card i { font-size: 2.2rem; color: var(--primary); margin-bottom: 15px; }
+    .card h3 { font-size: 1.25rem; margin-bottom: 10px; color: var(--dark); }
 
-    /* --- Process Section --- */
-    .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 40px; }
-    .step { position: relative; padding: 20px; }
-    .step-num { font-size: 3.5rem; font-weight: 800; color: rgba(78, 93, 248, 0.1); position: absolute; top: 0; left: 50%; transform: translateX(-50%); }
-    .step h4 { position: relative; z-index: 2; margin-top: 30px; font-size: 1.1rem; }
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-top: 40px; }
+    .step { position: relative; padding: 25px; background: var(--white); border-radius: 15px;}
+    .step-num { font-size: 3rem; font-weight: 800; color: rgba(78, 93, 248, 0.08); position: absolute; top: 10px; left: 20px; }
+    .step h4 { position: relative; z-index: 2; margin-top: 20px; font-size: 1.1rem; }
 
     /* --- Portfolio --- */
     .filter-menu { margin-bottom: 30px; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
-    .filter-btn { padding: 8px 20px; border: 2px solid var(--primary); border-radius: 30px; cursor: pointer; font-weight: 700; font-size: 0.8rem; background: none; color: var(--primary); }
+    .filter-btn { padding: 8px 18px; border: 2px solid var(--primary); border-radius: 30px; cursor: pointer; font-weight: 700; font-size: 0.8rem; background: none; color: var(--primary); transition: 0.3s;}
     .filter-btn.active { background: var(--primary); color: white; }
+    
     .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .port-item { border-radius: 15px; overflow: hidden; height: 280px; position: relative; }
     .port-item img { width: 100%; height: 100%; object-fit: cover; }
@@ -94,41 +102,44 @@
     .port-item:hover .port-overlay { opacity: 1; }
 
     /* --- Contact --- */
-    .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left; background: var(--light); border-radius: 30px; padding: 40px; }
+    .contact-container { display: grid; grid-template-columns: 1fr; gap: 40px; text-align: left; background: var(--light); border-radius: 30px; padding: 30px 20px; }
+    @media (min-width: 992px) { .contact-container { grid-template-columns: 1fr 1fr; padding: 50px; } }
+    
     .contact-info h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 15px; }
-    .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ddd; outline: none; }
+    .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 14px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-size: 1rem; }
     #result { margin-top: 10px; font-weight: 600; text-align: center; }
 
     /* --- Footer --- */
-    footer { background: var(--dark); color: white; padding: 80px 5% 30px; }
+    footer { background: var(--dark); color: white; padding: 60px 5% 30px; }
     .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; }
-    .footer-col h4 { margin-bottom: 25px; color: var(--secondary); font-size: 1.1rem; }
+    .footer-col h4 { margin-bottom: 20px; color: var(--secondary); font-size: 1.1rem; }
     .footer-col ul li { margin-bottom: 12px; opacity: 0.7; font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
     .footer-col ul li:hover { opacity: 1; color: var(--secondary); transform: translateX(5px); }
-    .copy { text-align: center; padding-top: 20px; opacity: 0.5; font-size: 0.7rem; }
+    .copy { text-align: center; padding-top: 25px; opacity: 0.5; font-size: 0.75rem; }
 
-    .whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1001; box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: 0.3s; }
-    .whatsapp:hover { transform: scale(1.1); }
+    .whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 1001; box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: 0.3s; }
 
-    /* --- Responsive --- */
+    /* --- Responsive Navigation Mobile --- */
     @media (max-width: 992px) {
-      .menu-toggle { display: block; }
+      .menu-toggle { display: block; order: 3; }
       .header-btns { display: none; }
-      nav { position: fixed; top: 70px; left: -100%; width: 100%; height: 100vh; background: var(--white); transition: 0.4s; z-index: 999; }
+      .logo { order: 1; }
+      nav { 
+        position: fixed; top: 0; left: -100%; width: 80%; height: 100vh; 
+        background: var(--white); transition: 0.4s ease-in-out; z-index: 999; 
+        padding: 100px 10% 20px; box-shadow: 15px 0 30px rgba(0,0,0,0.1);
+      }
       nav.active { left: 0; }
-      nav ul { flex-direction: column; align-items: center; padding-top: 50px; gap: 25px; }
-      .contact-container { grid-template-columns: 1fr; padding: 30px 20px; }
+      nav ul { flex-direction: column; gap: 25px; }
+      nav ul li a { font-size: 1.2rem; display: block; }
     }
   </style>
 </head>
 <body>
 
-<!-- Dynamic Content Page (Integrated Overlay) -->
 <div id="content-page">
     <div class="close-btn" onclick="closePage()"><i class="fas fa-times-circle"></i></div>
-    <div class="page-inner" id="dynamic-content">
-        <!-- Content injected via JS -->
-    </div>
+    <div class="page-inner" id="dynamic-content"></div>
 </div>
 
 <a href="https://wa.me/9779816004622" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -161,7 +172,6 @@
   </div>
 </section>
 
-<!-- SERVICES SECTION -->
 <section id="services" class="section-padding">
   <div class="section-header">
     <span>FULL-STACK EXPERTISE</span>
@@ -177,7 +187,6 @@
   </div>
 </section>
 
-<!-- PROCESS SECTION -->
 <section id="process" class="section-padding" style="background: var(--light);">
     <div class="section-header"><span>OUR FRAMEWORK</span><h2>How We Deliver Results</h2></div>
     <div class="process-grid">
@@ -188,7 +197,6 @@
     </div>
 </section>
 
-<!-- PORTFOLIO SECTION -->
 <section id="portfolio" class="section-padding">
     <div class="section-header"><span>PROVEN WORK</span><h2>Global Success Stories</h2></div>
     <div class="filter-menu">
@@ -204,16 +212,15 @@
     </div>
 </section>
 
-<!-- CONTACT SECTION -->
 <section id="contact" class="section-padding">
   <div class="contact-container">
     <div class="contact-info">
       <h2>Let’s Ignite Your <span style="color:var(--primary)">Growth.</span></h2>
       <p>Our consultants are ready to help you scale your business.</p>
-      <div style="margin-top: 30px; font-size: 0.95rem;">
-          <p style="margin-bottom: 10px;"><strong><i class="fas fa-envelope"></i></strong> tudusujit690@gmail.com</p>
-          <p style="margin-bottom: 10px;"><strong><i class="fas fa-phone"></i></strong> +977 9816004622</p>
-          <p><strong><i class="fas fa-location-dot"></i></strong> Lalitpur, Nepal</p>
+      <div style="margin-top: 30px;">
+          <p style="margin-bottom: 10px;"><i class="fas fa-envelope" style="color:var(--primary); margin-right:10px;"></i> tudusujit690@gmail.com</p>
+          <p style="margin-bottom: 10px;"><i class="fas fa-phone" style="color:var(--primary); margin-right:10px;"></i> +977 9816004622</p>
+          <p><i class="fas fa-location-dot" style="color:var(--primary); margin-right:10px;"></i> Lalitpur, Nepal</p>
       </div>
     </div>
     <div class="contact-form">
@@ -236,7 +243,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
@@ -266,55 +272,22 @@
 </footer>
 
 <script>
-    // --- CONTENT LIBRARY FOR OVERLAYS ---
     const pageLibrary = {
-        about: {
-            title: "About NextGen IT",
-            content: "We are a boutique digital agency based in Nepal, operating globally. Our philosophy is simple: 'Precision over Speed, Quality over Volume.' We consist of a hand-picked team of senior developers and creative directors dedicated to pushing the boundaries of what is possible online."
-        },
-        web: {
-            title: "Web & App Architecture",
-            content: "Modern users expect speed. We deliver it. Our web development process involves building lightweight, headless architectures using React, Next.js, and specialized backend systems. We focus on security, SEO-readiness, and conversion-optimized UX design."
-        },
-        seo: {
-            title: "Search Dominance (SEO)",
-            content: "Most agencies focus on traffic; we focus on revenue. Our Technical SEO services involve deep-dive audits, Core Web Vital optimization, and strategic content clusters. We help you outrank competitors for high-value keywords that actually convert."
-        },
-        media: {
-            title: "Multimedia & 3D Reality",
-            content: "In a world of noise, visuals command attention. We provide cinematic video production, motion graphics, and high-fidelity 3D modeling. Whether it is a product reveal or an immersive brand story, we bring your vision to life."
-        },
-        infra: {
-            title: "IT Infrastructure",
-            content: "Stability is the backbone of growth. We provide enterprise-grade cloud management, cybersecurity audits, and 24/7 managed IT support. Our goal is to ensure your internal systems are as robust as your external presence."
-        },
-        marketing: {
-            title: "Digital Marketing",
-            content: "We use data to drive growth across Meta, LinkedIn, and Instagram. Our marketing strategies are built on A/B testing and precision targeting to ensure every dollar spent returns maximum value."
-        },
-        design: {
-            title: "Graphic & UI/UX",
-            content: "Design is more than aesthetics; it's about the journey. We create user-centric designs that remove friction and guide your visitors toward the checkout or contact button."
-        },
-        privacy: {
-            title: "Privacy Policy",
-            content: "Your data privacy is paramount. We comply with global standards (GDPR/CCPA). Your intellectual property and project data are protected by strict non-disclosure agreements and industry-standard encryption."
-        },
-        terms: {
-            title: "Terms of Service",
-            content: "Our service terms involve clear milestone-based payments, defined project scopes, and guaranteed support periods. We believe in building long-term partnerships based on mutual trust."
-        },
-        cases: {
-            title: "Global Success Stories",
-            content: "From helping Fintech startups raise capital to scaling e-commerce brands by 400%, our work speaks for itself. We deliver measurable ROI through technical excellence."
-        }
+        about: { title: "About NextGen IT", content: "We are a boutique digital agency based in Nepal, operating globally. Our philosophy is 'Precision over Speed, Quality over Volume.' Our team of senior experts is dedicated to pushing boundaries." },
+        web: { title: "Web & App Architecture", content: "Modern users expect speed. We deliver lightweight, headless architectures using React and Next.js, focused on security and conversion-optimized UX design." },
+        seo: { title: "Search Dominance (SEO)", content: "We focus on revenue, not just traffic. Our technical SEO services include deep-dive audits and Core Web Vital optimization to help you outrank high-value competitors." },
+        media: { title: "Multimedia & 3D Reality", content: "Cinematic video production, motion graphics, and high-fidelity 3D modeling that commands attention and tells your brand's unique story." },
+        infra: { title: "IT Infrastructure", content: "Enterprise-grade cloud management, cybersecurity audits, and 24/7 managed support ensure your backbone is as strong as your brand." },
+        marketing: { title: "Digital Marketing", content: "Data-driven growth across Meta, LinkedIn, and Instagram. We use A/B testing and precision targeting for maximum ROI." },
+        design: { title: "Graphic & UI/UX", content: "User-centric design that removes friction. We create aesthetic journeys that guide visitors toward your business goals." },
+        privacy: { title: "Privacy Policy", content: "Your data privacy is paramount. We comply with GDPR/CCPA standards. Your IP and data are protected by strict NDAs and encryption." },
+        terms: { title: "Terms of Service", content: "Our terms involve clear milestone-based payments and defined scopes. We build long-term partnerships on mutual trust." },
+        cases: { title: "Global Success Stories", content: "From fintech startups to e-commerce brands scaling 400%, our work delivers measurable ROI through technical excellence." }
     };
 
-    // --- OVERLAY LOGIC ---
     function showPage(key) {
         const data = pageLibrary[key];
-        const displayArea = document.getElementById('dynamic-content');
-        displayArea.innerHTML = `
+        document.getElementById('dynamic-content').innerHTML = `
             <h2>${data.title}</h2>
             <div class="accent-line"></div>
             <p>${data.content}</p>
@@ -329,24 +302,24 @@
         document.body.style.overflow = 'auto';
     }
 
-    // --- NAVIGATION ---
     const menuToggle = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
     menuToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
-        menuToggle.querySelector('i').classList.toggle('fa-bars');
-        menuToggle.querySelector('i').classList.toggle('fa-times');
+        const icon = menuToggle.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
     });
 
     document.querySelectorAll('nav ul li a').forEach(link => {
         link.addEventListener('click', () => { 
             navMenu.classList.remove('active');
-            menuToggle.querySelector('i').classList.add('fa-bars');
-            menuToggle.querySelector('i').classList.remove('fa-times');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
         });
     });
 
-    // --- PORTFOLIO FILTER ---
     function filterPort(category, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
@@ -355,42 +328,33 @@
         });
     }
 
-    // --- FORM SUBMISSION ---
     const form = document.getElementById('form');
     const result = document.getElementById('result');
     const submitBtn = document.getElementById('submit-btn');
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        const formData = new FormData(form);
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
-        
         result.style.display = "block";
         result.innerHTML = "Processing...";
-        result.style.color = "var(--dark)";
         submitBtn.disabled = true;
 
         fetch('https://api.web3forms.com/submit', {
             method: 'POST',
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-            body: json
+            body: JSON.stringify(Object.fromEntries(new FormData(form)))
         })
         .then(async (response) => {
             let res = await response.json();
             if (response.status == 200) {
                 result.style.color = "var(--secondary)";
-                result.innerHTML = "Message sent! We will contact you soon.";
+                result.innerHTML = "Message sent successfully!";
                 form.reset();
             } else {
                 result.style.color = "red";
-                result.innerHTML = "Error: " + res.message;
+                result.innerHTML = res.message;
             }
         })
-        .catch(error => { 
-            result.style.color = "red";
-            result.innerHTML = "Something went wrong."; 
-        })
+        .catch(() => { result.innerHTML = "Error sending message."; })
         .then(() => {
             submitBtn.disabled = false;
             setTimeout(() => { result.style.display = "none"; }, 5000);
