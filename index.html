@@ -22,28 +22,22 @@
     a { text-decoration: none; transition: 0.3s; }
     ul { list-style: none; }
 
-    /* --- Navigation & Mobile Menu --- */
+    /* --- Navigation --- */
     header { 
       background: var(--white); padding: 15px 5%; position: sticky; top: 0; z-index: 1000; 
       display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
-    .logo { font-size: 1.5rem; font-weight: 800; color: var(--dark); cursor: pointer; }
+    .logo { font-size: 1.5rem; font-weight: 800; color: var(--dark); cursor: pointer; display: inline-block; }
     .logo span { color: var(--primary); }
+    .logo:hover { opacity: 0.8; }
     
     nav ul { display: flex; gap: 30px; }
     nav ul li a { color: var(--dark); font-weight: 600; font-size: 0.9rem; }
     nav ul li a:hover { color: var(--primary); }
 
     .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--dark); }
-
     .btn-quote { background: var(--primary); color: var(--white); padding: 12px 25px; border-radius: 5px; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; display: inline-block; text-align: center;}
     .btn-quote:hover { background: var(--dark); transform: translateY(-3px); }
-
-    /* --- Sections General --- */
-    .section-padding { padding: 80px 5%; text-align: center; }
-    .section-header { margin-bottom: 40px; }
-    .section-header span { color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; display: block; margin-bottom: 10px;}
-    .section-header h2 { font-size: clamp(1.8rem, 5vw, 2.8rem); color: var(--dark); line-height: 1.2; }
 
     /* --- Hero Section --- */
     .hero {
@@ -57,6 +51,12 @@
     .hero-content h1 { font-size: clamp(2.2rem, 8vw, 4rem); line-height: 1.1; margin: 20px 0; font-weight: 800; }
     .hero-content p { font-size: clamp(1rem, 3vw, 1.2rem); margin-bottom: 30px; opacity: 0.9; max-width: 600px; }
     .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; }
+
+    /* --- Sections General --- */
+    .section-padding { padding: 80px 5%; text-align: center; }
+    .section-header { margin-bottom: 40px; }
+    .section-header span { color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; display: block; margin-bottom: 10px;}
+    .section-header h2 { font-size: clamp(1.8rem, 5vw, 2.8rem); color: var(--dark); line-height: 1.2; }
 
     /* --- Services Grid --- */
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
@@ -75,18 +75,18 @@
     .filter-menu { margin-bottom: 30px; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
     .filter-btn { padding: 8px 20px; border: 2px solid var(--primary); border-radius: 30px; cursor: pointer; font-weight: 700; font-size: 0.8rem; background: none; color: var(--primary); }
     .filter-btn.active { background: var(--primary); color: white; }
-    
     .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .port-item { border-radius: 15px; overflow: hidden; height: 280px; position: relative; }
     .port-item img { width: 100%; height: 100%; object-fit: cover; }
-    .port-overlay { position: absolute; inset: 0; background: rgba(10, 13, 38, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; opacity: 0; transition: 0.4s; padding: 20px; }
+    .port-overlay { position: absolute; inset: 0; background: rgba(10, 13, 38, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; opacity: 0; transition: 0.4s; padding: 20px; text-align: center;}
     .port-item:hover .port-overlay { opacity: 1; }
 
     /* --- Contact --- */
     .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left; background: var(--light); border-radius: 30px; padding: 40px; }
     .contact-info h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 15px; }
-    .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ddd; }
-    
+    .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ddd; outline-color: var(--primary); }
+    #result { margin-top: 10px; font-weight: 600; text-align: center; }
+
     /* --- Footer --- */
     footer { background: var(--dark); color: white; padding: 60px 5% 20px; }
     .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; }
@@ -94,31 +94,17 @@
     .footer-grid ul li { margin-bottom: 10px; opacity: 0.7; font-size: 0.9rem; }
     .copy { text-align: center; padding-top: 20px; opacity: 0.5; font-size: 0.7rem; }
 
-    /* --- Floating WhatsApp --- */
-    .whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+    .whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: 0.3s; }
+    .whatsapp:hover { transform: scale(1.1); }
 
-    /* --- RESPONSIVE BREAKPOINTS --- */
+    /* --- Responsive --- */
     @media (max-width: 992px) {
       .menu-toggle { display: block; order: 2; }
-      .logo { order: 1; }
-      .header-btns { display: none; } /* Hide button on mobile header to save space */
-      
-      nav {
-        position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px);
-        background: var(--white); transition: 0.4s; z-index: 999;
-      }
+      .header-btns { display: none; }
+      nav { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: var(--white); transition: 0.4s; z-index: 999; }
       nav.active { left: 0; }
       nav ul { flex-direction: column; align-items: center; padding-top: 50px; gap: 25px; }
-      nav ul li a { font-size: 1.2rem; }
-
       .contact-container { grid-template-columns: 1fr; padding: 30px 20px; }
-      .hero { border-bottom-left-radius: 30px; height: auto; padding-top: 100px; padding-bottom: 100px; }
-    }
-
-    @media (max-width: 480px) {
-      .hero-btns { flex-direction: column; }
-      .btn-quote { width: 100%; }
-      .section-padding { padding: 60px 5%; }
     }
   </style>
 </head>
@@ -127,12 +113,8 @@
 <a href="https://wa.me/9779816004622" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <header>
-  <div class="logo">NextGen<span>IT</span></div>
-  
-  <div class="menu-toggle" id="mobile-menu">
-    <i class="fas fa-bars"></i>
-  </div>
-
+  <a href="#home" class="logo">NextGen<span>IT</span></a>
+  <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
   <nav id="nav-menu">
     <ul>
       <li><a href="#home">Home</a></li>
@@ -142,10 +124,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
-
-  <div class="header-btns">
-      <a href="#contact" class="btn-quote">Start a Project</a>
-  </div>
+  <div class="header-btns"><a href="#contact" class="btn-quote">Start a Project</a></div>
 </header>
 
 <section class="hero" id="home">
@@ -161,140 +140,76 @@
   </div>
 </section>
 
-<!-- SERVICES SECTION -->
 <section id="services" class="section-padding">
   <div class="section-header">
     <span>FULL-STACK EXPERTISE</span>
     <h2>A-Z Digital Solutions</h2>
   </div>
   <div class="services-grid">
-    <div class="card">
-      <i class="fas fa-code"></i>
-      <h3>Web & App Dev</h3>
-      <p>Building scalable architectures using React, Node, and Python for high-speed performance.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-chart-line"></i>
-      <h3>Technical SEO</h3>
-      <p>Optimizing core web vitals and authority to dominate search engine results globally.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-layer-group"></i>
-      <h3>Graphic & UI/UX</h3>
-      <p>User-centric design that converts. We create interfaces that define your brand identity.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-video"></i>
-      <h3>Multimedia & 3D</h3>
-      <p>High-end video production and 3D modeling to bring products into the next dimension.</p>
-    </div>
-    <div class="card">
-        <i class="fas fa-hashtag"></i>
-        <h3>Social Media</h3>
-        <p>Data-driven growth and content strategy across Meta, LinkedIn, and Instagram.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-shield-halved"></i>
-        <h3>IT Infrastructure</h3>
-        <p>Cloud migration and cybersecurity managed services to keep you running 24/7.</p>
-      </div>
+    <div class="card"><i class="fas fa-code"></i><h3>Web & App Dev</h3><p>Scalable architectures using React and Node for high-speed performance.</p></div>
+    <div class="card"><i class="fas fa-chart-line"></i><h3>Technical SEO</h3><p>Optimizing core web vitals and authority to dominate search results.</p></div>
+    <div class="card"><i class="fas fa-layer-group"></i><h3>Graphic & UI/UX</h3><p>User-centric design that converts traffic into customers.</p></div>
+    <div class="card"><i class="fas fa-video"></i><h3>Multimedia & 3D</h3><p>High-end video and 3D modeling for the next dimension.</p></div>
+    <div class="card"><i class="fas fa-hashtag"></i><h3>Social Media</h3><p>Data-driven growth across Meta, LinkedIn, and Instagram.</p></div>
+    <div class="card"><i class="fas fa-shield-halved"></i><h3>IT Infrastructure</h3><p>Cloud migration and cybersecurity managed 24/7.</p></div>
   </div>
 </section>
 
-<!-- PROCESS SECTION -->
 <section id="process" class="section-padding" style="background: var(--light);">
-    <div class="section-header">
-        <span>OUR FRAMEWORK</span>
-        <h2>How We Deliver Results</h2>
-    </div>
+    <div class="section-header"><span>OUR FRAMEWORK</span><h2>How We Deliver Results</h2></div>
     <div class="process-grid">
-        <div class="step">
-            <div class="step-num">01</div>
-            <h4>Discovery</h4>
-            <p>Auditing your brand and defining KPIs.</p>
-        </div>
-        <div class="step">
-            <div class="step-num">02</div>
-            <h4>Strategy</h4>
-            <p>The technical & creative blueprint.</p>
-        </div>
-        <div class="step">
-            <div class="step-num">03</div>
-            <h4>Execution</h4>
-            <p>Agile development & design cycles.</p>
-        </div>
-        <div class="step">
-            <div class="step-num">04</div>
-            <h4>Scale</h4>
-            <p>Launching for massive digital growth.</p>
-        </div>
+        <div class="step"><div class="step-num">01</div><h4>Discovery</h4><p>Auditing your brand and defining KPIs.</p></div>
+        <div class="step"><div class="step-num">02</div><h4>Strategy</h4><p>The technical & creative blueprint.</p></div>
+        <div class="step"><div class="step-num">03</div><h4>Execution</h4><p>Agile development & design cycles.</p></div>
+        <div class="step"><div class="step-num">04</div><h4>Scale</h4><p>Launching for massive digital growth.</p></div>
     </div>
 </section>
 
-<!-- PORTFOLIO SECTION -->
 <section id="portfolio" class="section-padding">
-    <div class="section-header">
-        <span>PROVEN WORK</span>
-        <h2>Global Success Stories</h2>
-    </div>
-
+    <div class="section-header"><span>PROVEN WORK</span><h2>Global Success Stories</h2></div>
     <div class="filter-menu">
         <button class="filter-btn active" onclick="filterPort('all', this)">Everything</button>
         <button class="filter-btn" onclick="filterPort('dev', this)">Development</button>
         <button class="filter-btn" onclick="filterPort('media', this)">Multimedia</button>
         <button class="filter-btn" onclick="filterPort('marketing', this)">Marketing</button>
     </div>
-
     <div class="portfolio-grid">
-        <div class="port-item dev">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600" alt="Work">
-            <div class="port-overlay">
-                <h3>Global Fintech App</h3>
-                <p>UI/UX & Mobile Development</p>
-            </div>
-        </div>
-        <div class="port-item media">
-            <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600" alt="Work">
-            <div class="port-overlay">
-                <h3>3D Product Reveal</h3>
-                <p>Multimedia & Animation</p>
-            </div>
-        </div>
-        <div class="port-item marketing">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600" alt="Work">
-            <div class="port-overlay">
-                <h3>SEO Dominance</h3>
-                <p>+400% Organic Growth</p>
-            </div>
-        </div>
+        <div class="port-item dev"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600"><div class="port-overlay"><h3>Fintech App</h3><p>Full-Stack Dev</p></div></div>
+        <div class="port-item media"><img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600"><div class="port-overlay"><h3>3D Reveal</h3><p>Multimedia</p></div></div>
+        <div class="port-item marketing"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600"><div class="port-overlay"><h3>SEO Growth</h3><p>+400% Organic</p></div></div>
     </div>
 </section>
 
-<!-- CONTACT SECTION -->
 <section id="contact" class="section-padding">
   <div class="contact-container">
     <div class="contact-info">
       <h2>Let’s Ignite Your <span style="color:var(--primary)">Growth.</span></h2>
       <p>Our consultants are ready to help you scale your business.</p>
-      <div style="margin-top: 30px; font-size: 0.9rem;">
+      <div style="margin-top: 30px; font-size: 0.95rem;">
           <p style="margin-bottom: 10px;"><strong><i class="fas fa-envelope"></i></strong> tudusujit690@gmail.com</p>
           <p style="margin-bottom: 10px;"><strong><i class="fas fa-phone"></i></strong> +977 9816004622</p>
           <p><strong><i class="fas fa-location-dot"></i></strong> Lalitpur, Nepal</p>
       </div>
     </div>
     <div class="contact-form">
-        <form action="#">
-            <input type="text" placeholder="Full Name" required>
-            <input type="email" placeholder="Business Email" required>
-            <select required>
+        <form id="form">
+            <input type="hidden" name="access_key" value="42b9c83d-8677-4e64-9565-d42a01dc3711">
+            
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Business Email" required>
+            <select name="service" required>
                 <option value="" disabled selected>Select Service</option>
                 <option>Web & App Development</option>
                 <option>Digital Marketing & SEO</option>
                 <option>Multimedia & 3D</option>
                 <option>IT Infrastructure</option>
             </select>
-            <textarea rows="4" placeholder="Briefly describe your goals"></textarea>
-            <button type="submit" class="btn-quote" style="width: 100%;">Get Your Quote</button>
+            <textarea name="message" rows="4" placeholder="Briefly describe your goals" required></textarea>
+            
+            <input type="checkbox" name="botcheck" style="display: none;">
+
+            <button type="submit" id="submit-btn" class="btn-quote" style="width: 100%;">Get Your Quote</button>
+            <div id="result"></div>
         </form>
     </div>
   </div>
@@ -303,71 +218,97 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
-      <div class="logo" style="color: white; margin-bottom: 15px;">NextGen<span>IT</span></div>
-      <p style="font-size: 0.9rem; opacity: 0.7;">The global leader in end-to-end IT solutions. Bridging imagination and execution.</p>
+        <a href="#home" class="logo" style="color:white; margin-bottom: 15px;">NextGen<span>IT</span></a>
+        <p style="opacity: 0.7; font-size: 0.9rem;">Global leader in end-to-end IT solutions. Bridging imagination and execution.</p>
     </div>
     <div class="footer-col">
-      <h4>Services</h4>
-      <ul>
-          <li>Web Development</li>
-          <li>SEO Marketing</li>
-          <li>Multimedia</li>
-          <li>Social Media</li>
-      </ul>
+        <h4>Services</h4>
+        <ul>
+            <li>Web Development</li>
+            <li>SEO Marketing</li>
+            <li>3D Multimedia</li>
+        </ul>
     </div>
     <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-          <li>About Us</li>
-          <li>Case Studies</li>
-          <li>Privacy Policy</li>
-      </ul>
+        <h4>Company</h4>
+        <ul>
+            <li>About Us</li>
+            <li>Case Studies</li>
+            <li>Privacy Policy</li>
+        </ul>
     </div>
   </div>
-  <div class="copy">
-      &copy; 2026 NextGen IT Solutions. All Rights Reserved.
-  </div>
+  <div class="copy">&copy; 2026 NextGen IT Solutions. All Rights Reserved.</div>
 </footer>
 
 <script>
-    // Mobile Menu Logic
+    // Navigation & Mobile Menu
     const menuToggle = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
-
     menuToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
-        const icon = menuToggle.querySelector('i');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
+        menuToggle.querySelector('i').classList.toggle('fa-bars');
+        menuToggle.querySelector('i').classList.toggle('fa-times');
     });
 
-    // Close menu when clicking a link
     document.querySelectorAll('nav ul li a').forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', () => { 
             navMenu.classList.remove('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-times');
+            menuToggle.querySelector('i').classList.add('fa-bars');
+            menuToggle.querySelector('i').classList.remove('fa-times');
         });
     });
 
     // Portfolio Filtering
     function filterPort(category, btn) {
-        const items = document.querySelectorAll('.port-item');
-        const btns = document.querySelectorAll('.filter-btn');
-        
-        btns.forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
-        items.forEach(item => {
-            if (category === 'all' || item.classList.contains(category)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
+        document.querySelectorAll('.port-item').forEach(item => {
+            item.style.display = (category === 'all' || item.classList.contains(category)) ? 'block' : 'none';
         });
     }
-</script>
 
+    // Contact Form AJAX Submission
+    const form = document.getElementById('form');
+    const result = document.getElementById('result');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+        
+        result.style.display = "block";
+        result.innerHTML = "Processing your request...";
+        result.style.color = "var(--dark)";
+        submitBtn.disabled = true;
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            body: json
+        })
+        .then(async (response) => {
+            let res = await response.json();
+            if (response.status == 200) {
+                result.style.color = "var(--secondary)";
+                result.innerHTML = "Message sent! We will get back to you soon.";
+                form.reset();
+            } else {
+                result.style.color = "red";
+                result.innerHTML = "Error: " + res.message;
+            }
+        })
+        .catch(error => { 
+            result.style.color = "red";
+            result.innerHTML = "Something went wrong. Please try again later."; 
+        })
+        .then(() => {
+            submitBtn.disabled = false;
+            setTimeout(() => { result.style.display = "none"; }, 6000);
+        });
+    });
+</script>
 </body>
 </html>
