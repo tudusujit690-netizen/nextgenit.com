@@ -19,7 +19,7 @@
 
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif; }
     body { line-height:1.6; color:#333; background: var(--white); scroll-behavior: smooth; overflow-x: hidden;}
-    a { text-decoration: none; transition: 0.3s; }
+    a { text-decoration: none; transition: 0.3s; color: inherit; }
     ul { list-style: none; }
 
     /* --- Navigation --- */
@@ -41,7 +41,7 @@
 
     /* --- Hero Section --- */
     .hero {
-      min-height: 80vh; background: var(--dark); border-bottom-left-radius: 50px;
+      min-height: 85vh; background: var(--dark); border-bottom-left-radius: 50px;
       position: relative; display: flex; align-items: center; color: var(--white); overflow: hidden;
       padding: 60px 5%;
     }
@@ -58,10 +58,22 @@
     .section-header span { color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; display: block; margin-bottom: 10px;}
     .section-header h2 { font-size: clamp(1.8rem, 5vw, 2.8rem); color: var(--dark); line-height: 1.2; }
 
+    /* --- Dynamic Content Page (Overlay) --- */
+    #content-page {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--white);
+      z-index: 2000; display: none; overflow-y: auto; padding: 100px 10%; animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .close-btn { position: fixed; top: 30px; right: 5%; font-size: 2.5rem; cursor: pointer; color: var(--primary); transition: 0.3s; z-index: 2100;}
+    .close-btn:hover { transform: rotate(90deg); color: var(--dark); }
+    .page-inner h2 { font-size: 3.5rem; margin-bottom: 20px; color: var(--dark); }
+    .page-inner .accent-line { width: 80px; height: 5px; background: var(--secondary); margin-bottom: 40px; }
+    .page-inner p { font-size: 1.2rem; line-height: 1.8; color: #444; max-width: 900px; margin-bottom: 20px; }
+
     /* --- Services Grid --- */
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .card { background: var(--light); padding: 40px 30px; border-radius: 20px; text-align: left; transition: 0.4s; }
-    .card:hover { background: var(--white); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .card { background: var(--light); padding: 40px 30px; border-radius: 20px; text-align: left; transition: 0.4s; cursor: pointer; border: 1px solid transparent;}
+    .card:hover { background: var(--white); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--primary);}
     .card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
     .card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--dark); }
 
@@ -84,24 +96,25 @@
     /* --- Contact --- */
     .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left; background: var(--light); border-radius: 30px; padding: 40px; }
     .contact-info h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 15px; }
-    .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ddd; outline-color: var(--primary); }
+    .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ddd; outline: none; }
     #result { margin-top: 10px; font-weight: 600; text-align: center; }
 
     /* --- Footer --- */
-    footer { background: var(--dark); color: white; padding: 60px 5% 20px; }
+    footer { background: var(--dark); color: white; padding: 80px 5% 30px; }
     .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; }
-    .footer-grid h4 { margin-bottom: 20px; color: var(--secondary); }
-    .footer-grid ul li { margin-bottom: 10px; opacity: 0.7; font-size: 0.9rem; }
+    .footer-col h4 { margin-bottom: 25px; color: var(--secondary); font-size: 1.1rem; }
+    .footer-col ul li { margin-bottom: 12px; opacity: 0.7; font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
+    .footer-col ul li:hover { opacity: 1; color: var(--secondary); transform: translateX(5px); }
     .copy { text-align: center; padding-top: 20px; opacity: 0.5; font-size: 0.7rem; }
 
-    .whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: 0.3s; }
+    .whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1001; box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: 0.3s; }
     .whatsapp:hover { transform: scale(1.1); }
 
     /* --- Responsive --- */
     @media (max-width: 992px) {
-      .menu-toggle { display: block; order: 2; }
+      .menu-toggle { display: block; }
       .header-btns { display: none; }
-      nav { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: var(--white); transition: 0.4s; z-index: 999; }
+      nav { position: fixed; top: 70px; left: -100%; width: 100%; height: 100vh; background: var(--white); transition: 0.4s; z-index: 999; }
       nav.active { left: 0; }
       nav ul { flex-direction: column; align-items: center; padding-top: 50px; gap: 25px; }
       .contact-container { grid-template-columns: 1fr; padding: 30px 20px; }
@@ -110,10 +123,18 @@
 </head>
 <body>
 
+<!-- Dynamic Content Page (Integrated Overlay) -->
+<div id="content-page">
+    <div class="close-btn" onclick="closePage()"><i class="fas fa-times-circle"></i></div>
+    <div class="page-inner" id="dynamic-content">
+        <!-- Content injected via JS -->
+    </div>
+</div>
+
 <a href="https://wa.me/9779816004622" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <header>
-  <a href="#home" class="logo">NextGen<span>IT</span></a>
+  <div class="logo" onclick="window.location.href='#home'">NextGen<span>IT</span></div>
   <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
   <nav id="nav-menu">
     <ul>
@@ -140,21 +161,23 @@
   </div>
 </section>
 
+<!-- SERVICES SECTION -->
 <section id="services" class="section-padding">
   <div class="section-header">
     <span>FULL-STACK EXPERTISE</span>
     <h2>A-Z Digital Solutions</h2>
   </div>
   <div class="services-grid">
-    <div class="card"><i class="fas fa-code"></i><h3>Web & App Dev</h3><p>Scalable architectures using React and Node for high-speed performance.</p></div>
-    <div class="card"><i class="fas fa-chart-line"></i><h3>Technical SEO</h3><p>Optimizing core web vitals and authority to dominate search results.</p></div>
-    <div class="card"><i class="fas fa-layer-group"></i><h3>Graphic & UI/UX</h3><p>User-centric design that converts traffic into customers.</p></div>
-    <div class="card"><i class="fas fa-video"></i><h3>Multimedia & 3D</h3><p>High-end video and 3D modeling for the next dimension.</p></div>
-    <div class="card"><i class="fas fa-hashtag"></i><h3>Social Media</h3><p>Data-driven growth across Meta, LinkedIn, and Instagram.</p></div>
-    <div class="card"><i class="fas fa-shield-halved"></i><h3>IT Infrastructure</h3><p>Cloud migration and cybersecurity managed 24/7.</p></div>
+    <div class="card" onclick="showPage('web')"><i class="fas fa-code"></i><h3>Web & App Dev</h3><p>Scalable architectures using React and Node for high-speed performance.</p></div>
+    <div class="card" onclick="showPage('seo')"><i class="fas fa-chart-line"></i><h3>Technical SEO</h3><p>Optimizing core web vitals and authority to dominate search results.</p></div>
+    <div class="card" onclick="showPage('media')"><i class="fas fa-video"></i><h3>Multimedia & 3D</h3><p>High-end video and 3D modeling for the next dimension.</p></div>
+    <div class="card" onclick="showPage('infra')"><i class="fas fa-shield-halved"></i><h3>IT Infrastructure</h3><p>Cloud migration and cybersecurity managed 24/7.</p></div>
+    <div class="card" onclick="showPage('marketing')"><i class="fas fa-hashtag"></i><h3>Social Media</h3><p>Data-driven growth across Meta, LinkedIn, and Instagram.</p></div>
+    <div class="card" onclick="showPage('design')"><i class="fas fa-layer-group"></i><h3>Graphic & UI/UX</h3><p>User-centric design that converts traffic into customers.</p></div>
   </div>
 </section>
 
+<!-- PROCESS SECTION -->
 <section id="process" class="section-padding" style="background: var(--light);">
     <div class="section-header"><span>OUR FRAMEWORK</span><h2>How We Deliver Results</h2></div>
     <div class="process-grid">
@@ -165,6 +188,7 @@
     </div>
 </section>
 
+<!-- PORTFOLIO SECTION -->
 <section id="portfolio" class="section-padding">
     <div class="section-header"><span>PROVEN WORK</span><h2>Global Success Stories</h2></div>
     <div class="filter-menu">
@@ -180,6 +204,7 @@
     </div>
 </section>
 
+<!-- CONTACT SECTION -->
 <section id="contact" class="section-padding">
   <div class="contact-container">
     <div class="contact-info">
@@ -194,7 +219,6 @@
     <div class="contact-form">
         <form id="form">
             <input type="hidden" name="access_key" value="42b9c83d-8677-4e64-9565-d42a01dc3711">
-            
             <input type="text" name="name" placeholder="Full Name" required>
             <input type="email" name="email" placeholder="Business Email" required>
             <select name="service" required>
@@ -205,9 +229,6 @@
                 <option>IT Infrastructure</option>
             </select>
             <textarea name="message" rows="4" placeholder="Briefly describe your goals" required></textarea>
-            
-            <input type="checkbox" name="botcheck" style="display: none;">
-
             <button type="submit" id="submit-btn" class="btn-quote" style="width: 100%;">Get Your Quote</button>
             <div id="result"></div>
         </form>
@@ -215,26 +236,29 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
-        <a href="#home" class="logo" style="color:white; margin-bottom: 15px;">NextGen<span>IT</span></a>
+        <div class="logo" style="color:white; margin-bottom: 20px;">NextGen<span>IT</span></div>
         <p style="opacity: 0.7; font-size: 0.9rem;">Global leader in end-to-end IT solutions. Bridging imagination and execution.</p>
     </div>
     <div class="footer-col">
         <h4>Services</h4>
         <ul>
-            <li>Web Development</li>
-            <li>SEO Marketing</li>
-            <li>3D Multimedia</li>
+            <li onclick="showPage('web')">Web Development</li>
+            <li onclick="showPage('seo')">SEO Marketing</li>
+            <li onclick="showPage('media')">3D Multimedia</li>
+            <li onclick="showPage('infra')">Cloud Infrastructure</li>
         </ul>
     </div>
     <div class="footer-col">
         <h4>Company</h4>
         <ul>
-            <li>About Us</li>
-            <li>Case Studies</li>
-            <li>Privacy Policy</li>
+            <li onclick="showPage('about')">About Us</li>
+            <li onclick="showPage('cases')">Case Studies</li>
+            <li onclick="showPage('privacy')">Privacy Policy</li>
+            <li onclick="showPage('terms')">Terms of Service</li>
         </ul>
     </div>
   </div>
@@ -242,7 +266,70 @@
 </footer>
 
 <script>
-    // Navigation & Mobile Menu
+    // --- CONTENT LIBRARY FOR OVERLAYS ---
+    const pageLibrary = {
+        about: {
+            title: "About NextGen IT",
+            content: "We are a boutique digital agency based in Nepal, operating globally. Our philosophy is simple: 'Precision over Speed, Quality over Volume.' We consist of a hand-picked team of senior developers and creative directors dedicated to pushing the boundaries of what is possible online."
+        },
+        web: {
+            title: "Web & App Architecture",
+            content: "Modern users expect speed. We deliver it. Our web development process involves building lightweight, headless architectures using React, Next.js, and specialized backend systems. We focus on security, SEO-readiness, and conversion-optimized UX design."
+        },
+        seo: {
+            title: "Search Dominance (SEO)",
+            content: "Most agencies focus on traffic; we focus on revenue. Our Technical SEO services involve deep-dive audits, Core Web Vital optimization, and strategic content clusters. We help you outrank competitors for high-value keywords that actually convert."
+        },
+        media: {
+            title: "Multimedia & 3D Reality",
+            content: "In a world of noise, visuals command attention. We provide cinematic video production, motion graphics, and high-fidelity 3D modeling. Whether it is a product reveal or an immersive brand story, we bring your vision to life."
+        },
+        infra: {
+            title: "IT Infrastructure",
+            content: "Stability is the backbone of growth. We provide enterprise-grade cloud management, cybersecurity audits, and 24/7 managed IT support. Our goal is to ensure your internal systems are as robust as your external presence."
+        },
+        marketing: {
+            title: "Digital Marketing",
+            content: "We use data to drive growth across Meta, LinkedIn, and Instagram. Our marketing strategies are built on A/B testing and precision targeting to ensure every dollar spent returns maximum value."
+        },
+        design: {
+            title: "Graphic & UI/UX",
+            content: "Design is more than aesthetics; it's about the journey. We create user-centric designs that remove friction and guide your visitors toward the checkout or contact button."
+        },
+        privacy: {
+            title: "Privacy Policy",
+            content: "Your data privacy is paramount. We comply with global standards (GDPR/CCPA). Your intellectual property and project data are protected by strict non-disclosure agreements and industry-standard encryption."
+        },
+        terms: {
+            title: "Terms of Service",
+            content: "Our service terms involve clear milestone-based payments, defined project scopes, and guaranteed support periods. We believe in building long-term partnerships based on mutual trust."
+        },
+        cases: {
+            title: "Global Success Stories",
+            content: "From helping Fintech startups raise capital to scaling e-commerce brands by 400%, our work speaks for itself. We deliver measurable ROI through technical excellence."
+        }
+    };
+
+    // --- OVERLAY LOGIC ---
+    function showPage(key) {
+        const data = pageLibrary[key];
+        const displayArea = document.getElementById('dynamic-content');
+        displayArea.innerHTML = `
+            <h2>${data.title}</h2>
+            <div class="accent-line"></div>
+            <p>${data.content}</p>
+            <button class="btn-quote" onclick="closePage()" style="margin-top:20px;">Return to Site</button>
+        `;
+        document.getElementById('content-page').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePage() {
+        document.getElementById('content-page').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // --- NAVIGATION ---
     const menuToggle = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
     menuToggle.addEventListener('click', () => {
@@ -259,7 +346,7 @@
         });
     });
 
-    // Portfolio Filtering
+    // --- PORTFOLIO FILTER ---
     function filterPort(category, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
@@ -268,7 +355,7 @@
         });
     }
 
-    // Contact Form AJAX Submission
+    // --- FORM SUBMISSION ---
     const form = document.getElementById('form');
     const result = document.getElementById('result');
     const submitBtn = document.getElementById('submit-btn');
@@ -280,7 +367,7 @@
         const json = JSON.stringify(object);
         
         result.style.display = "block";
-        result.innerHTML = "Processing your request...";
+        result.innerHTML = "Processing...";
         result.style.color = "var(--dark)";
         submitBtn.disabled = true;
 
@@ -293,7 +380,7 @@
             let res = await response.json();
             if (response.status == 200) {
                 result.style.color = "var(--secondary)";
-                result.innerHTML = "Message sent! We will get back to you soon.";
+                result.innerHTML = "Message sent! We will contact you soon.";
                 form.reset();
             } else {
                 result.style.color = "red";
@@ -302,11 +389,11 @@
         })
         .catch(error => { 
             result.style.color = "red";
-            result.innerHTML = "Something went wrong. Please try again later."; 
+            result.innerHTML = "Something went wrong."; 
         })
         .then(() => {
             submitBtn.disabled = false;
-            setTimeout(() => { result.style.display = "none"; }, 6000);
+            setTimeout(() => { result.style.display = "none"; }, 5000);
         });
     });
 </script>
