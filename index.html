@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NextGen IT | Premium Digital Agency & IT Solutions</title>
+  <title>NextGen IT | Simple & Best IT Services</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -17,13 +17,13 @@
       --text-gray: #666;
     }
 
-    /* --- Reset & Base --- */
+    /* --- Basic Settings --- */
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif; }
     body { line-height:1.6; color:#333; background: var(--white); scroll-behavior: smooth; overflow-x: hidden;}
     a { text-decoration: none; transition: 0.3s; color: inherit; }
     ul { list-style: none; }
 
-    /* --- Navigation --- */
+    /* --- Top Menu (Header) --- */
     header { 
       background: var(--white); padding: 15px 5%; position: sticky; top: 0; z-index: 1000; 
       display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -40,7 +40,7 @@
     .btn-quote { background: var(--primary); color: var(--white); padding: 12px 25px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; display: inline-block; text-align: center; transition: 0.3s;}
     .btn-quote:hover { background: var(--dark); transform: translateY(-3px); }
 
-    /* --- Hero Section --- */
+    /* --- Main Banner (Hero) --- */
     .hero {
       min-height: 85vh; background: var(--dark); border-bottom-left-radius: 40px;
       position: relative; display: flex; align-items: center; color: var(--white); overflow: hidden;
@@ -53,7 +53,7 @@
     .hero-content p { font-size: clamp(0.95rem, 3vw, 1.2rem); margin-bottom: 30px; opacity: 0.9; max-width: 600px; }
     .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    /* --- Section Styling --- */
+    /* --- Section Style --- */
     .section-padding { padding: 60px 5%; text-align: center; }
     @media (min-width: 768px) { .section-padding { padding: 100px 8%; } }
     
@@ -61,20 +61,20 @@
     .section-header span { color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; display: block; margin-bottom: 10px;}
     .section-header h2 { font-size: clamp(1.8rem, 5vw, 2.8rem); color: var(--dark); line-height: 1.2; }
 
-    /* --- Overlays (Dynamic Pages) --- */
+    /* --- Pop-up Pages --- */
     #content-page {
       position: fixed; inset: 0; background: var(--white);
       z-index: 2000; display: none; overflow-y: auto; padding: 80px 8% 40px;
-      animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: slideUp 0.4s ease;
     }
     @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
     .close-btn { position: fixed; top: 20px; right: 20px; font-size: 2.2rem; cursor: pointer; color: var(--primary); z-index: 2100; transition: 0.3s;}
-    .close-btn:hover { transform: rotate(90deg); }
+    
     .page-inner h2 { font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 20px; color: var(--dark); }
     .page-inner .accent-line { width: 80px; height: 5px; background: var(--secondary); margin-bottom: 30px; }
     .page-inner p { font-size: 1.1rem; line-height: 1.8; color: #444; max-width: 900px; margin-bottom: 20px; }
 
-    /* --- Responsive Grids --- */
+    /* --- Grid Layouts --- */
     .services-grid { 
       display: grid; 
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -101,7 +101,7 @@
     .port-overlay { position: absolute; inset: 0; background: rgba(10, 13, 38, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; opacity: 0; transition: 0.4s; padding: 20px; text-align: center;}
     .port-item:hover .port-overlay { opacity: 1; }
 
-    /* --- Contact --- */
+    /* --- Contact Form --- */
     .contact-container { display: grid; grid-template-columns: 1fr; gap: 40px; text-align: left; background: var(--light); border-radius: 30px; padding: 30px 20px; }
     @media (min-width: 992px) { .contact-container { grid-template-columns: 1fr 1fr; padding: 50px; } }
     
@@ -119,7 +119,7 @@
 
     .whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 1001; box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: 0.3s; }
 
-    /* --- Responsive Navigation Mobile --- */
+    /* --- Mobile Menu --- */
     @media (max-width: 992px) {
       .menu-toggle { display: block; order: 3; }
       .header-btns { display: none; }
@@ -150,73 +150,73 @@
   <nav id="nav-menu">
     <ul>
       <li><a href="#home">Home</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#process">Our Way</a></li>
-      <li><a href="#portfolio">Work</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#services">What We Do</a></li>
+      <li><a href="#process">How We Work</a></li>
+      <li><a href="#portfolio">Our Work</a></li>
+      <li><a href="#contact">Contact Us</a></li>
     </ul>
   </nav>
-  <div class="header-btns"><a href="#contact" class="btn-quote">Start a Project</a></div>
+  <div class="header-btns"><a href="#contact" class="btn-quote">Message Us</a></div>
 </header>
 
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <span>Shaping the Future of Digital</span>
-    <h1>Turning Ideas Into<br>Digital Reality.</h1>
-    <p>We build fast, modern websites, smart SEO strategies, and engaging digital experiences that help your brand stand out and grow.</p>
+    <span>MAKING THE INTERNET BETTER</span>
+    <h1>We Build Amazing<br>Websites and Apps.</h1>
+    <p>We help your business grow online. We make fast websites, help people find you on Google, and create cool designs that look great on phones and computers.</p>
     <div class="hero-btns">
-        <a href="#contact" class="btn-quote" style="background: var(--secondary);">Free Strategy Call</a>
-        <a href="#portfolio" class="btn-quote" style="background: transparent; border: 2px solid white;">View Portfolio</a>
+        <a href="#contact" class="btn-quote" style="background: var(--secondary);">Talk to Us (Free)</a>
+        <a href="#portfolio" class="btn-quote" style="background: transparent; border: 2px solid white;">See Our Work</a>
     </div>
   </div>
 </section>
 
 <section id="services" class="section-padding">
   <div class="section-header">
-    <span>FULL-STACK EXPERTISE</span>
-    <h2>A-Z Digital Solutions</h2>
+    <span>OUR SERVICES</span>
+    <h2>How We Can Help You</h2>
   </div>
   <div class="services-grid">
-    <div class="card" onclick="showPage('web')"><i class="fas fa-code"></i><h3>Web & App Dev</h3><p>Scalable architectures using React and Node for high-speed performance.</p></div>
-    <div class="card" onclick="showPage('seo')"><i class="fas fa-chart-line"></i><h3>Technical SEO</h3><p>Optimizing core web vitals and authority to dominate search results.</p></div>
-    <div class="card" onclick="showPage('media')"><i class="fas fa-video"></i><h3>Multimedia & 3D</h3><p>High-end video and 3D modeling for the next dimension.</p></div>
-    <div class="card" onclick="showPage('infra')"><i class="fas fa-shield-halved"></i><h3>IT Infrastructure</h3><p>Cloud migration and cybersecurity managed 24/7.</p></div>
-    <div class="card" onclick="showPage('marketing')"><i class="fas fa-hashtag"></i><h3>Social Media</h3><p>Data-driven growth across Meta, LinkedIn, and Instagram.</p></div>
-    <div class="card" onclick="showPage('design')"><i class="fas fa-layer-group"></i><h3>Graphic & UI/UX</h3><p>User-centric design that converts traffic into customers.</p></div>
+    <div class="card" onclick="showPage('web')"><i class="fas fa-code"></i><h3>Website Building</h3><p>We build websites that work fast and look very clean and professional.</p></div>
+    <div class="card" onclick="showPage('seo')"><i class="fas fa-chart-line"></i><h3>(SEO)Get Found on Google</h3><p>We help your website show up first when people search for your business.</p></div>
+    <div class="card" onclick="showPage('media')"><i class="fas fa-video"></i><h3>Videos & 3D</h3><p>We make high-quality videos and 3D pictures to show off your products.</p></div>
+    <div class="card" onclick="showPage('infra')"><i class="fas fa-shield-halved"></i><h3>Computer Support</h3><p>We keep your data safe and help you manage your office computers and cloud.</p></div>
+    <div class="card" onclick="showPage('marketing')"><i class="fas fa-hashtag"></i><h3>Social Media</h3><p>We help you get more likes and customers on Facebook and Instagram.</p></div>
+    <div class="card" onclick="showPage('design')"><i class="fas fa-layer-group"></i><h3>Graphic Design</h3><p>We design beautiful logos and pictures that represent your brand.</p></div>
   </div>
 </section>
 
 <section id="process" class="section-padding" style="background: var(--light);">
-    <div class="section-header"><span>OUR FRAMEWORK</span><h2>How We Deliver Results</h2></div>
+    <div class="section-header"><span>OUR SIMPLE STEPS</span><h2>How We Get the Job Done</h2></div>
     <div class="process-grid">
-        <div class="step"><div class="step-num">01</div><h4>Discovery</h4><p>Auditing your brand and defining KPIs.</p></div>
-        <div class="step"><div class="step-num">02</div><h4>Strategy</h4><p>The technical & creative blueprint.</p></div>
-        <div class="step"><div class="step-num">03</div><h4>Execution</h4><p>Agile development & design cycles.</p></div>
-        <div class="step"><div class="step-num">04</div><h4>Scale</h4><p>Launching for massive digital growth.</p></div>
+        <div class="step"><div class="step-num">01</div><h4>Talking</h4><p>First, we talk to you to understand exactly what you need.</p></div>
+        <div class="step"><div class="step-num">02</div><h4>Planning</h4><p>We make a simple plan and show you how it will look.</p></div>
+        <div class="step"><div class="step-num">03</div><h4>Building</h4><p>Our team starts making your website or design with care.</p></div>
+        <div class="step"><div class="step-num">04</div><h4>Growing</h4><p>We launch your project and help you get more customers.</p></div>
     </div>
 </section>
 
 <section id="portfolio" class="section-padding">
-    <div class="section-header"><span>PROVEN WORK</span><h2>Global Success Stories</h2></div>
+    <div class="section-header"><span>PAST WORK</span><h2>Success Stories</h2></div>
     <div class="filter-menu">
-        <button class="filter-btn active" onclick="filterPort('all', this)">Everything</button>
-        <button class="filter-btn" onclick="filterPort('dev', this)">Development</button>
-        <button class="filter-btn" onclick="filterPort('media', this)">Multimedia</button>
+        <button class="filter-btn active" onclick="filterPort('all', this)">All Projects</button>
+        <button class="filter-btn" onclick="filterPort('dev', this)">Websites</button>
+        <button class="filter-btn" onclick="filterPort('media', this)">Videos</button>
         <button class="filter-btn" onclick="filterPort('marketing', this)">Marketing</button>
     </div>
     <div class="portfolio-grid">
-        <div class="port-item dev"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600"><div class="port-overlay"><h3>Fintech App</h3><p>Full-Stack Dev</p></div></div>
-        <div class="port-item media"><img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600"><div class="port-overlay"><h3>3D Reveal</h3><p>Multimedia</p></div></div>
-        <div class="port-item marketing"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600"><div class="port-overlay"><h3>SEO Growth</h3><p>+400% Organic</p></div></div>
+        <div class="port-item dev"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600"><div class="port-overlay"><h3>Online Shop</h3><p>Website Building</p></div></div>
+        <div class="port-item media"><img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600"><div class="port-overlay"><h3>Cool Movie</h3><p>Video Work</p></div></div>
+        <div class="port-item marketing"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600"><div class="port-overlay"><h3>Google Success</h3><p>Marketing</p></div></div>
     </div>
 </section>
 
 <section id="contact" class="section-padding">
   <div class="contact-container">
     <div class="contact-info">
-      <h2>Let’s Ignite Your <span style="color:var(--primary)">Growth.</span></h2>
-      <p>Our consultants are ready to help you scale your business.</p>
+      <h2>Let’s Start <span style="color:var(--primary)">Growing.</span></h2>
+      <p>Fill out the form and our friendly team will call or email you soon. We are here to help!</p>
       <div style="margin-top: 30px;">
           <p style="margin-bottom: 10px;"><i class="fas fa-envelope" style="color:var(--primary); margin-right:10px;"></i> tudusujit690@gmail.com</p>
           <p style="margin-bottom: 10px;"><i class="fas fa-phone" style="color:var(--primary); margin-right:10px;"></i> +977 9816004622</p>
@@ -226,17 +226,18 @@
     <div class="contact-form">
         <form id="form">
             <input type="hidden" name="access_key" value="42b9c83d-8677-4e64-9565-d42a01dc3711">
-            <input type="text" name="name" placeholder="Full Name" required>
-            <input type="email" name="email" placeholder="Business Email" required>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email Address" required>
             <select name="service" required>
-                <option value="" disabled selected>Select Service</option>
-                <option>Web & App Development</option>
-                <option>Digital Marketing & SEO</option>
-                <option>Multimedia & 3D</option>
-                <option>IT Infrastructure</option>
+                <option value="" disabled selected>What do you need help with?</option>
+                <option>Building a Website</option>
+                <option>Marketing & SEO</option>
+                <option>Videos & 3D</option>
+                <option>IT & Computer Support</option>
+                <option>Graphic Design</option>
             </select>
-            <textarea name="message" rows="4" placeholder="Briefly describe your goals" required></textarea>
-            <button type="submit" id="submit-btn" class="btn-quote" style="width: 100%;">Get Your Quote</button>
+            <textarea name="message" rows="4" placeholder="Tell us about your project..." required></textarea>
+            <button type="submit" id="submit-btn" class="btn-quote" style="width: 100%;">Send Message</button>
             <div id="result"></div>
         </form>
     </div>
@@ -247,24 +248,24 @@
   <div class="footer-grid">
     <div class="footer-col">
         <div class="logo" style="color:white; margin-bottom: 20px;">NextGen<span>IT</span></div>
-        <p style="opacity: 0.7; font-size: 0.9rem;">Global leader in end-to-end IT solutions. Bridging imagination and execution.</p>
+        <p style="opacity: 0.7; font-size: 0.9rem;">We are a top company for computer and internet help. We turn your ideas into reality.</p>
     </div>
     <div class="footer-col">
-        <h4>Services</h4>
+        <h4>Things We Do</h4>
         <ul>
-            <li onclick="showPage('web')">Web Development</li>
-            <li onclick="showPage('seo')">SEO Marketing</li>
-            <li onclick="showPage('media')">3D Multimedia</li>
-            <li onclick="showPage('infra')">Cloud Infrastructure</li>
+            <li onclick="showPage('web')">Build Websites</li>
+            <li onclick="showPage('seo')">(SEO)Google Marketing</li>
+            <li onclick="showPage('media')">3D & Videos</li>
+            <li onclick="showPage('infra')">IT Infrastructure</li>
         </ul>
     </div>
     <div class="footer-col">
-        <h4>Company</h4>
+        <h4>About Us</h4>
         <ul>
-            <li onclick="showPage('about')">About Us</li>
-            <li onclick="showPage('cases')">Case Studies</li>
-            <li onclick="showPage('privacy')">Privacy Policy</li>
-            <li onclick="showPage('terms')">Terms of Service</li>
+            <li onclick="showPage('about')">Who We Are</li>
+            <li onclick="showPage('cases')">Our Success</li>
+            <li onclick="showPage('privacy')">Privacy Rules</li>
+            <li onclick="showPage('terms')">Terms of Use</li>
         </ul>
     </div>
   </div>
@@ -273,16 +274,16 @@
 
 <script>
     const pageLibrary = {
-        about: { title: "About NextGen IT", content: "We are a boutique digital agency based in Nepal, operating globally. Our philosophy is 'Precision over Speed, Quality over Volume.' Our team of senior experts is dedicated to pushing boundaries." },
-        web: { title: "Web & App Architecture", content: "Modern users expect speed. We deliver lightweight, headless architectures using React and Next.js, focused on security and conversion-optimized UX design." },
-        seo: { title: "Search Dominance (SEO)", content: "We focus on revenue, not just traffic. Our technical SEO services include deep-dive audits and Core Web Vital optimization to help you outrank high-value competitors." },
-        media: { title: "Multimedia & 3D Reality", content: "Cinematic video production, motion graphics, and high-fidelity 3D modeling that commands attention and tells your brand's unique story." },
-        infra: { title: "IT Infrastructure", content: "Enterprise-grade cloud management, cybersecurity audits, and 24/7 managed support ensure your backbone is as strong as your brand." },
-        marketing: { title: "Digital Marketing", content: "Data-driven growth across Meta, LinkedIn, and Instagram. We use A/B testing and precision targeting for maximum ROI." },
-        design: { title: "Graphic & UI/UX", content: "User-centric design that removes friction. We create aesthetic journeys that guide visitors toward your business goals." },
-        privacy: { title: "Privacy Policy", content: "Your data privacy is paramount. We comply with GDPR/CCPA standards. Your IP and data are protected by strict NDAs and encryption." },
-        terms: { title: "Terms of Service", content: "Our terms involve clear milestone-based payments and defined scopes. We build long-term partnerships on mutual trust." },
-        cases: { title: "Global Success Stories", content: "From fintech startups to e-commerce brands scaling 400%, our work delivers measurable ROI through technical excellence." }
+        about: { title: "About Us", content: "We are a small team of experts in Nepal. We work with companies all over the world. Our goal is to make very high-quality websites and apps. We believe in doing good work that makes our customers happy and helps them make more money." },
+        web: { title: "Website Building", content: "People want websites that open quickly on their phones. We build websites that are very fast and easy to use. We make sure they are safe so hackers cannot hurt your business. We also make them look beautiful so people enjoy visiting your site." },
+        seo: { title: "(SEO)Google Marketing", content: "If people can't find your website, they can't buy from you. We help your website move to the top of Google search. This means more people will click on your site. We don't just get you clicks; we help you get customers who really want to buy your products." },
+        media: { title: "Videos & 3D Graphics", content: "Great videos help people understand your business. We make professional videos that tell your story. We also make 3D models and moving pictures (animations) that look like they are from a movie. This makes your brand look very high-end." },
+        infra: { title: "Computer Support", content: "Running a business is hard if your computers don't work. We help you set up systems so your data is always safe. We check for viruses and make sure your team can work from anywhere using the 'cloud'. We are here to help you 24 hours a day." },
+        marketing: { title: "Social Media Help", content: "We help you talk to your customers on Facebook, Instagram, and LinkedIn. We post the right pictures and words to make people follow you. We also run ads to help you reach thousands of new people every day." },
+        design: { title: "Designing Everything", content: "Good design is about making things easy to understand. We design logos, business cards, and website pages that are easy to look at. We make sure your customers don't get confused when they use your app or website." },
+        privacy: { title: "Your Safety (Privacy)", content: "We promise to keep your private information safe. We never sell your data to other people. We follow the rules to make sure everything you share with us stays between us. Your trust is very important to us." },
+        terms: { title: "Our Rules", content: "When we work together, we agree on a price and a plan. You pay us as we finish parts of the work. This keeps things fair for everyone. We want to work with you for a long time, so we always try to be honest and clear about our work." },
+        cases: { title: "Success Stories", content: "We have helped many businesses grow. Some businesses have grown four times bigger after working with us. Whether you are just starting or you are already a big company, we have the tools to help you reach the next level." }
     };
 
     function showPage(key) {
@@ -291,7 +292,7 @@
             <h2>${data.title}</h2>
             <div class="accent-line"></div>
             <p>${data.content}</p>
-            <button class="btn-quote" onclick="closePage()" style="margin-top:20px;">Return to Site</button>
+            <button class="btn-quote" onclick="closePage()" style="margin-top:20px;">Go Back</button>
         `;
         document.getElementById('content-page').style.display = 'block';
         document.body.style.overflow = 'hidden';
@@ -335,7 +336,7 @@
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         result.style.display = "block";
-        result.innerHTML = "Processing...";
+        result.innerHTML = "Sending...";
         submitBtn.disabled = true;
 
         fetch('https://api.web3forms.com/submit', {
@@ -347,14 +348,14 @@
             let res = await response.json();
             if (response.status == 200) {
                 result.style.color = "var(--secondary)";
-                result.innerHTML = "Message sent successfully!";
+                result.innerHTML = "Sent! We will talk to you soon.";
                 form.reset();
             } else {
                 result.style.color = "red";
-                result.innerHTML = res.message;
+                result.innerHTML = "Something went wrong. Please try again.";
             }
         })
-        .catch(() => { result.innerHTML = "Error sending message."; })
+        .catch(() => { result.innerHTML = "Error! Please check your internet."; })
         .then(() => {
             submitBtn.disabled = false;
             setTimeout(() => { result.style.display = "none"; }, 5000);
