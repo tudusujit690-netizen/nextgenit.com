@@ -84,13 +84,26 @@
     .card:hover { background: var(--white); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--primary);}
     .card i { font-size: 2.2rem; color: var(--primary); margin-bottom: 15px; }
     .card h3 { font-size: 1.25rem; margin-bottom: 10px; color: var(--dark); }
-    /* Added pricing style for inside cards */
     .card-price { font-weight: 700; color: var(--secondary); margin-bottom: 5px; font-size: 1.1rem; }
 
     .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-top: 40px; }
     .step { position: relative; padding: 25px; background: var(--white); border-radius: 15px;}
     .step-num { font-size: 3rem; font-weight: 800; color: rgba(78, 93, 248, 0.08); position: absolute; top: 10px; left: 20px; }
     .step h4 { position: relative; z-index: 2; margin-top: 20px; font-size: 1.1rem; }
+
+    /* --- Clients Section --- */
+    .clients-grid { display: flex; justify-content: center; align-items: center; margin-top: 20px; }
+    .client-card { 
+      background: var(--white); padding: 30px; border-radius: 20px; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; 
+      border: 1px solid #eee; transition: 0.3s;
+    }
+    .client-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+    .client-icon { 
+      width: 70px; height: 70px; background: var(--light); border-radius: 50%; 
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;
+    }
+    .client-icon i { font-size: 1.8rem; color: var(--primary); }
 
     /* --- Portfolio --- */
     .filter-menu { margin-bottom: 30px; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
@@ -100,7 +113,8 @@
     .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .port-item { border-radius: 15px; overflow: hidden; height: 280px; position: relative; }
     .port-item img { width: 100%; height: 100%; object-fit: cover; }
-    .port-overlay { position: absolute; inset: 0; background: rgba(10, 13, 38, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; opacity: 0; transition: 0.4s; padding: 20px; text-align: center;}<br>    .port-item:hover .port-overlay { opacity: 1; }
+    .port-overlay { position: absolute; inset: 0; background: rgba(10, 13, 38, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; opacity: 0; transition: 0.4s; padding: 20px; text-align: center;}
+    .port-item:hover .port-overlay { opacity: 1; }
 
     /* --- Contact Form --- */
     .contact-container { display: grid; grid-template-columns: 1fr; gap: 40px; text-align: left; background: var(--light); border-radius: 30px; padding: 30px 20px; }
@@ -154,6 +168,7 @@
       <li><a href="#services">Our Services</a></li>
       <li><a href="#process">How We Work</a></li>
       <li><a href="#portfolio">Our Work</a></li>
+      <li><a href="#clients">Clients</a></li>
       <li><a href="#contact">Contact Us</a></li>
     </ul>
   </nav>
@@ -179,78 +194,18 @@
     <h2>Low Cost IT & Digital Services</h2>
   </div>
   <div class="services-grid">
-    <div class="card" onclick="showPage('high_speed_web')">
-        <i class="fas fa-rocket"></i>
-        <h3>High-Speed Website Building</h3>
-        <p class="card-price">Starting from $99</p>
-        <p>Ultra-fast loading websites built for performance and conversion.</p>
-    </div>
-    <div class="card" onclick="showPage('graphic_design')">
-        <i class="fas fa-pen-nib"></i>
-        <h3>Professional Graphic Design</h3>
-        <p class="card-price">From $19/item</p>
-        <p>Logos, banners, and marketing materials that define your brand.</p>
-    </div>
-    <div class="card" onclick="showPage('basic_seo')">
-        <i class="fas fa-magnifying-glass"></i>
-        <h3>Basic SEO Optimization</h3>
-        <p class="card-price">One-time $29</p>
-        <p>Essential on-page setup to get noticed by search engines.</p>
-    </div>
-    <div class="card" onclick="showPage('mobile_friendly')">
-        <i class="fas fa-mobile-screen-button"></i>
-        <h3>Mobile Friendly Layout</h3>
-        <p class="card-price">Setup for $25</p>
-        <p>Ensuring your site looks perfect and functions flawlessly on smartphones.</p>
-    </div>
-    <div class="card" onclick="showPage('full_google_ranking')">
-        <i class="fas fa-chart-line"></i>
-        <h3>(SEO) Full Google Ranking</h3>
-        <p class="card-price">Only $49/month</p>
-        <p>Advanced strategies to dominate search results and increase traffic.</p>
-    </div>
-    <div class="card" onclick="showPage('social_media_mgmt')">
-        <i class="fas fa-share-nodes"></i>
-        <h3>Social Media Management</h3>
-        <p class="card-price">Only $39/month</p>
-        <p>Engagement, posting, and growth on primary social platforms.</p>
-    </div>
-    <div class="card" onclick="showPage('3d_graphics_video')">
-        <i class="fas fa-video"></i>
-        <h3>Monthly 3D Graphics/Video</h3>
-        <p class="card-price">From $79/video</p>
-        <p>Cinematic promotional videos or high-end 3D visual assets.</p>
-    </div>
-    <div class="card" onclick="showPage('ads_campaign')">
-        <i class="fas fa-rectangle-ad"></i>
-        <h3>Ads Campaign Support</h3>
-        <p class="card-price">Management for $29/mo</p>
-        <p>Expert setup and management for Google, FB, or Instagram ads.</p>
-    </div>
-    <div class="card" onclick="showPage('computer_support')">
-        <i class="fas fa-headset"></i>
-        <h3>24/7 Computer Support</h3>
-        <p class="card-price">Only $15/month</p>
-        <p>Remote technical help whenever your team needs software or hardware assistance.</p>
-    </div>
-    <div class="card" onclick="showPage('cloud_server_mgmt')">
-        <i class="fas fa-server"></i>
-        <h3>Cloud & Server Management</h3>
-        <p class="card-price">Starting $19/month</p>
-        <p>Uptime monitoring, migration, and optimization for your servers.</p>
-    </div>
-    <div class="card" onclick="showPage('data_security')">
-        <i class="fas fa-shield-halved"></i>
-        <h3>Data Security & Backup</h3>
-        <p class="card-price">From $10/month</p>
-        <p>Automated backups and virus protection to keep your business records safe.</p>
-    </div>
-    <div class="card" onclick="showPage('tech_consulting')">
-        <i class="fas fa-lightbulb"></i>
-        <h3>Unlimited Tech Consulting</h3>
-        <p class="card-price">Only $9/month</p>
-        <p>Strategic advice on which technologies your business should invest in next.</p>
-    </div>
+    <div class="card" onclick="showPage('high_speed_web')"><i class="fas fa-rocket"></i><h3>High-Speed Website Building</h3><p class="card-price">Starting from $99</p><p>Ultra-fast loading websites built for performance and conversion.</p></div>
+    <div class="card" onclick="showPage('graphic_design')"><i class="fas fa-pen-nib"></i><h3>Professional Graphic Design</h3><p class="card-price">From $19/item</p><p>Logos, banners, and marketing materials that define your brand.</p></div>
+    <div class="card" onclick="showPage('basic_seo')"><i class="fas fa-magnifying-glass"></i><h3>Basic SEO Optimization</h3><p class="card-price">One-time $29</p><p>Essential on-page setup to get noticed by search engines.</p></div>
+    <div class="card" onclick="showPage('mobile_friendly')"><i class="fas fa-mobile-screen-button"></i><h3>Mobile Friendly Layout</h3><p class="card-price">Setup for $25</p><p>Ensuring your site looks perfect and functions flawlessly on smartphones.</p></div>
+    <div class="card" onclick="showPage('full_google_ranking')"><i class="fas fa-chart-line"></i><h3>(SEO) Full Google Ranking</h3><p class="card-price">Only $49/month</p><p>Advanced strategies to dominate search results and increase traffic.</p></div>
+    <div class="card" onclick="showPage('social_media_mgmt')"><i class="fas fa-share-nodes"></i><h3>Social Media Management</h3><p class="card-price">Only $39/month</p><p>Engagement, posting, and growth on primary social platforms.</p></div>
+    <div class="card" onclick="showPage('3d_graphics_video')"><i class="fas fa-video"></i><h3>Monthly 3D Graphics/Video</h3><p class="card-price">From $79/video</p><p>Cinematic promotional videos or high-end 3D visual assets.</p></div>
+    <div class="card" onclick="showPage('ads_campaign')"><i class="fas fa-rectangle-ad"></i><h3>Ads Campaign Support</h3><p class="card-price">Management for $29/mo</p><p>Expert setup and management for Google, FB, or Instagram ads.</p></div>
+    <div class="card" onclick="showPage('computer_support')"><i class="fas fa-headset"></i><h3>24/7 Computer Support</h3><p class="card-price">Only $15/month</p><p>Remote technical help whenever your team needs software or hardware assistance.</p></div>
+    <div class="card" onclick="showPage('cloud_server_mgmt')"><i class="fas fa-server"></i><h3>Cloud & Server Management</h3><p class="card-price">Starting $19/month</p><p>Uptime monitoring, migration, and optimization for your servers.</p></div>
+    <div class="card" onclick="showPage('data_security')"><i class="fas fa-shield-halved"></i><h3>Data Security & Backup</h3><p class="card-price">From $10/month</p><p>Automated backups and virus protection to keep your business records safe.</p></div>
+    <div class="card" onclick="showPage('tech_consulting')"><i class="fas fa-lightbulb"></i><h3>Unlimited Tech Consulting</h3><p class="card-price">Only $9/month</p><p>Strategic advice on which technologies your business should invest in next.</p></div>
   </div>
 </section>
 
@@ -261,6 +216,17 @@
         <div class="step"><div class="step-num">02</div><h4>Planning</h4><p>We make a simple plan and show you how it will look.</p></div>
         <div class="step"><div class="step-num">03</div><h4>Building</h4><p>Our team starts making your website or design with care.</p></div>
         <div class="step"><div class="step-num">04</div><h4>Growing</h4><p>We launch your project and help you get more customers.</p></div>
+    </div>
+</section>
+
+<section id="clients" class="section-padding" style="background: var(--white); border-bottom: 1px solid #eee;">
+    <div class="section-header"><span>TRUSTED BY</span><h2>Our Clients</h2></div>
+    <div class="clients-grid">
+        <div class="client-card">
+            <div class="client-icon"><i class="fas fa-bolt"></i></div>
+            <h3 style="color: var(--dark); font-weight: 700;">Kathmandu Electric & Electronics Service</h3>
+            <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 5px;">Powering Digital Presence</p>
+        </div>
     </div>
 </section>
 
@@ -347,11 +313,8 @@
 </footer>
 
 <script>
-    // Updated pageLibrary to match the 12 new specific services
     const pageLibrary = {
         about: { title: "About Us", content: "We are a small team of experts in Nepal. We work with companies all over the world. Our goal is to make very high-quality websites and apps. We believe in doing good work that makes our customers happy and helps them make more money." },
-        
-        // Updated service details
         high_speed_web: { title: "High-Speed Website Building", content: "We build websites using modern technology (like React/Next.js) focused on incredible speed. Loading under 1 second ensures visitors stay and convert. Includes full custom code and deployment." },
         graphic_design: { title: "Professional Graphic Design", content: "Get stunning logos, consistent branding visuals, marketing assets, and social media graphics. We focus on clean, impactful design that defines your brand identity." },
         basic_seo: { title: "Basic SEO Optimization", content: "Includes initial keyword research, meta tag setup, sitemap generation, and Google Search Console submission. Perfect for local visibility starter." },
@@ -364,10 +327,9 @@
         cloud_server_mgmt: { title: "Cloud & Server Management", content: "We handle uptime monitoring, secure migrations, routine updates, and performance tuning for your AWS, DigitalOcean, or Azure cloud infrastructure." },
         data_security: { title: "Data Security & Backup", content: "Setup of automated daily backups, standard firewalls, and anti-malware software to protect your primary business database and customer records." },
         tech_consulting: { title: "Unlimited Tech Consulting", content: "Strategic monthly calls and email support to advise you on technology trends, software choices, and tech roadmap planning to scale your business." },
-
-        cases: { title: "Success Stories", content: "We have helped many businesses grow. Some businesses have grown four times bigger after working with us. Whether you are just starting or you are already a big company, we have the tools to help you reach the next level." },
-        privacy: { title: "Privacy Rules", content: "We promise to keep your private information safe. We never sell your data to other people. We follow the rules to make sure everything you share with us stays between us. Your trust is very important to us." },
-        terms: { title: "Terms of Use", content: "When we work together, we agree on a price and a plan. You pay us as we finish parts of the work. This keeps things fair for everyone. We want to work with you for a long time, so we always try to be honest and clear about our work." }
+        cases: { title: "Success Stories", content: "We have helped many businesses grow. Some businesses have grown four times bigger after working with us." },
+        privacy: { title: "Privacy Rules", content: "We promise to keep your private information safe. We never sell your data." },
+        terms: { title: "Terms of Use", content: "When we work together, we agree on a price and a plan." }
     };
 
     function showPage(key) {
@@ -391,18 +353,6 @@
     const navMenu = document.getElementById('nav-menu');
     menuToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
-        const icon = menuToggle.querySelector('i');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
-    });
-
-    document.querySelectorAll('nav ul li a').forEach(link => {
-        link.addEventListener('click', () => { 
-            navMenu.classList.remove('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-times');
-        });
     });
 
     function filterPort(category, btn) {
@@ -429,17 +379,16 @@
             body: JSON.stringify(Object.fromEntries(new FormData(form)))
         })
         .then(async (response) => {
-            let res = await response.json();
             if (response.status == 200) {
                 result.style.color = "var(--secondary)";
                 result.innerHTML = "Sent! We will talk soon.";
                 form.reset();
             } else {
                 result.style.color = "red";
-                result.innerHTML = "Something went wrong. Please try again.";
+                result.innerHTML = "Something went wrong.";
             }
         })
-        .catch(() => { result.innerHTML = "Error! Please check your internet."; })
+        .catch(() => { result.innerHTML = "Error!"; })
         .then(() => {
             submitBtn.disabled = false;
             setTimeout(() => { result.style.display = "none"; }, 5000);
