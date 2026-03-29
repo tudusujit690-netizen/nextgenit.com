@@ -143,6 +143,43 @@
     #result { margin-top: 10px; font-weight: 600; text-align: center; }
 
     /* --- Footer --- */
+    /* Default (desktop) */
+.footer-row {
+    display: flex;
+    gap: 40px;
+}
+
+/* Each column */
+.footer-col {
+    flex: 1;
+}
+
+/* 🔥 MOBILE FIX */
+@media (max-width: 600px) {
+    .footer-row {
+        flex-direction: row;   /* force side-by-side */
+        gap: 20px;
+    }
+
+    .footer-col {
+        width: 50%;            /* each takes half */
+    }
+}
+
+    .footer-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+    .footer-col h4 {
+    font-size: 14px;
+}
+.footer-col li {
+    font-size: 13px;
+}
+
+    
     footer { background: var(--dark); color: white; padding: 60px 5% 30px; }
     .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; }
     .footer-col h4 { margin-bottom: 20px; color: var(--secondary); font-size: 1.1rem; }
@@ -469,6 +506,7 @@
         <p style="opacity: 0.7; font-size: 0.9rem;">We are a top company for computer and internet help. We turn your ideas into reality.</p>
     </div>
 
+    <div class="footer-row">
     <div class="footer-col">
         <h4>Things We Do</h4>
         <ul>
@@ -488,7 +526,8 @@
             <li onclick="showPage('terms')">Terms of Use</li>
         </ul>
     </div>
-  </div>
+</div>
+    
   <div class="copy">&copy; 2026 NextGen IT Solutions. All Rights Reserved.</div>
 </footer>
 <script>
