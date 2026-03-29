@@ -142,43 +142,8 @@
     .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 14px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-size: 1rem; }
     #result { margin-top: 10px; font-weight: 600; text-align: center; }
 
-    /* --- Footer --- */
-    /* Default (desktop) */
-.footer-row {
-    display: flex;
-    gap: 40px;
-}
-
-/* Each column */
-.footer-col {
-    flex: 1;
-}
-
-/* 🔥 MOBILE FIX */
-@media (max-width: 600px) {
-    .footer-row {
-        flex-direction: row;   /* force side-by-side */
-        gap: 20px;
-    }
-
-    .footer-col {
-        width: 50%;            /* each takes half */
-    }
-}
-
-    .footer-row {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-    .footer-col h4 {
-    font-size: 14px;
-}
-.footer-col li {
-    font-size: 13px;
-}
-
+   
+    /* --- footer --- */
     
     footer { background: var(--dark); color: white; padding: 60px 5% 30px; }
     .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; }
