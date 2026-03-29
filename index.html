@@ -491,108 +491,165 @@
   </div>
   <div class="copy">&copy; 2026 NextGen IT Solutions. All Rights Reserved.</div>
 </footer>
-
 <script>
-    const pageLibrary = {
-        about: { title: "About Us", content: "We are a small team of experts in Nepal. We work with companies all over the world. Our goal is to make very high-quality websites and apps. We believe in doing good work that makes our customers happy and helps them make more money." },
-        high_speed_web: { title: "High-Speed Website Building", content: "We build websites using modern technology (like React/Next.js) focused on incredible speed. Loading under 1 second ensures visitors stay and convert. Includes full custom code and deployment." },
-        graphic_design: { title: "Professional Graphic Design", content: "Get stunning logos, consistent branding visuals, marketing assets, and social media graphics. We focus on clean, impactful design that defines your brand identity." },
-        basic_seo: { title: "Basic SEO Optimization", content: "Includes initial keyword research, meta tag setup, sitemap generation, and Google Search Console submission. Perfect for local visibility starter." },
-        mobile_friendly: { title: "Mobile Friendly Layout", content: "We adjust your existing or new website code so it functions flawslessly on primary smartphone and tablet screens, passing all mobile-responsive tests." },
-        full_google_ranking: { title: "(SEO) Full Google Ranking", content: "Ongoing optimization to reach the #1 page on Google. Includes competitive analysis, content strategy, link building, and monthly performance tracking." },
-        social_media_mgmt: { title: "Social Media Management", content: "Full management of 2 platforms (e.g., Facebook & Instagram). We handle daily posting, community engagement, follower growth, and simple graphic creation." },
-        "3d_graphics_video": { title: "Monthly 3D Graphics/Video", content: "One high-end cinematic promo video or detailed 3D product render per month. Perfect for showcasing complex products dynamically." },
-        ads_campaign: { title: "Ads Campaign Support", content: "Strategic setup and ongoing optimization for Google Ads, Meta Ads, or TikTok Ads to maximize your Return on Ad Spend (ROI)." },
-        computer_support: { title: "24/7 Computer Support", content: "Remote technical support subscription. Whenever your team faces a software crash, virus issue, or configuration problem, our team assists instantly." },
-        cloud_server_mgmt: { title: "Cloud & Server Management", content: "We handle uptime monitoring, secure migrations, routine updates, and performance tuning for your AWS, DigitalOcean, or Azure cloud infrastructure." },
-        data_security: { title: "Data Security & Backup", content: "Setup of automated daily backups, standard firewalls, and anti-malware software to protect your primary business database and customer records." },
-        tech_consulting: { title: "Unlimited Tech Consulting", content: "Strategic monthly calls and email support to advise you on technology trends, software choices, and tech roadmap planning to scale your business." },
-        cases: { title: "Success Stories", content: "We have helped many businesses grow. Some businesses have grown four times bigger after working with us." },
-        privacy: { title: "Privacy Rules", content: "We promise to keep your private information safe. We never sell your data." },
-        terms: { title: "Terms of Use", content: "When we work together, we agree on a price and a plan." }
-    };
+/* ================= PAGE CONTENT SYSTEM ================= */
+const pageLibrary = {
+    about: { title: "About Us", content: "We are a small team of experts in Nepal. We work with companies all over the world. Our goal is to make very high-quality websites and apps. We believe in doing good work that makes our customers happy and helps them make more money." },
+    high_speed_web: { title: "High-Speed Website Building", content: "We build websites using modern technology (like React/Next.js) focused on incredible speed. Loading under 1 second ensures visitors stay and convert." },
+    graphic_design: { title: "Professional Graphic Design", content: "Get stunning logos, branding visuals, and social media graphics." },
+    basic_seo: { title: "Basic SEO Optimization", content: "Keyword research, meta tags, sitemap, and Google Search Console setup." },
+    mobile_friendly: { title: "Mobile Friendly Layout", content: "We make your site perfect for phones and tablets." },
+    full_google_ranking: { title: "(SEO) Full Google Ranking", content: "Advanced SEO to reach Google’s first page." },
+    social_media_mgmt: { title: "Social Media Management", content: "We manage Facebook & Instagram growth and content." },
+    "3d_graphics_video": { title: "Monthly 3D Graphics/Video", content: "High-end promo videos or 3D renders every month." },
+    ads_campaign: { title: "Ads Campaign Support", content: "Google Ads & Meta Ads optimization." },
+    computer_support: { title: "24/7 Computer Support", content: "Instant remote technical support." },
+    cloud_server_mgmt: { title: "Cloud & Server Management", content: "We manage AWS, Azure, DigitalOcean servers." },
+    data_security: { title: "Data Security & Backup", content: "Daily backups and security protection." },
+    tech_consulting: { title: "Unlimited Tech Consulting", content: "Monthly guidance for your tech growth." },
+    cases: { title: "Success Stories", content: "We helped businesses grow 4x." },
+    privacy: { title: "Privacy Rules", content: "We keep your data safe." },
+    terms: { title: "Terms of Use", content: "We agree on clear plans and pricing." }
+};
 
-    function showPage(key) {
-        const data = pageLibrary[key];
-        document.getElementById('dynamic-content').innerHTML = `
-            <h2>${data.title}</h2>
-            <div class="accent-line"></div>
-            <p>${data.content}</p>
-            <button class="btn-quote" onclick="closePage()" style="margin-top:20px;">Go Back</button>
-        `;
-        document.getElementById('content-page').style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
+function showPage(key) {
+    const data = pageLibrary[key];
+    document.getElementById('dynamic-content').innerHTML = `
+        <h2>${data.title}</h2>
+        <div class="accent-line"></div>
+        <p>${data.content}</p>
+        <button class="btn-quote" onclick="closePage()" style="margin-top:20px;">Go Back</button>
+    `;
+    document.getElementById('content-page').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
 
-    function closePage() {
-        document.getElementById('content-page').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
+function closePage() {
+    document.getElementById('content-page').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+/* ================= MOBILE MENU ================= */
+document.addEventListener("DOMContentLoaded", () => {
 
     const menuToggle = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
-    menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-    });
 
-    function filterPort(category, btn) {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.querySelectorAll('.port-item').forEach(item => {
-            item.style.display = (category === 'all' || item.classList.contains(category)) ? 'block' : 'none';
+    if (menuToggle && navMenu) {
+
+        // Toggle menu
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+
+            // Change icon
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-xmark');
+            }
+        });
+
+        // Close when clicking links
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-xmark');
+                }
+            });
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-xmark');
+                }
+            }
         });
     }
 
-    const form = document.getElementById('form');
-    const result = document.getElementById('result');
-    const submitBtn = document.getElementById('submit-btn');
+    /* ================= LOAD COMMENTS ================= */
+    loadComments();
+});
 
+/* ================= PORTFOLIO FILTER ================= */
+function filterPort(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.port-item').forEach(item => {
+        item.style.display = (category === 'all' || item.classList.contains(category)) 
+            ? 'block' 
+            : 'none';
+    });
+}
+
+/* ================= CONTACT FORM ================= */
+const form = document.getElementById('form');
+const result = document.getElementById('result');
+const submitBtn = document.getElementById('submit-btn');
+
+if (form) {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+
         result.style.display = "block";
         result.innerHTML = "Sending...";
         submitBtn.disabled = true;
 
         fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.fromEntries(new FormData(form)))
         })
-        .then(async (response) => {
-            if (response.status == 200) {
+        .then(res => {
+            if (res.ok) {
                 result.style.color = "var(--secondary)";
                 result.innerHTML = "Sent! We will talk soon.";
                 form.reset();
             } else {
-                result.style.color = "red";
-                result.innerHTML = "Something went wrong.";
+                throw new Error();
             }
         })
-        .catch(() => { result.innerHTML = "Error!"; })
-        .then(() => {
+        .catch(() => {
+            result.style.color = "red";
+            result.innerHTML = "Something went wrong.";
+        })
+        .finally(() => {
             submitBtn.disabled = false;
-            setTimeout(() => { result.style.display = "none"; }, 5000);
+            setTimeout(() => { result.style.display = "none"; }, 4000);
         });
     });
+}
 
+/* ================= COMMENTS SYSTEM ================= */
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw6RDHTHwUbhlWzdu7gJiBv-RkFLik8bnt5VMMpgPimEHlvscqIA3gF5u1_QmwhpR8U/exec";
 
 async function loadComments() {
+    const list = document.getElementById('comments-list');
+    if (!list) return;
+
     try {
-        const response = await fetch(SCRIPT_URL);
-        const data = await response.json();
-        const list = document.getElementById('comments-list');
-        
+        const res = await fetch(SCRIPT_URL);
+        const data = await res.json();
+
         if (!data || data.length === 0) {
-            list.innerHTML = '<p class="loading-msg">No comments yet. Be the first!</p>';
+            list.innerHTML = '<p class="loading-msg">No comments yet.</p>';
             return;
         }
-        
+
         list.innerHTML = '';
+
         data.reverse().forEach(row => {
             const name = row[0] || 'Anonymous';
-            const initial = name.charAt(0);
             const comment = row[1] || '';
+            const initial = name.charAt(0).toUpperCase();
 
             list.innerHTML += `
                 <div class="comment-card">
@@ -604,10 +661,9 @@ async function loadComments() {
                 </div>
             `;
         });
-    } catch (e) { 
-        console.error("Error loading comments:", e);
-        document.getElementById('comments-list').innerHTML = 
-            '<p class="loading-msg" style="color:#ff4757;">Unable to load the wall.</p>';
+
+    } catch (err) {
+        list.innerHTML = '<p class="loading-msg" style="color:red;">Failed to load comments.</p>';
     }
 }
 
@@ -619,34 +675,31 @@ async function saveComment() {
     const name = nameInput.value.trim();
     const comment = textInput.value.trim();
 
-    if(!name || !comment) {
+    if (!name || !comment) {
         alert("Please enter name and comment.");
         return;
     }
 
-    btn.disabled = true; 
-    btn.innerHTML = "Processing...";
+    btn.disabled = true;
+    btn.innerHTML = "Posting...";
 
     try {
-        await fetch(SCRIPT_URL, { 
-            method: 'POST', 
-            body: JSON.stringify({ name, comment }) 
+        await fetch(SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify({ name, comment })
         });
-        
-        nameInput.value = ''; 
+
+        nameInput.value = '';
         textInput.value = '';
-        loadComments(); 
-    } catch (e) { 
-        alert("Comment submitted successfully!");
         loadComments();
+
+    } catch (err) {
+        alert("Error posting comment.");
     } finally {
-        btn.disabled = false; 
+        btn.disabled = false;
         btn.innerHTML = "Post My Comment";
     }
 }
-
-/* ✅ FIX APPLIED HERE */
-document.addEventListener("DOMContentLoaded", loadComments);
 </script>
 </body>
 </html>
