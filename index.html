@@ -543,9 +543,9 @@ body {
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <span>MAKING THE INTERNET BETTER</span>
-    <h1>We Build Amazing<br>Websites and Apps.</h1>
-    <p>We help your business grow online. We make fast websites, help people find you on Google, and create cool designs that look great on phones and computers.</p>
+    <span>Make the Internet Work for You</span>
+    <h1>We Build Powerful<br>Websites & Apps That Grow Your Business.</h1>
+    <p>We don’t just create websites — we build fast, modern, and high-converting digital experiences that help your business stand out.</p>
     <div class="hero-btns">
         <a href="#contact" class="btn-quote" style="background: var(--secondary);">Talk to Us (Free)</a>
         <a href="#portfolio" class="btn-quote" style="background: transparent; border: 2px solid white;">See Our Work</a>
@@ -556,7 +556,7 @@ body {
 <section id="services" class="section-padding">
   <div class="section-header">
     <span>COMPLETE PRICE LIST</span>
-    <h2>Low Cost IT & Digital Services</h2>
+    <h2>IT & Digital Services</h2>
   </div>
   <div class="services-grid">
     <div class="card" onclick="showPage('high_speed_web')"><i class="fas fa-rocket"></i><h3>High-Speed Website Building</h3><p class="card-price">Starting from $99</p><p>Ultra-fast loading websites built for performance and conversion.</p></div>
@@ -749,21 +749,60 @@ body {
 /* ================= PAGE CONTENT SYSTEM ================= */
 const pageLibrary = {
     about: { title: "About Us", content: "We are a small team of experts in Nepal. We work with companies all over the world. Our goal is to make very high-quality websites and apps. We believe in doing good work that makes our customers happy and helps them make more money." },
-    high_speed_web: { title: "High-Speed Website Building", content: "We build websites using modern technology (like React/Next.js) focused on incredible speed. Loading under 1 second ensures visitors stay and convert." },
-    graphic_design: { title: "Professional Graphic Design", content: "Get stunning logos, branding visuals, and social media graphics." },
-    basic_seo: { title: "Basic SEO Optimization", content: "Keyword research, meta tags, sitemap, and Google Search Console setup." },
-    mobile_friendly: { title: "Mobile Friendly Layout", content: "We make your site perfect for phones and tablets." },
-    full_google_ranking: { title: "(SEO) Full Google Ranking", content: "Advanced SEO to reach Google’s first page." },
-    social_media_mgmt: { title: "Social Media Management", content: "We manage Facebook & Instagram growth and content." },
-    "3d_graphics_video": { title: "Monthly 3D Graphics/Video", content: "High-end promo videos or 3D renders every month." },
-    ads_campaign: { title: "Ads Campaign Support", content: "Google Ads & Meta Ads optimization." },
-    computer_support: { title: "24/7 Computer Support", content: "Instant remote technical support." },
-    cloud_server_mgmt: { title: "Cloud & Server Management", content: "We manage AWS, Azure, DigitalOcean servers." },
-    data_security: { title: "Data Security & Backup", content: "Daily backups and security protection." },
-    tech_consulting: { title: "Unlimited Tech Consulting", content: "Monthly guidance for your tech growth." },
-    cases: { title: "Success Stories", content: "We helped businesses grow 4x." },
-    privacy: { title: "Privacy Rules", content: "We keep your data safe." },
-    terms: { title: "Terms of Use", content: "We agree on clear plans and pricing." }
+    high_speed_web: { title: "High-Speed Website Design & Development", content: "Blazing-Fast Websites That Keep Visitors Engaged & Drive Results We build websites using cutting-edge technologies like React & Next.js, engineered for ultra-fast performance and seamless user experience.Pages that load in under 1 second Faster speed = higher engagement & more conversions Optimized for all devices — mobile, tablet & desktop Clean, scalable, and future-ready code Your visitors won't wait — and with us, they won't have to. Speed isn't just a feature. It's your competitive advantage." },
+    graphic_design: { title: "Professional Graphic Design", content: "Designs That Capture Attention & Build a Powerful Brand We create stunning, high-impact visuals that make your business stand out and leave a lasting impression.Unique logo designs that define your brand identity Eye-catching branding that builds trust and recognition Scroll-stopping social media graphics that attract customers Clean, modern designs tailored to your business goals Good design gets noticed. Great design gets results." },
+    basic_seo: { title: "Basic SEO Optimization", content: "Build a Strong Foundation to Get Found on Google Start your online growth with essential SEO that helps your website appear in search results and attract the right audience.We set up everything your website needs to perform better on search engines: Targeted keyword research to reach potential customers,Optimized titles, meta descriptions & headings, Sitemap creation for better indexing on Google, Google Search Console setup & verification, Clean on-page optimization for improved visibility, Mobile-friendly and performance-focused structure, A strong SEO foundation today means better rankings tomorrow." },
+    mobile_friendly: { title: "Mobile-Optimized Design", content: "We build fully responsive websites that look and perform flawlessly across all devices—smartphones, tablets, and desktops—ensuring a smooth user experience everywhere." },
+    full_google_ranking: { title: "Full SEO Optimization", content: "Complete SEO strategies designed to improve your website’s visibility, boost rankings on Google, and drive consistent organic traffic to your business." },
+    social_media_mgmt: { 
+  title: "Social Media Management", 
+  content: "We strategically manage your Facebook and Instagram presence with high-quality content, consistent posting, and data-driven growth strategies to increase engagement, followers, and brand visibility." 
+},
+
+"3d_graphics_video": { 
+  title: "Monthly 3D Graphics/Video", 
+  content: "Receive premium-quality 3D visuals and high-impact promotional videos every month, designed to elevate your brand, capture attention, and enhance your digital presence." 
+},
+
+ads_campaign: { 
+  title: "Ads Campaign Support", 
+  content: "We create, manage, and optimize Google Ads and Meta Ads campaigns to maximize ROI, drive targeted traffic, and generate high-quality leads for your business." 
+},
+
+computer_support: { 
+  title: "24/7 Computer Support", 
+  content: "Get reliable round-the-clock remote technical support to quickly resolve issues, minimize downtime, and ensure your systems run smoothly at all times." 
+},
+
+cloud_server_mgmt: { 
+  title: "Cloud & Server Management", 
+  content: "We provide complete management of cloud infrastructure including AWS, Azure, and DigitalOcean, ensuring secure, scalable, and high-performance server operations." 
+},
+
+data_security: { 
+  title: "Data Security & Backup", 
+  content: "Protect your business with advanced security measures, automated daily backups, and proactive monitoring to keep your data safe, secure, and easily recoverable." 
+},
+
+tech_consulting: { 
+  title: "Unlimited Tech Consulting", 
+  content: "Access expert guidance and ongoing support to make smarter technology decisions and scale your business with the right tools and strategies." 
+},
+
+cases: { 
+  title: "Success Stories", 
+  content: "We have helped businesses achieve up to 4x growth through innovative solutions, strategic execution, and consistent digital performance." 
+},
+
+privacy: { 
+  title: "Privacy Rules", 
+  content: "We follow strict data privacy standards and best practices to ensure your information remains secure, confidential, and fully protected." 
+},
+
+terms: { 
+  title: "Terms of Use", 
+  content: "We operate with clear terms, transparent pricing, and straightforward agreements to ensure trust, clarity, and long-term partnership." 
+}
 };
 
 /* OPTIONAL: LOGO HOVER ZOOM */
