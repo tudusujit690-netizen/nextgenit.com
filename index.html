@@ -229,16 +229,137 @@ body {
 }
 
     /* --- Portfolio --- */
-    .filter-menu { margin-bottom: 30px; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
-    .filter-btn { padding: 8px 18px; border: 2px solid var(--primary); border-radius: 30px; cursor: pointer; font-weight: 700; font-size: 0.8rem; background: none; color: var(--primary); transition: 0.3s;}
-    .filter-btn.active { background: var(--primary); color: white; }
-    
-    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .port-item { border-radius: 15px; overflow: hidden; height: 280px; position: relative; }
-    .port-item img { width: 100%; height: 100%; object-fit: cover; }
-    .port-overlay { position: absolute; inset: 0; background: rgba(10, 13, 38, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; opacity: 0; transition: 0.4s; padding: 20px; text-align: center;}
-    .port-item:hover .port-overlay { opacity: 1; }
+    body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background:#fff;
+    color:#111;
+}
 
+/* HEADER */
+.header{
+    text-align:center;
+    padding:90px 20px 40px;
+}
+
+.header h1{
+    font-size:52px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.header p{
+    color:#666;
+    font-size:16px;
+}
+
+/* SECTION */
+.section{
+    padding:40px 6%;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));
+    gap:30px;
+}
+
+/* CARD */
+.card{
+    border-radius:20px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    transition:0.4s ease;
+    opacity:0;
+    transform:translateY(25px);
+}
+
+.card.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+/* MEDIA BOX (IMPORTANT FIX) */
+.media{
+    width:100%;
+    height:320px;
+    background:#f4f4f4;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+/* IMAGE SLIDESHOW (NO CUTTING) */
+.slide{
+    position:absolute;
+    max-width:100%;
+    max-height:100%;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    opacity:0;
+    transition:1s ease;
+}
+
+.slide.active{
+    opacity:1;
+}
+
+/* VIDEO (FULL FIT) */
+video{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:#000;
+}
+
+/* WEBSITE PREVIEW (FIXED NO CUTTING) */
+iframe{
+    width:100%;
+    height:100%;
+    border:none;
+    transform:scale(0.95);
+    transform-origin:center;
+}
+
+/* INFO */
+.info{
+    padding:16px 18px;
+}
+
+.tag{
+    display:inline-block;
+    padding:5px 12px;
+    background:#4e5df8;
+    color:#fff;
+    font-size:11px;
+    border-radius:20px;
+    margin-bottom:8px;
+}
+
+.info h3{
+    margin:6px 0;
+    font-size:18px;
+}
+
+.info p{
+    font-size:14px;
+    color:#666;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .header h1{ font-size:34px; }
+    .grid{ grid-template-columns:1fr; }
+}
     /* --- Contact Form --- */
     .contact-container { display: grid; grid-template-columns: 1fr; gap: 40px; text-align: left; background: var(--light); border-radius: 30px; padding: 30px 20px; }
     @media (min-width: 992px) { .contact-container { grid-template-columns: 1fr 1fr; padding: 50px; } }
@@ -607,18 +728,73 @@ body {
 
 
 <section id="portfolio" class="section-padding">
-    <div class="section-header"><span>PAST WORK</span><h2>Success Stories</h2></div>
-    <div class="filter-menu">
-        <button class="filter-btn active" onclick="filterPort('all', this)">All Projects</button>
-        <button class="filter-btn" onclick="filterPort('dev', this)">Websites</button>
-        <button class="filter-btn" onclick="filterPort('media', this)">Videos</button>
-        <button class="filter-btn" onclick="filterPort('marketing', this)">Marketing</button>
+    <!-- HEADER -->
+<div class="header">
+    <h1>Our Work Gallery</h1>
+    <p>Premium digital projects crafted by NextGenIT</p>
+</div>
+
+<div class="section">
+
+<div class="grid">
+
+    <!-- DESIGN -->
+    <div class="card">
+        <div class="media slideshow">
+            <img class="slide active" src="brandidentity.png">
+            <img class="slide" src="brandidentity.png">
+            <img class="slide" src="brandidentity.png">
+        </div>
+        <div class="info">
+            <span class="tag">Graphic Design</span>
+            <h3>Brand Identity System</h3>
+            <p>Modern logo and branding designed for strong business identity.</p>
+        </div>
     </div>
-    <div class="portfolio-grid">
-        <div class="port-item dev"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600"><div class="port-overlay"><h3>Online Shop</h3><p>Website Building</p></div></div>
-        <div class="port-item media"><img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600"><div class="port-overlay"><h3>Cool Movie</h3><p>Video Work</p></div></div>
-        <div class="port-item marketing"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600"><div class="port-overlay"><h3>Google Success</h3><p>Marketing</p></div></div>
+
+    <!-- VIDEO -->
+    <div class="card">
+        <div class="media">
+            <video muted loop playsinline>
+                <source src="NextGenIT promo video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="info">
+            <span class="tag">Video Production</span>
+            <h3>Advertising Promo Video</h3>
+            <p>High quality marketing video for social media campaigns.</p>
+        </div>
     </div>
+
+    <!-- WEBSITE -->
+    <div class="card">
+        <div class="media">
+            <iframe src="https://tudusujit690-netizen.github.io/nextgenit.com/"></iframe>
+        </div>
+        <div class="info">
+            <span class="tag">Web Development</span>
+            <h3>Business Website</h3>
+            <p>Fully responsive and SEO optimized website preview.</p>
+        </div>
+    </div>
+
+    <!-- DESIGN 2 -->
+    <div class="card">
+        <div class="media slideshow">
+            <img class="slide active" src="marketingcreativedesign.png">
+            <img class="slide" src="marketingcreativedesign.png">
+            <img class="slide" src="marketingcreativedesign.png">
+        </div>
+        <div class="info">
+            <span class="tag">Social Media</span>
+            <h3>Marketing Creatives</h3>
+            <p>Engaging posts designed for brand growth and conversion.</p>
+        </div>
+    </div>
+
+</div>
+
+</div>
 </section>
 
 <section id="contact" class="section-padding">
@@ -880,16 +1056,50 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ================= PORTFOLIO FILTER ================= */
-function filterPort(category, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+/* SLIDESHOW */
+document.querySelectorAll('.slideshow').forEach(slideshow=>{
+    let slides = slideshow.querySelectorAll('.slide');
+    let index = 0;
 
-    document.querySelectorAll('.port-item').forEach(item => {
-        item.style.display = (category === 'all' || item.classList.contains(category)) 
-            ? 'block' 
-            : 'none';
+    setInterval(()=>{
+        slides[index].classList.remove('active');
+        index = (index + 1) % slides.length;
+        slides[index].classList.add('active');
+    }, 2500);
+});
+
+/* SCROLL ANIMATION */
+const cards = document.querySelectorAll('.card');
+
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
     });
-}
+},{threshold:0.2});
+
+cards.forEach(card=>{
+    observer.observe(card);
+});
+
+/* VIDEO AUTO PLAY */
+const videos = document.querySelectorAll("video");
+
+const videoObserver = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.play();
+        } else {
+            entry.target.pause();
+        }
+    });
+},{threshold:0.5});
+
+videos.forEach(v=>{
+    videoObserver.observe(v);
+});
+
 
 /* ================= CONTACT FORM ================= */
 const form = document.getElementById('form');
