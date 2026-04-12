@@ -50,85 +50,7 @@
     .hero-bg { position: absolute; inset: 0; background: url('nextgenitbanner.png') center/cover; opacity: 0.2; }
     .hero-content { position: relative; z-index: 10; max-width: 800px; text-align: left; }
     .hero-content span { color: var(--secondary); font-weight: 700; letter-spacing: 2px; font-size: 0.8rem; }
-   
-    /* HERO SECTION */
-.hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:80px 8%;
-    background:#fff;
-}
-
-/* CONTENT BOX */
-.hero-content{
-    max-width:700px;
-    text-align:left;
-}
-
-/* HEADING */
-.hero-content h1{
-    font-size:clamp(2rem,5vw,4.2rem);
-    line-height:1.15;
-    font-weight:800;
-    margin-bottom:20px;
-    letter-spacing:-1px;
-    color:#111;
-}
-
-/* HIGHLIGHT TEXT */
-.hero-content h1 span{
-    color:#0A84FF; /* Use your brand color */
-}
-
-/* SUBTEXT */
-.hero-content p{
-    font-size:clamp(1rem,1.6vw,1.15rem);
-    line-height:1.7;
-    color:#555;
-    max-width:580px;
-    margin-bottom:30px;
-}
-
-/* BUTTON */
-.hero-btn{
-    display:inline-block;
-    padding:14px 32px;
-    background:#0A84FF;
-    color:#fff;
-    text-decoration:none;
-    border-radius:8px;
-    font-weight:600;
-    transition:.3s;
-}
-
-.hero-btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 25px rgba(10,132,255,0.25);
-}
-
-/* MOBILE OPTIMIZATION */
-@media (max-width:768px){
-    .hero{
-        padding:60px 6%;
-        text-align:center;
-    }
-
-    .hero-content{
-        max-width:100%;
-    }
-
-    .hero-content h1{
-        font-size:clamp(1.8rem,7vw,3rem);
-        line-height:1.25;
-    }
-
-    .hero-content p{
-        max-width:100%;
-    }
-}
-    
+    .hero-content h1 { font-size: clamp(1rem, 8vw, 3rem); line-height: 1.1; margin: 20px 0; font-weight: 800; }
     .hero-content p { font-size: clamp(0.95rem, 3vw, 1.2rem); margin-bottom: 30px; opacity: 0.9; max-width: 600px; }
     .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 
@@ -743,22 +665,7 @@ body {
   <div class="hero-bg"></div>
   <div class="hero-content">
     <span>Empower Your Business with Smart Digital Solutions</span>
-    <section class="hero">
-    <div class="hero-content">
-        <h1>
-            We Deliver <span>Websites</span>, Marketing,<br>
-            IT Support & Growth Systems<br>
-            That Scale Your Brand.
-        </h1>
-
-        <p>
-            Helping businesses grow with modern websites, digital marketing,
-            branding, and scalable IT solutions tailored for results.
-        </p>
-
-        <a href="#" class="hero-btn">Get Started</a>
-    </div>
-</section>
+    <h1>We Deliver Websites, Marketing,.<br>IT Support & Growth Systems That Scale Your Brand.</h1>
     <p>From high-performance websites and SEO to cloud management, advertising, and technical support — NextGenIT provides everything your business needs to grow in the digital world.</p>
     <div class="hero-btns">
         <a href="#contact" class="btn-quote" style="background: var(--secondary);">Talk to Us (Free)</a>
