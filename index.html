@@ -24,11 +24,123 @@
     a { text-decoration: none; transition: 0.3s; color: inherit; }
     ul { list-style: none; }
 
-    /* --- Top Menu (Header) --- */
+    /* ===== STICKY WRAPPER FOR BOTH TOP BAR AND HEADER ===== */
+    .sticky-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    /* ===== MINI TOP BAR (Skybridge Property Style) ===== */
+    .top-bar {
+      background: var(--dark);
+      color: white;
+      padding: 8px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+    .top-bar-phone {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--secondary);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .top-bar-phone i {
+      color: var(--secondary);
+      font-size: 1rem;
+    }
+    .top-bar-email {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.85rem;
+    }
+    .top-bar-email i {
+      color: var(--secondary);
+    }
+    .top-bar-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .top-bar-links a {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .top-bar-links a:hover {
+      color: var(--secondary);
+    }
+    .top-bar-links .separator {
+      color: rgba(255,255,255,0.3);
+    }
+    .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .social-icons a {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .social-icons a:hover {
+      color: white;
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+    .btn-top-quote {
+      background: var(--secondary);
+      color: var(--dark);
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: all 0.3s;
+      margin-left: 10px;
+    }
+    .btn-top-quote:hover {
+      background: white;
+      color: var(--dark);
+      transform: translateY(-2px);
+    }
+
+    /* --- Main Header (inside sticky wrapper) --- */
     header { 
-      background: var(--white); padding: 15px 5%; position: sticky; top: 0; z-index: 1000; 
-      display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      background: var(--white);
+      padding: 15px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       height: 70px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
     .logo { font-size: 1.4rem; font-weight: 800; color: var(--dark); cursor: pointer; }
     .logo span { color: var(--primary); }
@@ -374,12 +486,25 @@
 
     /* --- Mobile Menu & Responsive Fixes --- */
     @media (max-width: 992px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 5%;
+      }
+      .top-bar-left {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .top-bar-right {
+        width: 100%;
+        justify-content: space-between;
+      }
       .menu-toggle { display: block; order: 3; }
       .header-btns { display: none; }
       .logo { order: 1; }
       nav { 
         position: fixed; top: 0; left: -100%; width: 80%; height: 100vh; 
-        background: var(--white); transition: 0.4s ease-in-out; z-index: 999; 
+        background: var(--white); transition: 0.4s ease-in-out; z-index: 998; 
         padding: 100px 10% 20px; box-shadow: 15px 0 30px rgba(0,0,0,0.1);
       }
       nav.active { left: 0; }
@@ -391,6 +516,15 @@
       .hero-btns { justify-content: center; }
     }
     @media (max-width: 600px) {
+      .top-bar-links {
+        gap: 12px;
+      }
+      .top-bar-links .separator {
+        display: none;
+      }
+      .top-bar-links a {
+        font-size: 0.75rem;
+      }
       .section-header h2 { font-size: 1.8rem; }
       .logo-box { height: 180px; }
       .client-logo { max-width: 220px; }
@@ -428,7 +562,7 @@
   border: 1px solid #f1f5f9;
   box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.05);
   position: sticky;
-  top: 40px;
+  top: 160px;
   transition: 0.3s;
 }
 
@@ -550,21 +684,56 @@
 
 <a href="https://wa.me/9779816004622" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<header>
-  <div class="logo" onclick="window.location.href='#home'">NextGen<span>IT</span></div>
-  <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
-  <nav id="nav-menu">
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#services">Our Services</a></li>
-      <li><a href="#process">How We Work</a></li>
-      <li><a href="#portfolio">Our Work</a></li>
-      <li><a href="#clients">Clients</a></li>
-      <li><a href="#contact">Contact Us</a></li>
-    </ul>
-  </nav>
-  <div class="header-btns"><a href="#contact" class="btn-quote">Message Us</a></div>
-</header>
+<!-- ===== STICKY WRAPPER FOR BOTH TOP BAR AND HEADER ===== -->
+<div class="sticky-wrapper">
+  <!-- ===== MINI TOP BAR (Skybridge Property Style) ===== -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="top-bar-phone">
+        <i class="fas fa-phone-alt"></i>
+        <span>+977 9816004622</span>
+      </div>
+      <div class="top-bar-email">
+        <i class="fas fa-envelope"></i>
+        <span>tudusujit690@gmail.com</span>
+      </div>
+    </div>
+    <div class="top-bar-right">
+      <div class="social-icons">
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+      </div>
+      <div class="top-bar-links">
+        <a href="#">Locations We Serve</a>
+        <span class="separator">|</span>
+        <a href="#">Client Portal</a>
+        <span class="separator">|</span>
+        <a href="#">Support</a>
+        <a href="#contact" class="btn-top-quote">GET A QUOTE</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header>
+    <div class="logo" onclick="window.location.href='#home'">NextGen<span>IT</span></div>
+    <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+    <nav id="nav-menu">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Our Services</a></li>
+        <li><a href="#process">How We Work</a></li>
+        <li><a href="#portfolio">Our Work</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    <div class="header-btns"><a href="#contact" class="btn-quote">Message Us</a></div>
+  </header>
+</div>
 
 <!-- HERO 50/50 TRANSPARENT FORM -->
 <section class="hero" id="home">
@@ -580,7 +749,7 @@
       </div>
     </div>
     <div class="hero-form-transparent">
-      <h3>Let’s Start <span style="color:var(--secondary)">Growing.</span></h3>
+      <h3>Let's Start <span style="color:var(--secondary)">Growing.</span></h3>
       <p>Fill the form — our team will reach out within 24h.</p>
       <form id="heroForm">
         <input type="hidden" name="access_key" value="42b9c83d-8677-4e64-9565-d42a01dc3711">
@@ -714,7 +883,7 @@
 <section id="contact" class="section-padding">
   <div class="contact-container">
     <div class="contact-info">
-      <h2>Let’s Start <span style="color:var(--primary)">Growing.</span></h2>
+      <h2>Let's Start <span style="color:var(--primary)">Growing.</span></h2>
       <p>Fill out the form and our friendly team will call or email you soon. We are here to help!</p>
       <div style="margin-top: 30px;">
           <p style="margin-bottom: 10px;"><i class="fas fa-envelope" style="color:var(--primary); margin-right:10px;"></i> tudusujit690@gmail.com</p>
