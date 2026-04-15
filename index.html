@@ -1148,14 +1148,19 @@
 </section>
 
 <!-- COMMENTS SECTION (FIXED STRUCTURE) -->
-<section id="comments-section" class="section-padding">
-    <div class="section-header"><span>COMMUNITY WALL</span><h2>What People Are Saying</h2></div>
+<section id="comments-section">
+    <div class="section-header">
+        <span>COMMUNITY WALL</span>
+        <h2>What People Are Saying</h2>
+    </div>
+
     <div class="comment-container">
         <div class="comment-form">
             <input type="text" id="c-name" placeholder="Your Full Name">
             <textarea id="c-text" rows="4" placeholder="Write your feedback or questions here..."></textarea>
             <button onclick="saveComment()" id="c-btn" class="btn-quote">Post My Comment</button>
         </div>
+
         <div id="comments-list" class="comments-list">
             <p class="loading-msg">Connecting to wall...</p>
         </div>
