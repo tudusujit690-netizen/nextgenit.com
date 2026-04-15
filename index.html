@@ -715,144 +715,127 @@
       line-height: 1.6;
     }
 
-    /* ===== COMMENT SECTION ===== */
+    /* ===== COMMENT SECTION FIXED ===== */
+    .comment-container { 
+      width: 100%;
+      max-width: 1100px; 
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: 40px;
+      align-items: start;
+      margin: 0 auto;
+    }
 
-/* Container */
-.comment-container { 
-  width: 100%;
-  max-width: 1100px; 
-  display: grid;
-  grid-template-columns: 400px 1fr;
-  gap: 40px;
-  align-items: start;
-  margin: 0 auto;
-}
+    .comment-form { 
+      background: #ffffff;
+      padding: 30px 28px; 
+      border-radius: 32px; 
+      border: 1px solid #f1f5f9;
+      box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.05);
+      transition: 0.3s;
+    }
 
-@media (max-width: 950px) {
-  .comment-container { 
-    grid-template-columns: 1fr; 
-    gap: 20px;
-    padding: 0 20px;
-  }
-}
+    .comment-form input,
+    .comment-form textarea { 
+      width: 100%; 
+      padding: 16px 20px; 
+      margin-bottom: 18px; 
+      border-radius: 16px; 
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      outline: none; 
+      font-size: 1rem;
+      transition: 0.3s;
+    }
 
-/* Form Panel */
-.comment-form { 
-  background: #ffffff;
-  padding: 40px; 
-  border-radius: 32px; 
-  border: 1px solid #f1f5f9;
-  box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 40px;
-  transition: 0.3s;
-}
+    .comment-form input:focus,
+    .comment-form textarea:focus {
+      border-color: #4e5df8;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(78, 93, 248, 0.08);
+    }
 
-.comment-form input,
-.comment-form textarea { 
-  width: 100%; 
-  padding: 18px 24px; 
-  margin-bottom: 20px; 
-  border-radius: 16px; 
-  border: 1px solid #f1f5f9;
-  background: #f8fafc;
-  outline: none; 
-  font-size: 1rem;
-  transition: 0.3s;
-}
+    .comment-form .btn-quote { 
+      background: #4e5df8; 
+      color: #fff; 
+      padding: 16px; 
+      border-radius: 16px; 
+      font-weight: 700; 
+      border: none; 
+      cursor: pointer; 
+      width: 100%;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
 
-.comment-form input:focus,
-.comment-form textarea:focus {
-  border-color: #4e5df8;
-  background: #ffffff;
-  box-shadow: 0 0 0 5px rgba(78, 93, 248, 0.08);
-}
+    .comment-form .btn-quote:hover { 
+      transform: translateY(-3px);
+      background: var(--dark);
+    }
 
-/* Button */
-.comment-form .btn-quote { 
-  background: #4e5df8; 
-  color: #fff; 
-  padding: 18px; 
-  border-radius: 16px; 
-  font-weight: 700; 
-  border: none; 
-  cursor: pointer; 
-  width: 100%;
-  font-size: 1.1rem;
-  transition: 0.3s;
-}
+    .comment-form .btn-quote:disabled { 
+      background: #cbd5e1; 
+      cursor: not-allowed;
+    }
 
-.comment-form .btn-quote:hover { 
-  transform: translateY(-3px);
-}
+    .comments-list { 
+      padding-right: 10px; 
+      max-height: 800px; 
+      overflow-y: auto; 
+    }
 
-.comment-form .btn-quote:disabled { 
-  background: #cbd5e1; 
-  cursor: not-allowed;
-}
+    .comments-list::-webkit-scrollbar { width: 5px; }
+    .comments-list::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
 
-/* Comment List */
-.comments-list { 
-  padding-right: 10px; 
-  max-height: 800px; 
-  overflow-y: auto; 
-}
+    .comment-card { 
+      display: flex;
+      gap: 20px;
+      background: #ffffff; 
+      padding: 24px; 
+      border-radius: 24px; 
+      margin-bottom: 20px; 
+      border: 1px solid #f1f5f9;
+      transition: 0.3s;
+    }
 
-/* Scrollbar */
-.comments-list::-webkit-scrollbar { width: 5px; }
-.comments-list::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+    .comment-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
 
-/* Comment Card */
-.comment-card { 
-  display: flex;
-  gap: 20px;
-  background: #ffffff; 
-  padding: 30px; 
-  border-radius: 28px; 
-  margin-bottom: 24px; 
-  border: 1px solid #f1f5f9;
-  transition: 0.3s;
-}
+    .avatar {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #4e5df8 0%, #7c3aed 100%);
+      color: #fff;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
 
-.comment-card:hover {
-  transform: translateY(-5px);
-}
+    .comment-content strong {
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 6px;
+    }
 
-/* Avatar */
-.avatar {
-  width: 52px;
-  height: 52px;
-  background: linear-gradient(135deg, #4e5df8 0%, #7c3aed 100%);
-  color: #fff;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  flex-shrink: 0;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-}
+    .comment-content p {
+      font-size: 0.98rem;
+      color: #475569;
+      line-height: 1.6;
+    }
 
-/* Content */
-.comment-content strong {
-  font-size: 1.1rem;
-  display: block;
-  margin-bottom: 6px;
-}
-
-.comment-content p {
-  font-size: 1rem;
-  color: #64748b;
-  line-height: 1.6;
-}
-
-/* Loading */
-.loading-msg {
-  text-align: center;
-  padding: 40px;
-  color: #64748b;
-  font-size: 1rem;
+    .loading-msg {
+      text-align: center;
+      padding: 40px;
+      color: #64748b;
+      font-size: 1rem;
+    }
 
     /* ===== FOOTER ===== */
     footer {
@@ -953,171 +936,43 @@
       margin-bottom: 30px;
     }
 
-    .page-inner p {
-      font-size: clamp(0.95rem, 3vw, 1.1rem);
-      line-height: 1.8;
-      color: #444;
-      max-width: 900px;
-      margin-bottom: 20px;
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 950px) {
+      .comment-container { grid-template-columns: 1fr; gap: 20px; }
+      .comment-form { position: static; }
     }
 
-    /* ===== RESPONSIVE BREAKPOINTS ===== */
     @media (min-width: 768px) {
-      .section-padding {
-        padding: 80px 6%;
-      }
-      
-      .contact-container {
-        grid-template-columns: 1fr 1fr;
-        padding: 40px;
-      }
-      
-      .comment-container {
-        grid-template-columns: 380px 1fr;
-        padding: 0;
-      }
-      
-      .comment-form {
-        position: sticky;
-        top: 160px;
-        padding: 35px;
-      }
-    }
-
-    @media (min-width: 992px) {
-      .section-padding {
-        padding: 100px 8%;
-      }
-      
-      .contact-container {
-        padding: 50px;
-      }
-      
-      .hero-split-container {
-        gap: 50px;
-      }
+      .section-padding { padding: 80px 6%; }
+      .contact-container { grid-template-columns: 1fr 1fr; padding: 40px; }
     }
 
     @media (max-width: 992px) {
-      .menu-toggle {
-        display: block;
-        order: 3;
-      }
-      
-      .header-btns {
-        display: none;
-      }
-      
-      .logo {
-        order: 1;
-      }
-      
+      .menu-toggle { display: block; order: 3; }
+      .header-btns { display: none; }
+      .logo { order: 1; }
       nav {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 80%;
-        max-width: 350px;
-        height: 100vh;
-        background: var(--white);
-        transition: 0.4s ease-in-out;
-        z-index: 998;
-        padding: 100px 20px 20px;
-        box-shadow: 15px 0 30px rgba(0, 0, 0, 0.1);
-        overflow-y: auto;
+        position: fixed; top: 0; left: -100%; width: 80%; max-width: 350px;
+        height: 100vh; background: var(--white); transition: 0.4s; z-index: 998;
+        padding: 100px 20px 20px; box-shadow: 15px 0 30px rgba(0,0,0,0.1); overflow-y: auto;
       }
-      
-      nav.active {
-        left: 0;
-      }
-      
-      nav ul {
-        flex-direction: column;
-        gap: 20px;
-      }
-      
-      nav ul li a {
-        font-size: 1.1rem;
-        display: block;
-        padding: 8px 0;
-      }
-      
-      .hero-split-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      
-      .hero-left {
-        text-align: center;
-      }
-      
-      .hero-left p {
-        max-width: 100%;
-      }
-      
-      .hero-btns {
-        justify-content: center;
-      }
-      
-      .top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 5%;
-      }
-      
-      .top-bar-left,
-      .top-bar-right {
-        width: 100%;
-        justify-content: space-between;
-      }
+      nav.active { left: 0; }
+      nav ul { flex-direction: column; gap: 20px; }
+      nav ul li a { font-size: 1.1rem; display: block; padding: 8px 0; }
+      .hero-split-container { grid-template-columns: 1fr; }
+      .hero-left { text-align: center; }
+      .hero-btns { justify-content: center; }
     }
 
     @media (max-width: 600px) {
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .process-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      
-      .footer-col ul li:hover {
-        transform: translateX(0);
-      }
-      
-      .hero-form-transparent {
-        padding: 20px 16px;
-      }
+      .services-grid, .process-grid, .portfolio-grid, .footer-grid { grid-template-columns: 1fr; }
+      .footer-grid { text-align: center; }
+      .footer-col ul li:hover { transform: translateX(0); }
     }
 
-    @media (max-width: 400px) {
-      .top-bar-left,
-      .top-bar-right {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      
-      .hero-btns .btn-quote {
-        width: 100%;
-        text-align: center;
-      }
-    }
-
-    /* Fix for iOS zoom on input focus */
+    /* Fix for iOS zoom */
     @media screen and (max-width: 768px) {
-      input, select, textarea {
-        font-size: 16px !important;
-      }
+      input, select, textarea { font-size: 16px !important; }
     }
   </style>
 </head>
@@ -1134,32 +989,24 @@
 <div class="sticky-wrapper">
   <div class="top-bar">
     <div class="top-bar-left">
-      <div class="top-bar-phone">
-        <i class="fas fa-phone-alt"></i>
-        <span>+977 9816004622</span>
-      </div>
-      <div class="top-bar-email">
-        <i class="fas fa-envelope"></i>
-        <span>tudusujit690@gmail.com</span>
-      </div>
+      <div class="top-bar-phone"><i class="fas fa-phone-alt"></i><span>+977 9816004622</span></div>
+      <div class="top-bar-email"><i class="fas fa-envelope"></i><span>tudusujit690@gmail.com</span></div>
     </div>
     <div class="top-bar-right">
       <div class="social-icons">
-        <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
       </div>
-      <div class="top-bar-links">
-        <a href="#">Locations We Serve</a>
-      </div>
+      <div class="top-bar-links"><a href="#">Locations We Serve</a></div>
     </div>
   </div>
 
   <header>
     <div class="logo" onclick="window.location.href='#home'">NextGen<span>IT</span></div>
-    <div class="menu-toggle" id="mobile-menu" aria-label="Menu"><i class="fas fa-bars"></i></div>
+    <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
     <nav id="nav-menu">
       <ul>
         <li><a href="#home">Home</a></li>
@@ -1196,18 +1043,10 @@
         <input type="email" name="email" placeholder="Email Address" required>
         <select name="service" required>
           <option value="" disabled selected>What service do you need?</option>
-          <option>High-Speed Website Building</option>
-          <option>Professional Graphic Design</option>
-          <option>Basic SEO Optimization</option>
-          <option>Mobile Friendly Layout</option>
-          <option>(SEO) Full Google Ranking</option>
-          <option>Social Media Management</option>
-          <option>Monthly 3D Graphics/Video</option>
-          <option>Ads Campaign Support</option>
-          <option>24/7 Computer Support</option>
-          <option>Cloud & Server Management</option>
-          <option>Data Security & Backup</option>
-          <option>Unlimited Tech Consulting</option>
+          <option>High-Speed Website Building</option><option>Professional Graphic Design</option><option>Basic SEO Optimization</option>
+          <option>Mobile Friendly Layout</option><option>(SEO) Full Google Ranking</option><option>Social Media Management</option>
+          <option>Monthly 3D Graphics/Video</option><option>Ads Campaign Support</option><option>24/7 Computer Support</option>
+          <option>Cloud & Server Management</option><option>Data Security & Backup</option><option>Unlimited Tech Consulting</option>
         </select>
         <textarea name="message" rows="2" placeholder="Tell us about your project..." required></textarea>
         <button type="submit" id="heroSubmitBtn" class="btn-quote">Send Message →</button>
@@ -1261,104 +1100,36 @@
 
 <!-- PORTFOLIO SECTION -->
 <section id="portfolio" class="section-padding">
-    <div class="portfolio-header">
-        <h2>Our Work Gallery</h2>
-        <p>Premium digital projects crafted by NextGenIT</p>
-    </div>
+    <div class="portfolio-header"><h2>Our Work Gallery</h2><p>Premium digital projects crafted by NextGenIT</p></div>
     <div class="portfolio-grid">
-        <div class="portfolio-card">
-            <div class="media-box slideshow">
-                <img class="slide-img active" src="brandidentity.png" alt="brand" onerror="this.src='https://placehold.co/400x300?text=Brand+Identity'">
-                <img class="slide-img" src="logoelectricalandelectronicsservices.png" alt="logo">
-                <img class="slide-img" src="firstdesign.jpg" alt="design1">
-                <img class="slide-img" src="seconddesign.png" alt="design2">
-                <img class="slide-img" src="thirddesign.png" alt="design3">
-                <img class="slide-img" src="fourthdesign.png" alt="design4">
-            </div>
-            <div class="portfolio-info">
-                <span class="portfolio-tag">Graphic Design</span>
-                <h3>Brand Identity System</h3>
-                <p>Modern logo and branding designed for strong business identity.</p>
-            </div>
-        </div>
-        <div class="portfolio-card">
-            <div class="media-box">
-                <video muted loop playsinline>
-                    <source src="NextGenIT promo video.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="portfolio-info">
-                <span class="portfolio-tag">Video Production</span>
-                <h3>Advertising Promo Video</h3>
-                <p>High quality marketing video for social media campaigns.</p>
-            </div>
-        </div>
-        <div class="portfolio-card">
-            <div class="media-box">
-                <iframe src="https://tudusujit690-netizen.github.io/nextgenit.com/" title="website preview" loading="lazy"></iframe>
-            </div>
-            <div class="portfolio-info">
-                <span class="portfolio-tag">Web Development</span>
-                <h3>Business Website</h3>
-                <p>Fully responsive and SEO optimized website preview.</p>
-            </div>
-        </div>
-        <div class="portfolio-card">
-            <div class="media-box slideshow2">
-                <img class="slide-img active" src="marketingcreativedesign.png" alt="creative" onerror="this.src='https://placehold.co/400x300?text=Social+Media+Creative'">
-                <img class="slide-img" src="marketingcreativedesign.png" alt="creative2">
-                <img class="slide-img" src="marketingcreativedesign.png" alt="creative3">
-            </div>
-            <div class="portfolio-info">
-                <span class="portfolio-tag">Social Media</span>
-                <h3>Marketing Creatives</h3>
-                <p>Engaging posts designed for brand growth and conversion.</p>
-            </div>
-        </div>
+        <div class="portfolio-card"><div class="media-box slideshow"><img class="slide-img active" src="brandidentity.png" alt="brand"><img class="slide-img" src="logoelectricalandelectronicsservices.png" alt="logo"><img class="slide-img" src="firstdesign.jpg" alt="design1"><img class="slide-img" src="seconddesign.png" alt="design2"><img class="slide-img" src="thirddesign.png" alt="design3"><img class="slide-img" src="fourthdesign.png" alt="design4"></div><div class="portfolio-info"><span class="portfolio-tag">Graphic Design</span><h3>Brand Identity System</h3><p>Modern logo and branding designed for strong business identity.</p></div></div>
+        <div class="portfolio-card"><div class="media-box"><video muted loop playsinline><source src="NextGenIT promo video.mp4" type="video/mp4"></video></div><div class="portfolio-info"><span class="portfolio-tag">Video Production</span><h3>Advertising Promo Video</h3><p>High quality marketing video for social media campaigns.</p></div></div>
+        <div class="portfolio-card"><div class="media-box"><iframe src="https://tudusujit690-netizen.github.io/nextgenit.com/" title="website preview" loading="lazy"></iframe></div><div class="portfolio-info"><span class="portfolio-tag">Web Development</span><h3>Business Website</h3><p>Fully responsive and SEO optimized website preview.</p></div></div>
+        <div class="portfolio-card"><div class="media-box slideshow2"><img class="slide-img active" src="marketingcreativedesign.png" alt="creative"><img class="slide-img" src="marketingcreativedesign.png" alt="creative2"><img class="slide-img" src="marketingcreativedesign.png" alt="creative3"></div><div class="portfolio-info"><span class="portfolio-tag">Social Media</span><h3>Marketing Creatives</h3><p>Engaging posts designed for brand growth and conversion.</p></div></div>
     </div>
 </section>
 
 <!-- CONTACT SECTION -->
 <section id="contact" class="section-padding">
   <div class="contact-container">
-    <div class="contact-info">
-      <h2>Let's Start <span style="color:var(--primary)">Growing.</span></h2>
-      <p>Fill out the form and our friendly team will call or email you soon. We are here to help!</p>
-      <div style="margin-top: 30px;">
-          <p style="margin-bottom: 10px;"><i class="fas fa-envelope" style="color:var(--primary); margin-right:10px;"></i> tudusujit690@gmail.com</p>
-          <p style="margin-bottom: 10px;"><i class="fas fa-phone" style="color:var(--primary); margin-right:10px;"></i> +977 9816004622</p>
-          <p><i class="fas fa-location-dot" style="color:var(--primary); margin-right:10px;"></i> Lalitpur, Nepal</p>
-      </div>
+    <div class="contact-info"><h2>Let's Start <span style="color:var(--primary)">Growing.</span></h2><p>Fill out the form and our friendly team will call or email you soon.</p>
+      <div style="margin-top:30px;"><p><i class="fas fa-envelope" style="color:var(--primary); margin-right:10px;"></i>tudusujit690@gmail.com</p><p><i class="fas fa-phone" style="color:var(--primary); margin-right:10px;"></i>+977 9816004622</p><p><i class="fas fa-location-dot" style="color:var(--primary); margin-right:10px;"></i>Lalitpur, Nepal</p></div>
     </div>
     <div class="contact-form">
         <form id="form">
             <input type="hidden" name="access_key" value="42b9c83d-8677-4e64-9565-d42a01dc3711">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email Address" required>
-            <select name="service" required>
-                <option value="" disabled selected>What do you need help with?</option>
-                <option>High-Speed Website Building</option>
-                <option>Professional Graphic Design</option>
-                <option>Basic SEO Optimization</option>
-                <option>Mobile Friendly Layout</option>
-                <option>(SEO) Full Google Ranking</option>
-                <option>Social Media Management</option>
-                <option>Monthly 3D Graphics/Video</option>
-                <option>Ads Campaign Support</option>
-                <option>24/7 Computer Support</option>
-                <option>Cloud & Server Management</option>
-                <option>Data Security & Backup</option>
-                <option>Unlimited Tech Consulting</option>
-            </select>
+            <select name="service" required><option value="" disabled selected>What do you need help with?</option><option>High-Speed Website Building</option><option>Professional Graphic Design</option><option>Basic SEO Optimization</option><option>Mobile Friendly Layout</option><option>(SEO) Full Google Ranking</option><option>Social Media Management</option><option>Monthly 3D Graphics/Video</option><option>Ads Campaign Support</option><option>24/7 Computer Support</option><option>Cloud & Server Management</option><option>Data Security & Backup</option><option>Unlimited Tech Consulting</option></select>
             <textarea name="message" rows="4" placeholder="Tell us about your project..." required></textarea>
-            <button type="submit" id="submit-btn" class="btn-quote" style="width: 100%;">Send Message</button>
+            <button type="submit" id="submit-btn" class="btn-quote" style="width:100%;">Send Message</button>
             <div id="result"></div>
         </form>
     </div>
   </div>
 </section>
 
-<!-- COMMENTS SECTION -->
+<!-- COMMENTS SECTION (FIXED STRUCTURE) -->
 <section id="comments-section" class="section-padding">
     <div class="section-header"><span>COMMUNITY WALL</span><h2>What People Are Saying</h2></div>
     <div class="comment-container">
@@ -1380,67 +1151,42 @@
         <p class="section-subtitle">A human-centric approach to high-performance engineering.</p>
         <div class="team-profile-wrapper">
             <div class="team-card-single">
-                <div class="image-wrapper-single">
-                    <img src="sujit.jpg" alt="Sujit Tudu" onerror="this.src='https://placehold.co/300x300?text=Sujit+Tudu'">
-                </div>
-                <div class="info">
-                    <h3>Sujit Tudu</h3>
-                    <p class="role">Founder of NextGenIT</p>
-                    <p class="bio">Stripping away digital noise to deliver lean, aggressive, and result-oriented solutions. I don't just build websites; I craft the digital territory our clients own.</p>
-                </div>
+                <div class="image-wrapper-single"><img src="sujit.jpg" alt="Sujit Tudu" onerror="this.src='https://placehold.co/300x300?text=Sujit+Tudu'"></div>
+                <div class="info"><h3>Sujit Tudu</h3><p class="role">Founder of NextGenIT</p><p class="bio">Stripping away digital noise to deliver lean, aggressive, and result-oriented solutions.</p></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER (FIXED LINKS) -->
 <footer>
   <div class="footer-grid">
-    <div class="footer-col">
-        <div class="logo" style="color:white; margin-bottom: 20px;">NextGen<span>IT</span></div>
-        <p style="opacity: 0.7; font-size: 0.9rem;">We are a top company for computer and internet help. We turn your ideas into reality.</p>
-    </div>
-    <div class="footer-col">
-        <h4>Things We Do</h4>
-        <ul>
-            <li onclick="showPage('high_speed_web')">Website Building</li>
-            <li onclick="showPage('full_google_ranking')">SEO Marketing</li>
-            <li onclick="showPage('social_media_mgmt')">Social Media</li>
-            <li onclick="showPage('data_security')">Data Security</li>
-        </ul>
-    </div>
-    <div class="footer-col">
-        <h4>About Us</h4>
-        <ul>
-            <li onclick="showPage('about')">Who We Are</li>
-            <li onclick="showPage('cases')">Our Success</li>
-            <li onclick="showPage('privacy')">Privacy Rules</li>
-            <li onclick="showPage('terms')">Terms of Use</li>
-        </ul>
-    </div>
+    <div class="footer-col"><div class="logo" style="color:white; margin-bottom:20px;">NextGen<span>IT</span></div><p style="opacity:0.7; font-size:0.9rem;">We are a top company for computer and internet help. We turn your ideas into reality.</p></div>
+    <div class="footer-col"><h4>Things We Do</h4><ul><li onclick="showPage('high_speed_web')">Website Building</li><li onclick="showPage('full_google_ranking')">SEO Marketing</li><li onclick="showPage('social_media_mgmt')">Social Media</li><li onclick="showPage('data_security')">Data Security</li></ul></div>
+    <div class="footer-col"><h4>About Us</h4><ul><li onclick="showPage('about')">Who We Are</li><li onclick="showPage('cases')">Our Success</li><li onclick="showPage('privacy')">Privacy Rules</li><li onclick="showPage('terms')">Terms of Use</li></ul></div>
   </div>
   <div class="copy">&copy; 2026 NextGen IT Solutions. All Rights Reserved.</div>
 </footer>
 
 <script>
-// Page Library
+// Page Library (unchanged)
 const pageLibrary = {
-    about: { title: "About Us", content: "We are a small team of experts in Nepal. We work with companies all over the world. Our goal is to make very high-quality websites and apps. We believe in doing good work that makes our customers happy and helps them make more money." },
-    high_speed_web: { title: "High-Speed Website Design & Development", content: "Blazing-Fast Websites That Keep Visitors Engaged & Drive Results. We build websites using cutting-edge technologies like React & Next.js, engineered for ultra-fast performance and seamless user experience. Pages that load in under 1 second. Faster speed = higher engagement & more conversions. Optimized for all devices — mobile, tablet & desktop." },
-    graphic_design: { title: "Professional Graphic Design", content: "Designs That Capture Attention & Build a Powerful Brand. We create stunning, high-impact visuals that make your business stand out and leave a lasting impression. Unique logo designs that define your brand identity. Eye-catching branding that builds trust and recognition." },
-    basic_seo: { title: "Basic SEO Optimization", content: "Build a Strong Foundation to Get Found on Google. Start your online growth with essential SEO that helps your website appear in search results and attract the right audience." },
-    mobile_friendly: { title: "Mobile-Optimized Design", content: "We build fully responsive websites that look and perform flawlessly across all devices—smartphones, tablets, and desktops—ensuring a smooth user experience everywhere." },
-    full_google_ranking: { title: "Full SEO Optimization", content: "Complete SEO strategies designed to improve your website's visibility, boost rankings on Google, and drive consistent organic traffic to your business." },
-    social_media_mgmt: { title: "Social Media Management", content: "We strategically manage your Facebook and Instagram presence with high-quality content, consistent posting, and data-driven growth strategies to increase engagement, followers, and brand visibility." },
-    "3d_graphics_video": { title: "Monthly 3D Graphics/Video", content: "Receive premium-quality 3D visuals and high-impact promotional videos every month, designed to elevate your brand, capture attention, and enhance your digital presence." },
-    ads_campaign: { title: "Ads Campaign Support", content: "We create, manage, and optimize Google Ads and Meta Ads campaigns to maximize ROI, drive targeted traffic, and generate high-quality leads for your business." },
-    computer_support: { title: "24/7 Computer Support", content: "Get reliable round-the-clock remote technical support to quickly resolve issues, minimize downtime, and ensure your systems run smoothly at all times." },
-    cloud_server_mgmt: { title: "Cloud & Server Management", content: "We provide complete management of cloud infrastructure including AWS, Azure, and DigitalOcean, ensuring secure, scalable, and high-performance server operations." },
-    data_security: { title: "Data Security & Backup", content: "Protect your business with advanced security measures, automated daily backups, and proactive monitoring to keep your data safe, secure, and easily recoverable." },
-    tech_consulting: { title: "Unlimited Tech Consulting", content: "Access expert guidance and ongoing support to make smarter technology decisions and scale your business with the right tools and strategies." },
-    cases: { title: "Success Stories", content: "We have helped businesses achieve up to 4x growth through innovative solutions, strategic execution, and consistent digital performance." },
-    privacy: { title: "Privacy Rules", content: "We follow strict data privacy standards and best practices to ensure your information remains secure, confidential, and fully protected." },
-    terms: { title: "Terms of Use", content: "We operate with clear terms, transparent pricing, and straightforward agreements to ensure trust, clarity, and long-term partnership." }
+    about: { title: "About Us", content: "We are a small team of experts in Nepal. We work with companies all over the world. Our goal is to make very high-quality websites and apps." },
+    high_speed_web: { title: "High-Speed Website Design", content: "Blazing-Fast Websites That Keep Visitors Engaged & Drive Results." },
+    graphic_design: { title: "Professional Graphic Design", content: "Designs That Capture Attention & Build a Powerful Brand." },
+    basic_seo: { title: "Basic SEO Optimization", content: "Build a Strong Foundation to Get Found on Google." },
+    mobile_friendly: { title: "Mobile-Optimized Design", content: "We build fully responsive websites that look and perform flawlessly across all devices." },
+    full_google_ranking: { title: "Full SEO Optimization", content: "Complete SEO strategies designed to improve your website's visibility." },
+    social_media_mgmt: { title: "Social Media Management", content: "We strategically manage your Facebook and Instagram presence." },
+    "3d_graphics_video": { title: "Monthly 3D Graphics/Video", content: "Receive premium-quality 3D visuals and high-impact promotional videos every month." },
+    ads_campaign: { title: "Ads Campaign Support", content: "We create, manage, and optimize Google Ads and Meta Ads campaigns." },
+    computer_support: { title: "24/7 Computer Support", content: "Get reliable round-the-clock remote technical support." },
+    cloud_server_mgmt: { title: "Cloud & Server Management", content: "We provide complete management of cloud infrastructure." },
+    data_security: { title: "Data Security & Backup", content: "Protect your business with advanced security measures." },
+    tech_consulting: { title: "Unlimited Tech Consulting", content: "Access expert guidance and ongoing support." },
+    cases: { title: "Success Stories", content: "We have helped businesses achieve up to 4x growth." },
+    privacy: { title: "Privacy Rules", content: "We follow strict data privacy standards." },
+    terms: { title: "Terms of Use", content: "We operate with clear terms and transparent pricing." }
 };
 
 function showPage(key) {
@@ -1451,149 +1197,70 @@ function showPage(key) {
 }
 function closePage() { document.getElementById('content-page').style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-// Hero Form Submission
+// Hero & Contact forms
 const heroForm = document.getElementById('heroForm');
-if (heroForm) {
-    heroForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = document.getElementById('heroSubmitBtn');
-        const resultDiv = document.getElementById('heroFormResult');
-        btn.disabled = true;
-        btn.innerHTML = "Sending...";
-        try {
-            const res = await fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(Object.fromEntries(new FormData(heroForm)))
-            });
-            if (res.ok) { resultDiv.innerHTML = "✓ Sent! We'll contact you soon."; resultDiv.style.color = "#00c897"; heroForm.reset(); }
-            else throw new Error();
-        } catch (err) { resultDiv.innerHTML = "⚠️ Error. Please try again."; resultDiv.style.color = "#ffbf00"; }
-        finally { btn.disabled = false; btn.innerHTML = "Send Message →"; setTimeout(() => resultDiv.innerHTML = "", 4000); }
-    });
-}
+if(heroForm) heroForm.addEventListener('submit', async (e) => {
+    e.preventDefault(); const btn = document.getElementById('heroSubmitBtn'); const resultDiv = document.getElementById('heroFormResult');
+    btn.disabled = true; btn.innerHTML = "Sending...";
+    try {
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(heroForm))) });
+        if(res.ok) { resultDiv.innerHTML = "✓ Sent! We'll contact you soon."; resultDiv.style.color = "#00c897"; heroForm.reset(); }
+        else throw new Error();
+    } catch { resultDiv.innerHTML = "⚠️ Error. Please try again."; resultDiv.style.color = "#ffbf00"; }
+    finally { btn.disabled = false; btn.innerHTML = "Send Message →"; setTimeout(() => resultDiv.innerHTML = "", 4000); }
+});
 
-// Contact Form
-const form = document.getElementById('form');
-const resultDiv = document.getElementById('result');
-const submitBtn = document.getElementById('submit-btn');
-if (form) {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        resultDiv.style.display = "block";
-        resultDiv.innerHTML = "Sending...";
-        submitBtn.disabled = true;
-        fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(Object.fromEntries(new FormData(form)))
-        }).then(res => { if (res.ok) { resultDiv.style.color = "var(--secondary)"; resultDiv.innerHTML = "Sent! We will talk soon."; form.reset(); } else throw new Error(); })
-        .catch(() => { resultDiv.style.color = "red"; resultDiv.innerHTML = "Something went wrong."; })
-        .finally(() => { submitBtn.disabled = false; setTimeout(() => { resultDiv.style.display = "none"; }, 4000); });
-    });
-}
+const form = document.getElementById('form'), resultDiv = document.getElementById('result'), submitBtn = document.getElementById('submit-btn');
+if(form) form.addEventListener('submit', function(e) {
+    e.preventDefault(); resultDiv.style.display = "block"; resultDiv.innerHTML = "Sending..."; submitBtn.disabled = true;
+    fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) })
+    .then(res => { if(res.ok) { resultDiv.style.color = "var(--secondary)"; resultDiv.innerHTML = "Sent! We will talk soon."; form.reset(); } else throw new Error(); })
+    .catch(() => { resultDiv.style.color = "red"; resultDiv.innerHTML = "Something went wrong."; })
+    .finally(() => { submitBtn.disabled = false; setTimeout(() => { resultDiv.style.display = "none"; }, 4000); });
+});
 
-// Comments System
+// Comments
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw6RDHTHwUbhlWzdu7gJiBv-RkFLik8bnt5VMMpgPimEHlvscqIA3gF5u1_QmwhpR8U/exec";
 async function loadComments() {
-    const list = document.getElementById('comments-list');
-    if (!list) return;
+    const list = document.getElementById('comments-list'); if(!list) return;
     try {
-        const res = await fetch(SCRIPT_URL);
-        const data = await res.json();
-        if (!data || data.length === 0) { list.innerHTML = '<p class="loading-msg">No comments yet. Be the first!</p>'; return; }
+        const res = await fetch(SCRIPT_URL); const data = await res.json();
+        if(!data || data.length === 0) { list.innerHTML = '<p class="loading-msg">No comments yet. Be the first!</p>'; return; }
         list.innerHTML = '';
         data.reverse().forEach(row => {
-            const name = row[0] || 'Anonymous';
-            const comment = row[1] || '';
-            const initial = name.charAt(0).toUpperCase();
-            list.innerHTML += `<div class="comment-card"><div class="avatar">${initial}</div><div class="comment-content"><strong>${escapeHtml(name)}</strong><p>${escapeHtml(comment)}</p></div></div>`;
+            const name = row[0] || 'Anonymous', comment = row[1] || '';
+            list.innerHTML += `<div class="comment-card"><div class="avatar">${name.charAt(0).toUpperCase()}</div><div class="comment-content"><strong>${escapeHtml(name)}</strong><p>${escapeHtml(comment)}</p></div></div>`;
         });
-    } catch (err) { list.innerHTML = '<p class="loading-msg" style="color:red;">Failed to load comments.</p>'; }
+    } catch { list.innerHTML = '<p class="loading-msg" style="color:red;">Failed to load comments.</p>'; }
 }
-function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m === '&') return '&amp;'; if(m === '<') return '&lt;'; if(m === '>') return '&gt;'; return m;}); }
+function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
 async function saveComment() {
-    const nameInput = document.getElementById('c-name');
-    const textInput = document.getElementById('c-text');
-    const btn = document.getElementById('c-btn');
-    const name = nameInput.value.trim();
-    const comment = textInput.value.trim();
-    if (!name || !comment) { alert("Please enter name and comment."); return; }
-    btn.disabled = true;
-    btn.innerHTML = "Posting...";
-    try {
-        await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ name, comment }) });
-        nameInput.value = '';
-        textInput.value = '';
-        loadComments();
-    } catch (err) { alert("Error posting comment."); }
+    const nameInput = document.getElementById('c-name'), textInput = document.getElementById('c-text'), btn = document.getElementById('c-btn');
+    const name = nameInput.value.trim(), comment = textInput.value.trim();
+    if(!name || !comment) { alert("Please enter name and comment."); return; }
+    btn.disabled = true; btn.innerHTML = "Posting...";
+    try { await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ name, comment }) }); nameInput.value = ''; textInput.value = ''; loadComments(); }
+    catch { alert("Error posting comment."); }
     finally { btn.disabled = false; btn.innerHTML = "Post My Comment"; }
 }
 
-// Mobile Menu
+// Mobile menu, slideshow, observer, video etc.
 document.addEventListener("DOMContentLoaded", () => {
-    const menuToggle = document.getElementById('mobile-menu');
-    const navMenu = document.getElementById('nav-menu');
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            if (icon) { icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-xmark'); }
-        });
-        document.querySelectorAll('#nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-xmark'); }
-            });
-        });
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target) && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-xmark'); }
-            }
-        });
+    const menuToggle = document.getElementById('mobile-menu'), navMenu = document.getElementById('nav-menu');
+    if(menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); const i = menuToggle.querySelector('i'); if(i) { i.classList.toggle('fa-bars'); i.classList.toggle('fa-xmark'); } });
+        document.querySelectorAll('#nav-menu a').forEach(l => l.addEventListener('click', () => { navMenu.classList.remove('active'); menuToggle.querySelector('i')?.classList.add('fa-bars'); menuToggle.querySelector('i')?.classList.remove('fa-xmark'); }));
     }
     loadComments();
-});
 
-// Slideshow
-document.querySelectorAll('.slideshow, .slideshow2').forEach(slideshow => {
-    let slides = slideshow.querySelectorAll('.slide-img');
-    let index = 0;
-    if (slides.length === 0) return;
-    setInterval(() => {
-        slides[index].classList.remove('active');
-        index = (index + 1) % slides.length;
-        slides[index].classList.add('active');
-    }, 2500);
-});
-
-// Portfolio Animation
-const portfolioCards = document.querySelectorAll('.portfolio-card');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
-}, { threshold: 0.2 });
-portfolioCards.forEach(card => observer.observe(card));
-
-// Video Autoplay
-const videos = document.querySelectorAll("video");
-const videoObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.play();
-        else entry.target.pause();
+    document.querySelectorAll('.slideshow, .slideshow2').forEach(s => {
+        let slides = s.querySelectorAll('.slide-img'), index = 0;
+        if(slides.length) setInterval(() => { slides[index].classList.remove('active'); index = (index+1)%slides.length; slides[index].classList.add('active'); }, 2500);
     });
-}, { threshold: 0.5 });
-videos.forEach(v => videoObserver.observe(v));
-
-// Client Logo Hover
-document.querySelectorAll('.client-card').forEach(card => {
-    const logo = card.querySelector('.client-logo');
-    if (logo) {
-        card.addEventListener('mouseenter', () => logo.style.transform = 'scale(1.1)');
-        card.addEventListener('mouseleave', () => logo.style.transform = 'scale(1)');
-    }
+    const observer = new IntersectionObserver(e => e.forEach(en => { if(en.isIntersecting) en.target.classList.add('show'); }), { threshold: 0.2 });
+    document.querySelectorAll('.portfolio-card').forEach(c => observer.observe(c));
+    const videoObserver = new IntersectionObserver(e => e.forEach(en => { if(en.isIntersecting) en.target.play(); else en.target.pause(); }), { threshold: 0.5 });
+    document.querySelectorAll("video").forEach(v => videoObserver.observe(v));
 });
 </script>
 </body>
