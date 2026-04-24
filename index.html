@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, shrink-to-fit=no">
-  <title>NextGen IT | Simple & Best IT Services</title>
+  <title>NextGen IT | Global IT Services & Solutions</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -387,18 +387,13 @@
       width: max-content;
       will-change: transform;
     }
-    /* Animation will be added via JS for continuous right-to-left movement */
     .services-track.animate-scroll {
       transition: transform 0s linear;
       animation: scrollRightToLeft linear infinite;
     }
     @keyframes scrollRightToLeft {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     /* Individual card styles - bigger, modern */
@@ -478,6 +473,73 @@
       .service-card h3 {
         font-size: 1.25rem;
       }
+    }
+
+    /* ===== LOCATIONS SCROLL SECTION (NEW) ===== */
+    .locations-scroll-container {
+      width: 100%;
+      overflow-x: hidden;
+      position: relative;
+      margin: 30px 0 20px;
+      cursor: grab;
+    }
+    .locations-scroll-container:active {
+      cursor: grabbing;
+    }
+    .locations-track {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 28px;
+      width: max-content;
+      will-change: transform;
+    }
+    .locations-track.animate-scroll {
+      transition: transform 0s linear;
+      animation: scrollRightToLeft linear infinite;
+    }
+    .location-card {
+      flex: 0 0 auto;
+      width: 240px;
+      background: linear-gradient(145deg, #ffffff 0%, #f8faff 100%);
+      padding: 28px 16px;
+      border-radius: 32px;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid rgba(78, 93, 248, 0.15);
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    .location-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+      box-shadow: 0 25px 45px -10px rgba(78,93,248,0.25);
+      background: white;
+    }
+    .location-card .flag-img {
+      width: 60px;
+      height: 45px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      display: inline-block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 1px solid #e0e0e0;
+    }
+    .location-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+    .location-card p {
+      font-size: 0.8rem;
+      color: var(--text-gray);
+      font-weight: 500;
+    }
+    @media (max-width: 768px) {
+      .location-card { width: 200px; padding: 20px 12px; }
+      .location-card h3 { font-size: 1.1rem; }
+      .location-card .flag-img { width: 50px; height: 38px; }
     }
 
     /* ===== PROCESS GRID ===== */
@@ -1030,7 +1092,7 @@
 <body>
 
 <div id="content-page">
-    <div class="close-btn" onclick="closePageAndResumeAnimation()"><i class="fas fa-times-circle"></i></div>
+    <div class="close-btn" onclick="closeAllPopupsAndResume()"><i class="fas fa-times-circle"></i></div>
     <div class="page-inner" id="dynamic-content"></div>
 </div>
 
@@ -1050,24 +1112,24 @@
         <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         <a href="https://www.tiktok.com/@nextgenit_" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
       </div>
-      <div class="top-bar-links"><a href="#">Locations We Serve</a></div>
+      <div class="top-bar-links"><a href="#locations">Locations We Serve</a></div>
     </div>
   </div>
 
   <header>
-    <div class="logo" onclick="window.location.href='#home'">NextGen<span>IT</span></div>
+    <div class="logo" onclick="smoothScrollTo('home')">NextGen<span>IT</span></div>
     <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
     <nav id="nav-menu">
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Our Services</a></li>
-        <li><a href="#process">How We Work</a></li>
-        <li><a href="#portfolio">Our Work</a></li>
-        <li><a href="#clients">Clients</a></li>
-        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#" onclick="smoothScrollTo('home'); return false;">Home</a></li>
+        <li><a href="#" onclick="smoothScrollTo('services'); return false;">Our Services</a></li>
+        <li><a href="#" onclick="smoothScrollTo('process'); return false;">How We Work</a></li>
+        <li><a href="#" onclick="smoothScrollTo('portfolio'); return false;">Our Work</a></li>
+        <li><a href="#" onclick="smoothScrollTo('clients'); return false;">Clients</a></li>
+        <li><a href="#" onclick="smoothScrollTo('contact'); return false;">Contact Us</a></li>
       </ul>
     </nav>
-    <div class="header-btns"><a href="#contact" class="btn-quote">GET A QUOTE</a></div>
+    <div class="header-btns"><a href="#contact" class="btn-quote" onclick="smoothScrollTo('contact'); return false;">GET A QUOTE</a></div>
   </header>
 </div>
 
@@ -1079,8 +1141,8 @@
       <h1>We Deliver Websites, Marketing, IT Support & Growth Systems That Scale Your Brand.</h1>
       <p>From high-performance websites and SEO to cloud management, advertising, and technical support — NextGenIT provides everything your business needs to grow in the digital world.</p>
       <div class="hero-btns">
-        <a href="#contact" class="btn-quote" style="background: var(--secondary);">Talk to Us (Free)</a>
-        <a href="#portfolio" class="btn-quote" style="background: transparent; border: 2px solid white;">See Our Work</a>
+        <a href="#contact" class="btn-quote" style="background: var(--secondary);" onclick="smoothScrollTo('contact'); return false;">Talk to Us (Free)</a>
+        <a href="#portfolio" class="btn-quote" style="background: transparent; border: 2px solid white;" onclick="smoothScrollTo('portfolio'); return false;">See Our Work</a>
       </div>
     </div>
     <div class="hero-form-transparent">
@@ -1147,7 +1209,7 @@
 <section id="contact" class="section-padding">
   <div class="contact-container">
     <div class="contact-info"><h2>Let's Start <span style="color:var(--primary)">Growing.</span></h2><p>Fill out the form and our friendly team will call or email you soon.</p>
-      <div style="margin-top:30px;"><p><i class="fas fa-envelope" style="color:var(--primary); margin-right:10px;"></i>tudusujit690@gmail.com</p><p><i class="fas fa-phone" style="color:var(--primary); margin-right:10px;"></i>+977 9816004622</p><p><i class="fas fa-location-dot" style="color:var(--primary); margin-right:10px;"></i>Lalitpur, Nepal</p></div>
+      <div style="margin-top:30px;"><p><i class="fas fa-envelope" style="color:var(--primary); margin-right:10px;"></i>tudusujit690@gmail.com</p><p><i class="fas fa-phone" style="color:var(--primary); margin-right:10px;"></i>+977 9816004622</p><p><i class="fas fa-location-dot" style="color:var(--primary); margin-right:10px;"></i>Lalitpur, Nepal / Global Delivery</p></div>
     </div>
     <div class="contact-form">
         <form id="form">
@@ -1187,22 +1249,48 @@
         <div class="team-profile-wrapper">
             <div class="team-card-single">
                 <div class="image-wrapper-single"><img src="sujit.jpg" alt="Sujit Tudu" onerror="this.src='https://placehold.co/300x300?text=Sujit+Tudu'"></div>
-                <div class="info"><h3>Sujit Tudu</h3><p class="role">Founder of NextGenIT</p><p class="bio">Stripping away digital noise to deliver lean, aggressive, and result-oriented solutions.</p></div>
+                <div class="info"><h3>Sujit Tudu</h3><p class="role">Founder of NextGenIT</p><p class="bio">Stripping away digital noise to deliver lean, aggressive, and result-oriented solutions across continents.</p></div>
             </div>
         </div>
     </div>
 </section>
 
+<!-- LOCATIONS SECTION with REAL FLAGS - placed above footer -->
+<section id="locations" class="section-padding" style="background: linear-gradient(120deg, #f8faff 0%, #ffffff 100%);">
+  <div class="section-header"><span>GLOBAL REACH</span><h2>Locations We Serve</h2><p style="color:#555; max-width:700px; margin:10px auto 0;">Delivering cutting-edge IT solutions worldwide — seamless support across time zones.</p></div>
+  <div class="locations-scroll-container" id="locationsScrollContainer">
+    <div class="locations-track" id="locationsTrack"></div>
+  </div>
+</section>
+
 <footer>
   <div class="footer-grid">
-    <div class="footer-col"><div class="logo" style="color:white; margin-bottom:20px;">NextGen<span>IT</span></div><p style="opacity:0.7; font-size:0.9rem;">We are a top company for computer and internet help. We turn your ideas into reality.</p></div>
+    <div class="footer-col"><div class="logo" style="color:white; margin-bottom:20px;">NextGen<span>IT</span></div><p style="opacity:0.7; font-size:0.9rem;">We are a top company for computer and internet help. We turn your ideas into reality globally.</p></div>
     <div class="footer-col"><h4>Things We Do</h4><ul><li onclick="handleServiceClick('high_speed_web')">Website Building</li><li onclick="handleServiceClick('full_google_ranking')">SEO Marketing</li><li onclick="handleServiceClick('social_media_mgmt')">Social Media</li><li onclick="handleServiceClick('data_security')">Data Security</li></ul></div>
-    <div class="footer-col"><h4>About Us</h4><ul><li onclick="showPage('about')">Who We Are</li><li onclick="showPage('cases')">Our Success</li><li onclick="showPage('privacy')">Privacy Rules</li><li onclick="showPage('terms')">Terms of Use</li></ul></div>
+    <div class="footer-col"><h4>About Us</h4><ul><li onclick="showPage('about')">Who We Are</li><li onclick="showPage('cases')">Our Success</li><li onclick="smoothScrollTo('locations')">Worldwide Coverage</li><li onclick="showPage('terms')">Terms of Use</li></ul></div>
   </div>
-  <div class="copy">&copy; 2026 NextGen IT Solutions. All Rights Reserved.</div>
+  <div class="copy">&copy; 2026 NextGen IT Solutions. All Rights Reserved. | Serving 15+ countries globally.</div>
 </footer>
 
 <script>
+// Smooth scroll function for navigation
+function smoothScrollTo(sectionId) {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    const offset = 80;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+  }
+  const navMenu = document.getElementById('nav-menu');
+  const menuToggle = document.getElementById('mobile-menu');
+  if (navMenu && navMenu.classList.contains('active')) {
+    navMenu.classList.remove('active');
+    const icon = menuToggle?.querySelector('i');
+    if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-xmark'); }
+  }
+}
+
 // Page Library
 const pageLibrary = {
     about: { title: "About Us", content: "We are a small team of experts in Nepal. We work with companies all over the world. Our goal is to make very high-quality websites and apps." },
@@ -1210,39 +1298,60 @@ const pageLibrary = {
     graphic_design: { title: "Professional Graphic Design", content: "Designs That Capture Attention & Build a Powerful Brand." },
     basic_seo: { title: "Basic SEO Optimization", content: "Build a Strong Foundation to Get Found on Google." },
     mobile_friendly: { title: "Mobile-Optimized Design", content: "We build fully responsive websites that look and perform flawlessly across all devices." },
-    full_google_ranking: { title: "Full SEO Optimization", content: "Complete SEO strategies designed to improve your website's visibility." },
-    social_media_mgmt: { title: "Social Media Management", content: "We strategically manage your Facebook and Instagram presence." },
+    full_google_ranking: { title: "Full SEO Optimization", content: "Complete SEO strategies designed to improve your website's visibility worldwide." },
+    social_media_mgmt: { title: "Social Media Management", content: "We strategically manage your Facebook and Instagram presence across global markets." },
     "3d_graphics_video": { title: "Monthly 3D Graphics/Video", content: "Receive premium-quality 3D visuals and high-impact promotional videos every month." },
     ads_campaign: { title: "Ads Campaign Support", content: "We create, manage, and optimize Google Ads and Meta Ads campaigns." },
     computer_support: { title: "24/7 Computer Support", content: "Get reliable round-the-clock remote technical support." },
-    cloud_server_mgmt: { title: "Cloud & Server Management", content: "We provide complete management of cloud infrastructure." },
+    cloud_server_mgmt: { title: "Cloud & Server Management", content: "We provide complete management of cloud infrastructure worldwide." },
     data_security: { title: "Data Security & Backup", content: "Protect your business with advanced security measures." },
     tech_consulting: { title: "Unlimited Tech Consulting", content: "Access expert guidance and ongoing support." },
-    cases: { title: "Success Stories", content: "We have helped businesses achieve up to 4x growth." },
+    cases: { title: "Success Stories", content: "We have helped businesses from New York to New Zealand achieve up to 4x growth." },
     privacy: { title: "Privacy Rules", content: "We follow strict data privacy standards." },
     terms: { title: "Terms of Use", content: "We operate with clear terms and transparent pricing." }
 };
 
-// Animation & drag control
-let isDragging = false;
-let animationEnabled = true;
-let animationTimeout = null;
-
-function handleServiceClick(key) { pauseAnimationForPopup(); showPage(key); }
+function handleServiceClick(key) { pauseAllAnimations(); showPage(key); }
 function showPage(key) {
     const data = pageLibrary[key];
     if (!data) return;
-    document.getElementById('dynamic-content').innerHTML = `<h2>${data.title}</h2><div class="accent-line"></div><p>${data.content}</p><button class="btn-quote" onclick="closePageAndResumeAnimation()" style="margin-top:20px;">Go Back</button>`;
+    document.getElementById('dynamic-content').innerHTML = `<h2>${data.title}</h2><div class="accent-line"></div><p>${data.content}</p><button class="btn-quote" onclick="closeAllPopupsAndResume()" style="margin-top:20px;">Go Back</button>`;
     document.getElementById('content-page').style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
-function closePageAndResumeAnimation() {
-    document.getElementById('content-page').style.display = 'none';
-    document.body.style.overflow = 'auto';
-    resumeContinuousScroll();
+function closeAllPopupsAndResume() { 
+    document.getElementById('content-page').style.display = 'none'; 
+    document.body.style.overflow = 'auto'; 
+    resumeAllAnimations(); 
+}
+function showLocationInfo(country) { 
+    pauseAllAnimations(); 
+    document.getElementById('dynamic-content').innerHTML = `<h2>🌍 NextGenIT in ${country}</h2><div class="accent-line"></div><p>We provide dedicated IT support, web development, digital marketing, and cloud solutions across ${country}. Our remote team works seamlessly to ensure your success.</p><button class="btn-quote" onclick="closeAllPopupsAndResume()" style="margin-top:20px;">Close</button>`; 
+    document.getElementById('content-page').style.display = 'block'; 
+    document.body.style.overflow = 'hidden'; 
 }
 
-// Build infinite scrolling track (double content)
+// Locations Data with REAL FLAG IMAGES
+const locationsData = [
+    { flagUrl: "https://flagcdn.com/w80/np.png", name: "Nepal", region: "Asia" },
+    { flagUrl: "https://flagcdn.com/w80/us.png", name: "USA", region: "North America" },
+    { flagUrl: "https://flagcdn.com/w80/gb.png", name: "UK", region: "Europe" },
+    { flagUrl: "https://flagcdn.com/w80/de.png", name: "Germany", region: "Europe" },
+    { flagUrl: "https://flagcdn.com/w80/au.png", name: "Australia", region: "Oceania" },
+    { flagUrl: "https://flagcdn.com/w80/in.png", name: "India", region: "Asia" },
+    { flagUrl: "https://flagcdn.com/w80/nz.png", name: "New Zealand", region: "Oceania" },
+    { flagUrl: "https://flagcdn.com/w80/ca.png", name: "Canada", region: "North America" },
+    { flagUrl: "https://flagcdn.com/w80/sg.png", name: "Singapore", region: "Asia" },
+    { flagUrl: "https://flagcdn.com/w80/ae.png", name: "UAE", region: "Middle East" },
+    { flagUrl: "https://flagcdn.com/w80/fr.png", name: "France", region: "Europe" },
+    { flagUrl: "https://flagcdn.com/w80/nl.png", name: "Netherlands", region: "Europe" },
+    { flagUrl: "https://flagcdn.com/w80/jp.png", name: "Japan", region: "Asia" },
+    { flagUrl: "https://flagcdn.com/w80/kr.png", name: "South Korea", region: "Asia" },
+    { flagUrl: "https://flagcdn.com/w80/ch.png", name: "Switzerland", region: "Europe" },
+    { flagUrl: "https://flagcdn.com/w80/se.png", name: "Sweden", region: "Europe" }
+];
+
+// Services Data
 const servicesData = [
     { icon: "fa-rocket", title: "High-Speed Website Building", price: "Starting from $99", desc: "Ultra-fast loading websites built for performance and conversion.", key: "high_speed_web" },
     { icon: "fa-pen-nib", title: "Professional Graphic Design", price: "From $19/month", desc: "Logos, banners, and marketing materials that define your brand.", key: "graphic_design" },
@@ -1262,93 +1371,107 @@ function buildServicesTrack() {
     const track = document.getElementById('servicesTrack');
     if (!track) return;
     track.innerHTML = '';
-    // Double the list to create seamless infinite effect
     [...servicesData, ...servicesData].forEach(service => {
         const card = document.createElement('div');
         card.className = 'service-card';
         card.setAttribute('onclick', `handleServiceClick('${service.key}')`);
-        card.innerHTML = `
-            <i class="fas ${service.icon}"></i>
-            <h3>${service.title}</h3>
-            <div class="service-price">${service.price}</div>
-            <p>${service.desc}</p>
-        `;
+        card.innerHTML = `<i class="fas ${service.icon}"></i><h3>${service.title}</h3><div class="service-price">${service.price}</div><p>${service.desc}</p>`;
         track.appendChild(card);
     });
-    // Apply animation class
-    track.classList.add('animate-scroll');
-    // Set animation duration based on total width (dynamic)
-    const totalWidth = track.scrollWidth / 2; // half because duplicated
-    const duration = Math.max(20, totalWidth / 50);
-    track.style.animationDuration = `${duration}s`;
-}
-
-function pauseContinuousScroll() {
-    if (!animationEnabled) return;
-    const track = document.getElementById('servicesTrack');
-    if (track && track.classList.contains('animate-scroll')) {
-        // Get current transform translateX value
-        const style = window.getComputedStyle(track);
-        const transform = style.transform;
-        let currentX = 0;
-        if (transform !== 'none') {
-            const matrix = transform.match(/matrix.*\((.+)\)/);
-            if (matrix) {
-                const values = matrix[1].split(', ');
-                currentX = parseFloat(values[4] || 0);
-            }
-        }
-        track.style.transform = `translateX(${currentX}px)`;
-        track.classList.remove('animate-scroll');
-        track.style.animation = 'none';
-    }
-    animationEnabled = false;
-}
-
-function resumeContinuousScroll() {
-    if (animationEnabled) return;
-    const track = document.getElementById('servicesTrack');
-    if (!track) return;
-    // Remove inline transform and re-apply animation
-    track.style.transform = '';
     track.classList.add('animate-scroll');
     const totalWidth = track.scrollWidth / 2;
     const duration = Math.max(20, totalWidth / 50);
     track.style.animationDuration = `${duration}s`;
-    animationEnabled = true;
 }
 
-function pauseAnimationForPopup() {
-    if (animationEnabled) {
-        pauseContinuousScroll();
+function buildLocationsTrack() {
+    const track = document.getElementById('locationsTrack');
+    if (!track) return;
+    track.innerHTML = '';
+    [...locationsData, ...locationsData].forEach(loc => {
+        const card = document.createElement('div');
+        card.className = 'location-card';
+        card.setAttribute('onclick', `showLocationInfo('${loc.name}')`);
+        card.innerHTML = `<img class="flag-img" src="${loc.flagUrl}" alt="${loc.name} flag" loading="lazy"><h3>${loc.name}</h3><p>${loc.region}</p>`;
+        track.appendChild(card);
+    });
+    track.classList.add('animate-scroll');
+    const totalWidth = track.scrollWidth / 2;
+    const duration = Math.max(20, totalWidth / 50);
+    track.style.animationDuration = `${duration}s`;
+}
+
+let servicesAnimationEnabled = true;
+let locationsAnimationEnabled = true;
+
+function pauseAllAnimations() {
+    const servicesTrack = document.getElementById('servicesTrack');
+    if (servicesTrack && servicesTrack.classList.contains('animate-scroll')) {
+        const style = window.getComputedStyle(servicesTrack);
+        const transform = style.transform;
+        let currentX = 0;
+        if (transform !== 'none') {
+            const matrix = transform.match(/matrix.*\((.+)\)/);
+            if (matrix) { const values = matrix[1].split(', '); currentX = parseFloat(values[4] || 0); }
+        }
+        servicesTrack.style.transform = `translateX(${currentX}px)`;
+        servicesTrack.classList.remove('animate-scroll');
+        servicesTrack.style.animation = 'none';
+        servicesAnimationEnabled = false;
+    }
+    const locationsTrack = document.getElementById('locationsTrack');
+    if (locationsTrack && locationsTrack.classList.contains('animate-scroll')) {
+        const style = window.getComputedStyle(locationsTrack);
+        const transform = style.transform;
+        let currentX = 0;
+        if (transform !== 'none') {
+            const matrix = transform.match(/matrix.*\((.+)\)/);
+            if (matrix) { const values = matrix[1].split(', '); currentX = parseFloat(values[4] || 0); }
+        }
+        locationsTrack.style.transform = `translateX(${currentX}px)`;
+        locationsTrack.classList.remove('animate-scroll');
+        locationsTrack.style.animation = 'none';
+        locationsAnimationEnabled = false;
     }
 }
 
-// Drag-to-scroll functionality (works alongside animation)
-function initDragToScroll() {
-    const container = document.getElementById('servicesScrollContainer');
-    if (!container) return;
+function resumeAllAnimations() {
+    const servicesTrack = document.getElementById('servicesTrack');
+    if (servicesTrack && !servicesTrack.classList.contains('animate-scroll')) {
+        servicesTrack.style.transform = '';
+        servicesTrack.classList.add('animate-scroll');
+        const totalWidth = servicesTrack.scrollWidth / 2;
+        const duration = Math.max(20, totalWidth / 50);
+        servicesTrack.style.animationDuration = `${duration}s`;
+        servicesAnimationEnabled = true;
+    }
+    const locationsTrack = document.getElementById('locationsTrack');
+    if (locationsTrack && !locationsTrack.classList.contains('animate-scroll')) {
+        locationsTrack.style.transform = '';
+        locationsTrack.classList.add('animate-scroll');
+        const totalWidth = locationsTrack.scrollWidth / 2;
+        const duration = Math.max(20, totalWidth / 50);
+        locationsTrack.style.animationDuration = `${duration}s`;
+        locationsAnimationEnabled = true;
+    }
+}
+
+function initDragForContainer(containerId, trackId) {
+    const container = document.getElementById(containerId);
+    if(!container) return;
     let startX, scrollStartX, isDraggingFlag = false;
-    
     const startDrag = (clientX) => {
-        if (animationEnabled) {
-            pauseContinuousScroll();
-        }
+        pauseAllAnimations();
         isDraggingFlag = true;
         startX = clientX;
-        const track = document.getElementById('servicesTrack');
-        if (track) {
-            // Get current scrolling offset from transform or just use container scroll?
-            // Since we use transform animation, we need to read computed transform
+        const track = document.getElementById(trackId);
+        if(track) {
             const style = window.getComputedStyle(track);
             const transform = style.transform;
             let currentTranslate = 0;
-            if (transform !== 'none') {
+            if(transform !== 'none') {
                 const matrix = transform.match(/matrix.*\((.+)\)/);
-                if (matrix) {
-                    const values = matrix[1].split(', ');
-                    currentTranslate = parseFloat(values[4] || 0);
-                }
+                if(matrix) { const values = matrix[1].split(', '); currentTranslate = parseFloat(values[4] || 0); }
             }
             scrollStartX = currentTranslate;
             track.style.transform = `translateX(${scrollStartX}px)`;
@@ -1357,12 +1480,11 @@ function initDragToScroll() {
         }
         container.style.cursor = 'grabbing';
     };
-    
     const onDragMove = (clientX) => {
-        if (!isDraggingFlag) return;
+        if(!isDraggingFlag) return;
         const dx = clientX - startX;
-        const track = document.getElementById('servicesTrack');
-        if (track) {
+        const track = document.getElementById(trackId);
+        if(track) {
             let newX = scrollStartX + dx;
             const limitMax = 0;
             const totalWidthHalf = track.scrollWidth / 2;
@@ -1371,55 +1493,23 @@ function initDragToScroll() {
             track.style.transform = `translateX(${newX}px)`;
         }
     };
-    
     const endDrag = () => {
-        if (isDraggingFlag) {
+        if(isDraggingFlag) {
             isDraggingFlag = false;
             container.style.cursor = 'grab';
-            // Resume auto-scroll after drag ends (but keep position)
-            if (!animationEnabled) {
-                // Store current translate and then resume animation with seamless reset
-                const track = document.getElementById('servicesTrack');
-                if (track) {
-                    const style = window.getComputedStyle(track);
-                    const transform = style.transform;
-                    let currentPos = 0;
-                    if (transform !== 'none') {
-                        const matrix = transform.match(/matrix.*\((.+)\)/);
-                        if (matrix) {
-                            const values = matrix[1].split(', ');
-                            currentPos = parseFloat(values[4] || 0);
-                        }
-                    }
-                    track.style.transform = `translateX(${currentPos}px)`;
-                    // Resume animation: re-add class but keep position then let it flow
-                    track.classList.add('animate-scroll');
-                    track.style.animation = 'none';
-                    // Force reflow
-                    track.offsetHeight;
-                    track.style.animation = '';
-                    const totalWidth = track.scrollWidth / 2;
-                    const duration = Math.max(20, totalWidth / 50);
-                    track.style.animationDuration = `${duration}s`;
-                    animationEnabled = true;
-                } else {
-                    resumeContinuousScroll();
-                }
-            }
+            resumeAllAnimations();
         }
     };
-    
     container.addEventListener('mousedown', (e) => { e.preventDefault(); startDrag(e.clientX); });
-    window.addEventListener('mousemove', (e) => { if (isDraggingFlag) onDragMove(e.clientX); });
+    window.addEventListener('mousemove', (e) => { if(isDraggingFlag) onDragMove(e.clientX); });
     window.addEventListener('mouseup', endDrag);
-    
     container.addEventListener('touchstart', (e) => { const touch = e.touches[0]; startDrag(touch.clientX); e.preventDefault(); });
-    window.addEventListener('touchmove', (e) => { if (isDraggingFlag) { const touch = e.touches[0]; onDragMove(touch.clientX); e.preventDefault(); } });
+    window.addEventListener('touchmove', (e) => { if(isDraggingFlag) { const touch = e.touches[0]; onDragMove(touch.clientX); e.preventDefault(); } });
     window.addEventListener('touchend', endDrag);
     container.style.cursor = 'grab';
 }
 
-// Forms handlers (unchanged)
+// Forms handlers
 document.getElementById('heroForm')?.addEventListener('submit', async (e) => {
     e.preventDefault(); const btn = document.getElementById('heroSubmitBtn'); const resultDiv = document.getElementById('heroFormResult');
     btn.disabled = true; btn.innerHTML = "Sending...";
@@ -1457,11 +1547,12 @@ window.saveComment = async function() {
 
 document.addEventListener("DOMContentLoaded", () => {
     buildServicesTrack();
-    initDragToScroll();
+    buildLocationsTrack();
+    initDragForContainer('servicesScrollContainer', 'servicesTrack');
+    initDragForContainer('locationsScrollContainer', 'locationsTrack');
     const menuToggle = document.getElementById('mobile-menu'), navMenu = document.getElementById('nav-menu');
     if(menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); const i = menuToggle.querySelector('i'); if(i) { i.classList.toggle('fa-bars'); i.classList.toggle('fa-xmark'); } });
-        document.querySelectorAll('#nav-menu a').forEach(l => l.addEventListener('click', () => { navMenu.classList.remove('active'); menuToggle.querySelector('i')?.classList.add('fa-bars'); menuToggle.querySelector('i')?.classList.remove('fa-xmark'); }));
     }
     loadComments();
     document.querySelectorAll('.slideshow, .slideshow2').forEach(s => { let slides = s.querySelectorAll('.slide-img'), index = 0; if(slides.length) setInterval(() => { slides[index].classList.remove('active'); index = (index+1)%slides.length; slides[index].classList.add('active'); }, 2500); });
