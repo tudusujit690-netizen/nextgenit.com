@@ -369,14 +369,17 @@
       line-height: 1.2;
     }
 
-    /* ===== INFINITE HORIZONTAL SCROLLING SERVICES ===== */
+    /* ===== INFINITE SCROLL + DRAG SERVICES CONTAINER ===== */
     .services-scroll-container {
       width: 100%;
       overflow-x: hidden;
       position: relative;
       margin: 30px 0 20px;
+      cursor: grab;
     }
-
+    .services-scroll-container:active {
+      cursor: grabbing;
+    }
     .services-track {
       display: flex;
       flex-wrap: nowrap;
@@ -384,10 +387,18 @@
       width: max-content;
       will-change: transform;
     }
-
-    /* Pause animation when hovering or when popup is active */
-    .services-scroll-container.pause-animation .services-track {
-      animation-play-state: paused !important;
+    /* Animation will be added via JS for continuous right-to-left movement */
+    .services-track.animate-scroll {
+      transition: transform 0s linear;
+      animation: scrollRightToLeft linear infinite;
+    }
+    @keyframes scrollRightToLeft {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
 
     /* Individual card styles - bigger, modern */
@@ -1094,13 +1105,11 @@
   </div>
 </section>
 
-<!-- SERVICES SECTION with INFINITE RIGHT-TO-LEFT SCROLLING -->
+<!-- SERVICES SECTION with INFINITE RIGHT-TO-LEFT ANIMATION + DRAG SUPPORT -->
 <section id="services" class="section-padding">
   <div class="section-header"><span>COMPLETE PRICE LIST</span><h2>IT & Digital Services</h2></div>
   <div class="services-scroll-container" id="servicesScrollContainer">
-    <div class="services-track" id="servicesTrack">
-      <!-- Cards will be populated via JS for infinite seamless loop -->
-    </div>
+    <div class="services-track" id="servicesTrack"></div>
   </div>
 </section>
 
@@ -1214,60 +1223,12 @@ const pageLibrary = {
     terms: { title: "Terms of Use", content: "We operate with clear terms and transparent pricing." }
 };
 
-// Animation control
-let animationFrameId = null;
-let scrollPosition = 0;
-let isAnimating = true;
-let trackWidth = 0;
-let containerWidth = 0;
+// Animation & drag control
+let isDragging = false;
+let animationEnabled = true;
+let animationTimeout = null;
 
-function pauseAnimation() {
-    const container = document.getElementById('servicesScrollContainer');
-    if (container) container.classList.add('pause-animation');
-    isAnimating = false;
-    if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-        animationFrameId = null;
-    }
-}
-
-function resumeAnimation() {
-    const container = document.getElementById('servicesScrollContainer');
-    if (container) container.classList.remove('pause-animation');
-    if (!isAnimating) {
-        isAnimating = true;
-        startContinuousScroll();
-    }
-}
-
-function startContinuousScroll() {
-    const track = document.getElementById('servicesTrack');
-    if (!track) return;
-    
-    trackWidth = track.scrollWidth / 2; // because we duplicated content
-    containerWidth = document.querySelector('.services-scroll-container').clientWidth;
-    
-    function animate() {
-        if (!isAnimating) return;
-        if (!track) return;
-        
-        scrollPosition -= 1.2; // Speed: smooth right-to-left movement
-        if (Math.abs(scrollPosition) >= trackWidth) {
-            scrollPosition = 0;
-        }
-        track.style.transform = `translateX(${scrollPosition}px)`;
-        animationFrameId = requestAnimationFrame(animate);
-    }
-    
-    if (animationFrameId) cancelAnimationFrame(animationFrameId);
-    animate();
-}
-
-function handleServiceClick(pageKey) {
-    pauseAnimation();
-    showPage(pageKey);
-}
-
+function handleServiceClick(key) { pauseAnimationForPopup(); showPage(key); }
 function showPage(key) {
     const data = pageLibrary[key];
     if (!data) return;
@@ -1275,14 +1236,13 @@ function showPage(key) {
     document.getElementById('content-page').style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
-
 function closePageAndResumeAnimation() {
     document.getElementById('content-page').style.display = 'none';
     document.body.style.overflow = 'auto';
-    resumeAnimation();
+    resumeContinuousScroll();
 }
 
-// Build service cards dynamically for infinite seamless scroll
+// Build infinite scrolling track (double content)
 const servicesData = [
     { icon: "fa-rocket", title: "High-Speed Website Building", price: "Starting from $99", desc: "Ultra-fast loading websites built for performance and conversion.", key: "high_speed_web" },
     { icon: "fa-pen-nib", title: "Professional Graphic Design", price: "From $19/month", desc: "Logos, banners, and marketing materials that define your brand.", key: "graphic_design" },
@@ -1298,13 +1258,12 @@ const servicesData = [
     { icon: "fa-lightbulb", title: "Unlimited Tech Consulting", price: "Only $9/month", desc: "Strategic advice on which technologies to invest in.", key: "tech_consulting" }
 ];
 
-function buildServiceCards() {
+function buildServicesTrack() {
     const track = document.getElementById('servicesTrack');
     if (!track) return;
     track.innerHTML = '';
-    // Create two identical sets for seamless infinite loop
-    const allCards = [...servicesData, ...servicesData];
-    allCards.forEach(service => {
+    // Double the list to create seamless infinite effect
+    [...servicesData, ...servicesData].forEach(service => {
         const card = document.createElement('div');
         card.className = 'service-card';
         card.setAttribute('onclick', `handleServiceClick('${service.key}')`);
@@ -1316,26 +1275,166 @@ function buildServiceCards() {
         `;
         track.appendChild(card);
     });
+    // Apply animation class
+    track.classList.add('animate-scroll');
+    // Set animation duration based on total width (dynamic)
+    const totalWidth = track.scrollWidth / 2; // half because duplicated
+    const duration = Math.max(20, totalWidth / 50);
+    track.style.animationDuration = `${duration}s`;
 }
 
-// Forms handlers
-const heroForm = document.getElementById('heroForm');
-if(heroForm) heroForm.addEventListener('submit', async (e) => {
+function pauseContinuousScroll() {
+    if (!animationEnabled) return;
+    const track = document.getElementById('servicesTrack');
+    if (track && track.classList.contains('animate-scroll')) {
+        // Get current transform translateX value
+        const style = window.getComputedStyle(track);
+        const transform = style.transform;
+        let currentX = 0;
+        if (transform !== 'none') {
+            const matrix = transform.match(/matrix.*\((.+)\)/);
+            if (matrix) {
+                const values = matrix[1].split(', ');
+                currentX = parseFloat(values[4] || 0);
+            }
+        }
+        track.style.transform = `translateX(${currentX}px)`;
+        track.classList.remove('animate-scroll');
+        track.style.animation = 'none';
+    }
+    animationEnabled = false;
+}
+
+function resumeContinuousScroll() {
+    if (animationEnabled) return;
+    const track = document.getElementById('servicesTrack');
+    if (!track) return;
+    // Remove inline transform and re-apply animation
+    track.style.transform = '';
+    track.classList.add('animate-scroll');
+    const totalWidth = track.scrollWidth / 2;
+    const duration = Math.max(20, totalWidth / 50);
+    track.style.animationDuration = `${duration}s`;
+    animationEnabled = true;
+}
+
+function pauseAnimationForPopup() {
+    if (animationEnabled) {
+        pauseContinuousScroll();
+    }
+}
+
+// Drag-to-scroll functionality (works alongside animation)
+function initDragToScroll() {
+    const container = document.getElementById('servicesScrollContainer');
+    if (!container) return;
+    let startX, scrollStartX, isDraggingFlag = false;
+    
+    const startDrag = (clientX) => {
+        if (animationEnabled) {
+            pauseContinuousScroll();
+        }
+        isDraggingFlag = true;
+        startX = clientX;
+        const track = document.getElementById('servicesTrack');
+        if (track) {
+            // Get current scrolling offset from transform or just use container scroll?
+            // Since we use transform animation, we need to read computed transform
+            const style = window.getComputedStyle(track);
+            const transform = style.transform;
+            let currentTranslate = 0;
+            if (transform !== 'none') {
+                const matrix = transform.match(/matrix.*\((.+)\)/);
+                if (matrix) {
+                    const values = matrix[1].split(', ');
+                    currentTranslate = parseFloat(values[4] || 0);
+                }
+            }
+            scrollStartX = currentTranslate;
+            track.style.transform = `translateX(${scrollStartX}px)`;
+            track.classList.remove('animate-scroll');
+            track.style.animation = 'none';
+        }
+        container.style.cursor = 'grabbing';
+    };
+    
+    const onDragMove = (clientX) => {
+        if (!isDraggingFlag) return;
+        const dx = clientX - startX;
+        const track = document.getElementById('servicesTrack');
+        if (track) {
+            let newX = scrollStartX + dx;
+            const limitMax = 0;
+            const totalWidthHalf = track.scrollWidth / 2;
+            const limitMin = -totalWidthHalf;
+            newX = Math.min(limitMax, Math.max(limitMin, newX));
+            track.style.transform = `translateX(${newX}px)`;
+        }
+    };
+    
+    const endDrag = () => {
+        if (isDraggingFlag) {
+            isDraggingFlag = false;
+            container.style.cursor = 'grab';
+            // Resume auto-scroll after drag ends (but keep position)
+            if (!animationEnabled) {
+                // Store current translate and then resume animation with seamless reset
+                const track = document.getElementById('servicesTrack');
+                if (track) {
+                    const style = window.getComputedStyle(track);
+                    const transform = style.transform;
+                    let currentPos = 0;
+                    if (transform !== 'none') {
+                        const matrix = transform.match(/matrix.*\((.+)\)/);
+                        if (matrix) {
+                            const values = matrix[1].split(', ');
+                            currentPos = parseFloat(values[4] || 0);
+                        }
+                    }
+                    track.style.transform = `translateX(${currentPos}px)`;
+                    // Resume animation: re-add class but keep position then let it flow
+                    track.classList.add('animate-scroll');
+                    track.style.animation = 'none';
+                    // Force reflow
+                    track.offsetHeight;
+                    track.style.animation = '';
+                    const totalWidth = track.scrollWidth / 2;
+                    const duration = Math.max(20, totalWidth / 50);
+                    track.style.animationDuration = `${duration}s`;
+                    animationEnabled = true;
+                } else {
+                    resumeContinuousScroll();
+                }
+            }
+        }
+    };
+    
+    container.addEventListener('mousedown', (e) => { e.preventDefault(); startDrag(e.clientX); });
+    window.addEventListener('mousemove', (e) => { if (isDraggingFlag) onDragMove(e.clientX); });
+    window.addEventListener('mouseup', endDrag);
+    
+    container.addEventListener('touchstart', (e) => { const touch = e.touches[0]; startDrag(touch.clientX); e.preventDefault(); });
+    window.addEventListener('touchmove', (e) => { if (isDraggingFlag) { const touch = e.touches[0]; onDragMove(touch.clientX); e.preventDefault(); } });
+    window.addEventListener('touchend', endDrag);
+    container.style.cursor = 'grab';
+}
+
+// Forms handlers (unchanged)
+document.getElementById('heroForm')?.addEventListener('submit', async (e) => {
     e.preventDefault(); const btn = document.getElementById('heroSubmitBtn'); const resultDiv = document.getElementById('heroFormResult');
     btn.disabled = true; btn.innerHTML = "Sending...";
     try {
-        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(heroForm))) });
-        if(res.ok) { resultDiv.innerHTML = "✓ Sent! We'll contact you soon."; resultDiv.style.color = "#00c897"; heroForm.reset(); }
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(e.target))) });
+        if(res.ok) { resultDiv.innerHTML = "✓ Sent! We'll contact you soon."; resultDiv.style.color = "#00c897"; e.target.reset(); }
         else throw new Error();
     } catch { resultDiv.innerHTML = "⚠️ Error. Please try again."; resultDiv.style.color = "#ffbf00"; }
     finally { btn.disabled = false; btn.innerHTML = "Send Message →"; setTimeout(() => resultDiv.innerHTML = "", 4000); }
 });
-
-const form = document.getElementById('form'), resultDiv = document.getElementById('result'), submitBtn = document.getElementById('submit-btn');
-if(form) form.addEventListener('submit', function(e) {
-    e.preventDefault(); resultDiv.style.display = "block"; resultDiv.innerHTML = "Sending..."; submitBtn.disabled = true;
-    fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) })
-    .then(res => { if(res.ok) { resultDiv.style.color = "var(--secondary)"; resultDiv.innerHTML = "Sent! We will talk soon."; form.reset(); } else throw new Error(); })
+document.getElementById('form')?.addEventListener('submit', function(e) {
+    e.preventDefault(); const resultDiv = document.getElementById('result'); const submitBtn = document.getElementById('submit-btn');
+    resultDiv.style.display = "block"; resultDiv.innerHTML = "Sending..."; submitBtn.disabled = true;
+    fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(e.target))) })
+    .then(res => { if(res.ok) { resultDiv.style.color = "var(--secondary)"; resultDiv.innerHTML = "Sent! We will talk soon."; e.target.reset(); } else throw new Error(); })
     .catch(() => { resultDiv.style.color = "red"; resultDiv.innerHTML = "Something went wrong."; })
     .finally(() => { submitBtn.disabled = false; setTimeout(() => { resultDiv.style.display = "none"; }, 4000); });
 });
@@ -1344,42 +1443,28 @@ if(form) form.addEventListener('submit', function(e) {
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw6RDHTHwUbhlWzdu7gJiBv-RkFLik8bnt5VMMpgPimEHlvscqIA3gF5u1_QmwhpR8U/exec";
 async function loadComments() {
     const list = document.getElementById('comments-list'); if(!list) return;
-    try {
-        const res = await fetch(SCRIPT_URL); const data = await res.json();
-        if(!data || data.length === 0) { list.innerHTML = '<p class="loading-msg">No comments yet. Be the first!</p>'; return; }
-        list.innerHTML = '';
-        data.reverse().forEach(row => {
-            const name = row[0] || 'Anonymous', comment = row[1] || '';
-            list.innerHTML += `<div class="comment-card"><div class="avatar">${name.charAt(0).toUpperCase()}</div><div class="comment-content"><strong>${escapeHtml(name)}</strong><p>${escapeHtml(comment)}</p></div></div>`;
-        });
-    } catch { list.innerHTML = '<p class="loading-msg" style="color:red;">Failed to load comments.</p>'; }
+    try { const res = await fetch(SCRIPT_URL); const data = await res.json(); if(!data || data.length === 0) { list.innerHTML = '<p class="loading-msg">No comments yet. Be the first!</p>'; return; } list.innerHTML = ''; data.reverse().forEach(row => { const name = row[0] || 'Anonymous', comment = row[1] || ''; list.innerHTML += `<div class="comment-card"><div class="avatar">${name.charAt(0).toUpperCase()}</div><div class="comment-content"><strong>${escapeHtml(name)}</strong><p>${escapeHtml(comment)}</p></div></div>`; }); } catch { list.innerHTML = '<p class="loading-msg" style="color:red;">Failed to load comments.</p>'; }
 }
 function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
-async function saveComment() {
+window.saveComment = async function() {
     const nameInput = document.getElementById('c-name'), textInput = document.getElementById('c-text'), btn = document.getElementById('c-btn');
     const name = nameInput.value.trim(), comment = textInput.value.trim();
     if(!name || !comment) { alert("Please enter name and comment."); return; }
     btn.disabled = true; btn.innerHTML = "Posting...";
-    try { await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ name, comment }) }); nameInput.value = ''; textInput.value = ''; loadComments(); }
-    catch { alert("Error posting comment."); }
+    try { await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ name, comment }) }); nameInput.value = ''; textInput.value = ''; loadComments(); } catch { alert("Error posting comment."); }
     finally { btn.disabled = false; btn.innerHTML = "Post My Comment"; }
-}
+};
 
 document.addEventListener("DOMContentLoaded", () => {
-    buildServiceCards();
-    startContinuousScroll();
-    
+    buildServicesTrack();
+    initDragToScroll();
     const menuToggle = document.getElementById('mobile-menu'), navMenu = document.getElementById('nav-menu');
     if(menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); const i = menuToggle.querySelector('i'); if(i) { i.classList.toggle('fa-bars'); i.classList.toggle('fa-xmark'); } });
         document.querySelectorAll('#nav-menu a').forEach(l => l.addEventListener('click', () => { navMenu.classList.remove('active'); menuToggle.querySelector('i')?.classList.add('fa-bars'); menuToggle.querySelector('i')?.classList.remove('fa-xmark'); }));
     }
     loadComments();
-
-    document.querySelectorAll('.slideshow, .slideshow2').forEach(s => {
-        let slides = s.querySelectorAll('.slide-img'), index = 0;
-        if(slides.length) setInterval(() => { slides[index].classList.remove('active'); index = (index+1)%slides.length; slides[index].classList.add('active'); }, 2500);
-    });
+    document.querySelectorAll('.slideshow, .slideshow2').forEach(s => { let slides = s.querySelectorAll('.slide-img'), index = 0; if(slides.length) setInterval(() => { slides[index].classList.remove('active'); index = (index+1)%slides.length; slides[index].classList.add('active'); }, 2500); });
     const observer = new IntersectionObserver(e => e.forEach(en => { if(en.isIntersecting) en.target.classList.add('show'); }), { threshold: 0.2 });
     document.querySelectorAll('.portfolio-card').forEach(c => observer.observe(c));
     const videoObserver = new IntersectionObserver(e => e.forEach(en => { if(en.isIntersecting) en.target.play(); else en.target.pause(); }), { threshold: 0.5 });
@@ -1388,4 +1473,3 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
-```
