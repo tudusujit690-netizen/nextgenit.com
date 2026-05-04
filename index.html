@@ -754,9 +754,9 @@
       text-align: center;
     }
 
-    /* ===== TEAM SECTION ===== */
+    /* ===== UPDATED TEAM SECTION - GRID LAYOUT WITH ALL MEMBERS ===== */
     .team-container {
-      max-width: 1000px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 40px 20px;
     }
@@ -776,69 +776,131 @@
     .section-subtitle {
       text-align: center;
       color: #666;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
       font-size: clamp(0.85rem, 3vw, 1rem);
     }
 
-    .team-profile-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    /* Team Grid - 3 columns on desktop */
+    .team-all-members {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 40px 30px;
+      margin-top: 20px;
     }
 
+    /* Team Card Design */
     .team-card-single {
-      background: #f9f9f9;
+      background: #ffffff;
       border-radius: 28px;
       overflow: hidden;
-      max-width: 480px;
-      width: 100%;
-      margin: 0 auto;
+      transition: all 0.3s ease;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+      border: 1px solid #eef2ff;
+    }
+
+    .team-card-single:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.12);
+      border-color: var(--primary);
     }
 
     .image-wrapper-single {
-      width: 100%;
-      max-width: clamp(180px, 40vw, 280px);
-      height: auto;
+      width: 160px;
+      height: 160px;
       margin: 30px auto 0 auto;
       border-radius: 50%;
       overflow: hidden;
-      aspect-ratio: 1 / 1;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       border: 4px solid var(--white);
+      outline: 1px solid #eef2ff;
     }
 
     .image-wrapper-single img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .team-card-single:hover .image-wrapper-single img {
+      transform: scale(1.05);
     }
 
     .team-card-single .info {
-      padding: 20px;
+      padding: 20px 24px 30px;
       text-align: center;
     }
 
     .team-card-single .info h3 {
-      font-size: clamp(1.3rem, 5vw, 1.6rem);
+      font-size: 1.5rem;
       font-weight: 700;
       color: var(--dark);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .team-card-single .role {
       color: var(--primary);
       font-weight: 600;
-      font-size: clamp(0.75rem, 3vw, 0.85rem);
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 16px;
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+      display: inline-block;
+      background: #f0f4fe;
+      padding: 5px 16px;
+      border-radius: 30px;
     }
 
     .team-card-single .bio {
-      font-size: clamp(0.85rem, 3vw, 0.95rem);
+      font-size: 0.88rem;
       color: #555;
       line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .expertise-flair {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .micro-tag {
+      background: #f7f9fe;
+      border-radius: 30px;
+      padding: 5px 12px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--primary);
+      border-left: 2px solid var(--primary);
+    }
+
+    .oracle-note {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #8895b3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border-top: 1px solid #eef2ff;
+    }
+
+    @media (max-width: 768px) {
+      .team-all-members {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .image-wrapper-single {
+        width: 130px;
+        height: 130px;
+      }
+      .team-card-single .info h3 {
+        font-size: 1.3rem;
+      }
     }
 
     /* ===== COMMENT SECTION ===== */
@@ -1126,6 +1188,7 @@
         <li><a href="#" onclick="smoothScrollTo('process'); return false;">How We Work</a></li>
         <li><a href="#" onclick="smoothScrollTo('portfolio'); return false;">Our Work</a></li>
         <li><a href="#" onclick="smoothScrollTo('clients'); return false;">Clients</a></li>
+        <li><a href="#" onclick="smoothScrollTo('team'); return false;">Team</a></li>
         <li><a href="#" onclick="smoothScrollTo('contact'); return false;">Contact Us</a></li>
       </ul>
     </nav>
@@ -1167,7 +1230,7 @@
   </div>
 </section>
 
-<!-- SERVICES SECTION with INFINITE RIGHT-TO-LEFT ANIMATION + DRAG SUPPORT -->
+<!-- SERVICES SECTION -->
 <section id="services" class="section-padding">
   <div class="section-header"><span>COMPLETE PRICE LIST</span><h2>IT & Digital Services</h2></div>
   <div class="services-scroll-container" id="servicesScrollContainer">
@@ -1206,6 +1269,86 @@
     </div>
 </section>
 
+<!-- UPDATED TEAM SECTION - ALL 6 MEMBERS IN PROFESSIONAL GRID -->
+<section id="team" class="section-padding" style="background: var(--light);">
+    <div class="team-container">
+        <h2 class="section-title">The Minds Behind <span>Digital Dominance</span></h2>
+        <p class="section-subtitle">A human-centric approach to high-performance engineering.</p>
+        
+        <div class="team-all-members">
+            <!-- Member 1: Sujit Tudu (Founder) -->
+            <div class="team-card-single">
+                <div class="image-wrapper-single"><img src="sujit.jpg" alt="Sujit Tudu" onerror="this.src='https://placehold.co/400x400?text=Sujit+Tudu'"></div>
+                <div class="info">
+                    <h3>Sujit Tudu</h3>
+                    <p class="role">🚀 Founder of NextGenIT</p>
+                    <p class="bio">Stripping away digital noise to deliver lean, aggressive, and result-oriented solutions across continents.</p>
+                    <div class="expertise-flair"><span class="micro-tag">Global strategy</span><span class="micro-tag">Innovation</span><span class="micro-tag">Leadership</span></div>
+                </div>
+            </div>
+
+            <!-- Member 2: Surendra Tudu -->
+            <div class="team-card-single">
+                <div class="image-wrapper-single"><img src="surendra.jpg" alt="Surendra Tudu" onerror="this.src='https://placehold.co/400x400?text=Surendra+Tudu'"></div>
+                <div class="info">
+                    <h3>Surendra Tudu</h3>
+                    <p class="role">🎨 Graphic Designer</p>
+                    <p class="bio">Visual alchemist turning concepts into iconic brand aesthetics. Master of composition, color psychology, and visual storytelling that stops the scroll.</p>
+                    <div class="expertise-flair"><span class="micro-tag">Brand Identity</span><span class="micro-tag">Illustration</span><span class="micro-tag">Adobe Suite</span></div>
+                </div>
+            </div>
+
+            <!-- Member 3: Anurag Bishwokarma -->
+            <div class="team-card-single">
+                <div class="image-wrapper-single"><img src="anurag.jpg" alt="Anurag Bishwokarma" onerror="this.src='https://placehold.co/400x400?text=Anurag+B.'"></div>
+                <div class="info">
+                    <h3>Anurag Bishwokarma</h3>
+                    <p class="role">⚡ SEO Expert + Full Stack Developer</p>
+                    <p class="bio">Dual-threat powerhouse: architecting scalable web platforms while dominating search visibility. Merging technical excellence with organic growth.</p>
+                    <div class="expertise-flair"><span class="micro-tag">React/Node</span><span class="micro-tag">SEO analytics</span><span class="micro-tag">Core Web Vitals</span></div>
+                </div>
+            </div>
+
+            <!-- Member 4: Ram Hasda -->
+            <div class="team-card-single">
+                <div class="image-wrapper-single"><img src="ramhasda.jpg" alt="Ram Hasda" onerror="this.src='https://placehold.co/400x400?text=Ram+Hasda'"></div>
+                <div class="info">
+                    <h3>Ram Hasda</h3>
+                    <p class="role">🖌️ Graphic Designer</p>
+                    <p class="bio">Crafting minimal yet powerful visual experiences. Ram blends modern design trends with timeless principles to produce high-impact creative assets.</p>
+                    <div class="expertise-flair"><span class="micro-tag">UI/UX design</span><span class="micro-tag">Print & Digital</span></div>
+                </div>
+            </div>
+
+            <!-- Member 5: Rajesh Tudu -->
+            <div class="team-card-single">
+                <div class="image-wrapper-single"><img src="rajeshtudu.jpg" alt="Rajesh Tudu" onerror="this.src='https://placehold.co/400x400?text=Rajesh+Tudu'"></div>
+                <div class="info">
+                    <h3>Rajesh Tudu</h3>
+                    <p class="role">📈 SEO Expert + Full Stack Developer</p>
+                    <p class="bio">Rajesh engineers high-performance web solutions and data-driven SEO campaigns that generate sustainable traffic and revenue growth.</p>
+                    <div class="expertise-flair"><span class="micro-tag">MERN Stack</span><span class="micro-tag">Technical SEO</span><span class="micro-tag">Speed optimization</span></div>
+                </div>
+            </div>
+
+            <!-- Member 6: Ashok Raut -->
+            <div class="team-card-single">
+                <div class="image-wrapper-single"><img src="ashokraut.jpg" alt="Ashok Raut" onerror="this.src='https://placehold.co/400x400?text=Ashok+Raut'"></div>
+                <div class="info">
+                    <h3>Ashok Raut</h3>
+                    <p class="role">🎬 Senior Graphic Designer + Video Editor + Creator</p>
+                    <p class="bio">Multimedia virtuoso: cinematic video editing, motion design, and breathtaking graphic assets. Ashok brings stories to life with rhythm and precision.</p>
+                    <div class="expertise-flair"><span class="micro-tag">Premiere Pro</span><span class="micro-tag">After Effects</span><span class="micro-tag">Creative direction</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="oracle-note">
+            <span>✦</span> NextGenIT — Where design, code & strategy converge for digital dominance <span>✦</span>
+        </div>
+    </div>
+</section>
+
 <section id="contact" class="section-padding">
   <div class="contact-container">
     <div class="contact-info"><h2>Let's Start <span style="color:var(--primary)">Growing.</span></h2><p>Fill out the form and our friendly team will call or email you soon.</p>
@@ -1241,21 +1384,8 @@
         </div>
     </div>
 </section>
-  
-<section class="team-section section-padding">
-    <div class="team-container">
-        <h2 class="section-title">The Minds Behind <span>Digital Dominance</span></h2>
-        <p class="section-subtitle">A human-centric approach to high-performance engineering.</p>
-        <div class="team-profile-wrapper">
-            <div class="team-card-single">
-                <div class="image-wrapper-single"><img src="sujit.jpg" alt="Sujit Tudu" onerror="this.src='https://placehold.co/300x300?text=Sujit+Tudu'"></div>
-                <div class="info"><h3>Sujit Tudu</h3><p class="role">Founder of NextGenIT</p><p class="bio">Stripping away digital noise to deliver lean, aggressive, and result-oriented solutions across continents.</p></div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- LOCATIONS SECTION with REAL FLAGS - placed above footer -->
+<!-- LOCATIONS SECTION -->
 <section id="locations" class="section-padding" style="background: linear-gradient(120deg, #f8faff 0%, #ffffff 100%);">
   <div class="section-header"><span>GLOBAL REACH</span><h2>Locations We Serve</h2><p style="color:#555; max-width:700px; margin:10px auto 0;">Delivering cutting-edge IT solutions worldwide — seamless support across time zones.</p></div>
   <div class="locations-scroll-container" id="locationsScrollContainer">
@@ -1273,7 +1403,7 @@
 </footer>
 
 <script>
-// Smooth scroll function for navigation
+// Smooth scroll function
 function smoothScrollTo(sectionId) {
   const element = document.getElementById(sectionId);
   if (element) {
@@ -1283,11 +1413,8 @@ function smoothScrollTo(sectionId) {
     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
   }
   const navMenu = document.getElementById('nav-menu');
-  const menuToggle = document.getElementById('mobile-menu');
   if (navMenu && navMenu.classList.contains('active')) {
     navMenu.classList.remove('active');
-    const icon = menuToggle?.querySelector('i');
-    if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-xmark'); }
   }
 }
 
@@ -1331,7 +1458,7 @@ function showLocationInfo(country) {
     document.body.style.overflow = 'hidden'; 
 }
 
-// Locations Data with REAL FLAG IMAGES
+// Locations Data
 const locationsData = [
     { flagUrl: "https://flagcdn.com/w80/np.png", name: "Nepal", region: "Asia" },
     { flagUrl: "https://flagcdn.com/w80/us.png", name: "USA", region: "North America" },
@@ -1509,7 +1636,7 @@ function initDragForContainer(containerId, trackId) {
     container.style.cursor = 'grab';
 }
 
-// Forms handlers
+// Form handlers
 document.getElementById('heroForm')?.addEventListener('submit', async (e) => {
     e.preventDefault(); const btn = document.getElementById('heroSubmitBtn'); const resultDiv = document.getElementById('heroFormResult');
     btn.disabled = true; btn.innerHTML = "Sending...";
@@ -1520,6 +1647,7 @@ document.getElementById('heroForm')?.addEventListener('submit', async (e) => {
     } catch { resultDiv.innerHTML = "⚠️ Error. Please try again."; resultDiv.style.color = "#ffbf00"; }
     finally { btn.disabled = false; btn.innerHTML = "Send Message →"; setTimeout(() => resultDiv.innerHTML = "", 4000); }
 });
+
 document.getElementById('form')?.addEventListener('submit', function(e) {
     e.preventDefault(); const resultDiv = document.getElementById('result'); const submitBtn = document.getElementById('submit-btn');
     resultDiv.style.display = "block"; resultDiv.innerHTML = "Sending..."; submitBtn.disabled = true;
